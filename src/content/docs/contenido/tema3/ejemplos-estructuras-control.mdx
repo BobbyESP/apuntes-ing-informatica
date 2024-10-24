@@ -1,0 +1,187 @@
+---
+title: Ejemplos de Estructuras de Control en C++
+description: Ejemplos de código en C++ que ilustran las estructuras de control secuenciales, condicionales y de repetición (bucles).
+---
+Aquí tienes ejemplos de **código** para cada tipo de estructura de control, con comentarios adicionales para una mejor comprensión:
+
+## Estructuras Secuenciales
+
+```c++ frame="terminal"
+#include <iostream>
+using namespace std;
+
+int main() {
+  int num1, num2, suma; // Declaración de variables
+
+  cout << "Introduce el primer número: "; // Imprime mensaje en pantalla
+  cin >> num1; // Lee el primer número introducido por el usuario
+  cout << "Introduce el segundo número: "; 
+  cin >> num2; // Lee el segundo número
+
+  suma = num1 + num2; // Calcula la suma de los dos números
+  cout << "La suma es: " << suma << endl; // Imprime el resultado
+
+  return 0; // Finaliza el programa
+}
+```
+
+En este código, cada instrucción se ejecuta una tras otra, en secuencia. Primero se declaran las variables, luego se solicitan los números al usuario, se calcula la suma y finalmente se imprime el resultado.
+
+## Estructuras Condicionales
+
+### **Estructura Condicional Simple (`if`)**
+
+```c++ frame="terminal"
+#include <iostream>
+using namespace std;
+
+int main() {
+  int edad;
+
+  cout << "Introduce tu edad: ";
+  cin >> edad;
+
+  if (edad >= 18) { // Condición: si la edad es mayor o igual a 18
+    cout << "Eres mayor de edad." << endl; // Se ejecuta si la condición es verdadera
+  }
+
+  return 0;
+}
+```
+
+En este caso, el mensaje "Eres mayor de edad" solo se imprime si la condición `edad >= 18` se cumple.
+
+### **Estructura Condicional Doble (`if-else`)**
+
+```c++ frame="terminal"
+#include <iostream>
+using namespace std;
+
+int main() {
+  int numero;
+
+  cout << "Introduce un número: ";
+  cin >> numero;
+
+  if (numero % 2 == 0) { // Condición: si el número es par
+    cout << "El número es par." << endl; 
+  } else { // Si la condición anterior no se cumple
+    cout << "El número es impar." << endl;
+  }
+
+  return 0;
+}
+```
+
+Aquí, se imprime un mensaje diferente dependiendo de si el número introducido es par o impar.
+
+### **Estructura Condicional Múltiple (`switch-case`)**
+
+```c++ frame="terminal"
+#include <iostream>
+using namespace std;
+
+int main() {
+  int dia;
+
+  cout << "Introduce un número de día (1-7): ";
+  cin >> dia;
+
+  switch (dia) { 
+    case 1: 
+      cout << "Lunes" << endl; 
+      break;
+    case 2: 
+      cout << "Martes" << endl; 
+      break;
+    case 3: 
+      cout << "Miércoles" << endl; 
+      break;
+    case 4: 
+      cout << "Jueves" << endl; 
+      break;
+    case 5: 
+      cout << "Viernes" << endl; 
+      break;
+    case 6: 
+      cout << "Sábado" << endl; 
+      break;
+    case 7: 
+      cout << "Domingo" << endl; 
+      break;
+    default: 
+      cout << "Número de día inválido." << endl;
+  }
+
+  return 0;
+}
+```
+
+Este código utiliza `switch-case` para imprimir el nombre del día de la semana correspondiente al número introducido. La instrucción `break` es importante para evitar que se ejecuten los casos siguientes después de encontrar una coincidencia.
+
+## Estructuras de Repetición (Bucles)
+
+### **Estructura `while`**
+
+```c++ frame="terminal"
+#include <iostream>
+using namespace std;
+
+int main() {
+  int contador = 1;
+
+  while (contador <= 5) { // Condición: mientras el contador sea menor o igual a 5
+    cout << "Contador: " << contador << endl;
+    contador++; // Incrementa el contador en cada iteración
+  }
+
+  return 0;
+}
+```
+
+Este código imprime el valor del contador desde 1 hasta 5. El bucle se repite mientras la condición `contador <= 5` sea verdadera.
+
+### **Estructura `do-while`**
+
+```c++ frame="terminal"
+#include <iostream>
+using namespace std;
+
+int main() {
+  int numero;
+
+  do { // El código dentro del bloque 'do' se ejecuta al menos una vez
+    cout << "Introduce un número positivo: ";
+    cin >> numero;
+  } while (numero <= 0); // Condición: se repite si el número no es positivo
+
+  cout << "El número introducido es: " << numero << endl;
+
+  return 0;
+}
+```
+
+Este código pide al usuario que introduzca un número positivo y se repite hasta que se introduce un número mayor que 0. La condición se evalúa al final del bucle, por lo que se ejecuta al menos una vez.
+
+### **Estructura `for`**
+
+```c++ frame="terminal"
+#include <iostream>
+using namespace std;
+
+int main() {
+  int suma = 0;
+
+  for (int i = 1; i <= 10; i++) { // Bucle que se repite 10 veces
+    suma += i; // Suma el valor de 'i' a la variable 'suma'
+  }
+
+  cout << "La suma de los primeros 10 números naturales es: " << suma << endl;
+
+  return 0;
+}
+```
+
+Este código utiliza un bucle `for` para calcular la suma de los primeros 10 números naturales. El bucle itera 10 veces, con la variable `i` incrementando su valor en cada iteración.
+
+Estos ejemplos muestran cómo se pueden implementar las diferentes estructuras de control en código C++, ofreciendo una comprensión más práctica de su funcionamiento.

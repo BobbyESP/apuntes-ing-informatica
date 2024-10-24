@@ -1,71 +1,83 @@
 ---
 title: Tema 1 - Algoritmos y Programas
-description: Que es un algoritmo, lenguajes de programación, compiladores e intérpretes, paradigmas de programación...
+description: Qué es un algoritmo, lenguajes de programación, compiladores e intérpretes, paradigmas de programación...
 ---
 
 import { Aside } from "@astrojs/starlight/components";
 
 Este tema explora los conceptos fundamentales de la programación, comenzando por la definición de un programa como un **conjunto de instrucciones** para que la computadora realice tareas.
 
-## Algoritmos: el Corazón de la Programación
+## Algoritmos
 
 Un concepto clave que se resalta es el de **algoritmo**. Un algoritmo es una serie de **pasos ordenados y finitos** para resolver un problema, y es la base de todo lo que hace una computadora.
 
 - Un algoritmo debe ser **preciso, definido y finito**.
 - A diferencia de un programa, un algoritmo puede ser expresado en lenguaje natural.
-- Para que una computadora ejecute un algoritmo, éste debe ser traducido a un programa.
-- La estructura general de un algoritmo incluye una **cabecera**, un **cuerpo con declaraciones,** e **instrucciones**.
+- Para que una computadora ejecute un algoritmo, este debe ser traducido a un programa.
+- La estructura general de un algoritmo incluye una **cabecera**, un **cuerpo con declaraciones**, e **instrucciones**.
 
 <Aside>
-  - **Instrucción**: Conjunto de símbolos que le damos al ordenador para que
-  realice una tarea.
+  - **Instrucción**: Conjunto de símbolos que le damos al ordenador para que realice una tarea.
 </Aside>
 
-## Codificación de la Información: Hablando el Idioma de las Computadoras
+## Codificación de la Información
 
-Para que un ordenador pueda procesar información, ésta debe ser codificada en un formato que pueda entender, es decir, en secuencias de 0s y 1s (sistema binario).
+Para que un ordenador pueda procesar información, esta debe ser codificada en un formato que pueda entender, es decir, en **secuencias de 0s y 1s** (sistema binario).
 
 - **Un bit es la unidad mínima de información**, representando un `0` o un `1`.
 - **Un byte son 8 bits** y se utiliza como una unidad básica de almacenamiento.
-- Existen múltiplos del byte, como el kilobyte, megabyte, gigabyte, etc..
-  - Tamaño de las unidades de almacenamiento
-    ![Tabla de las unidades de almacenamiento](@assets/tablatamanos.webp)
+- Existen múltiplos del byte, como el kilobyte, megabyte, gigabyte, etc.
+  
+  ![Tabla de las unidades de almacenamiento](@assets/tablatamanos.webp)
 
-## Lenguajes de Programación: Traduciendo Algoritmos a Código
+## Lenguajes de Programación
 
 Para escribir un programa, se utilizan lenguajes de programación, que son un conjunto de reglas y símbolos para construir programas. Existen diferentes tipos:
 
-- **Lenguaje máquina**: Es el lenguaje nativo de los ordenadores, basado en secuencias de 0s y 1s, lo que lo hace difícil de usar para los humanos.
-- **Lenguaje ensamblador**: Utiliza nombres simbólicos para representar instrucciones, lo que lo hace más fácil de usar que el lenguaje máquina, pero sigue dependiendo del procesador/arquitectura (x86, x64, ArmV7, ArmV8…).
-- **Lenguajes de alto nivel**: Son más cercanos al lenguaje humano y son independientes de la máquina, lo que facilita la escritura y la portabilidad de los programas. Ejemplos: C/C++, Python, Java.
+- **Lenguaje máquina**: El lenguaje nativo de los ordenadores, basado en secuencias de 0s y 1s.
+- **Lenguaje ensamblador**: Usa nombres simbólicos para representar instrucciones, más fácil que el lenguaje máquina, pero aún dependiente de la arquitectura (x86, x64, ArmV7, etc.).
+- **Lenguajes de alto nivel**: Más cercanos al lenguaje humano e independientes de la máquina. Ejemplos: **C/C++**, **Python**, **Java**.
 
-## Traduciendo Lenguajes de Alto Nivel: Compiladores e Intérpretes
+## Compiladores e Intérpretes
 
-Para que una computadora ejecute un programa escrito en un lenguaje de alto nivel, se utiliza un traductor, que puede ser un compilador o un intérprete:
+Para que una computadora ejecute un programa escrito en un lenguaje de alto nivel, se utiliza un **traductor**, que puede ser un compilador o un intérprete:
 
-- **Compiladores**: Traducen todo el código fuente a código máquina en una sola operación (compilación). El programa resultante se puede ejecutar directamente.
-- **Intérpretes**: Traducen y ejecutan el programa instrucción por instrucción, es decir, en tiempo real. Permiten corregir errores sobre la marcha, pero son menos eficientes que los compiladores.
+- **Compiladores**: Traducen todo el código fuente a código máquina en una sola operación, generando un programa ejecutable.
+- **Intérpretes**: Traducen y ejecutan el programa **instrucción por instrucción**, permitiendo corregir errores sobre la marcha, aunque son menos eficientes.
 
-## Paradigmas de Programación: Diferentes Formas de Pensar en la Programación
+## Paradigmas de Programación
 
-Un paradigma de programación es un estilo de desarrollo de software. Algunos ejemplos son:
+Un **paradigma de programación** es un estilo de desarrollo de software. Algunos ejemplos son:
 
 - **Imperativa**: Se define la secuencia de pasos a ejecutar.
-- **Orientada a objetos**: Se basa en la creación de objetos (ya se verán en PRO II) que interactúan entre sí.
-- **Declarativa**: Se describe el problema y se utiliza la lógica para solucionarlo.
+- **Orientada a Objetos**: Se basa en la creación de objetos que interactúan entre sí.
+- **Declarativa**: Describe qué se necesita resolver en lugar de cómo hacerlo.
 - **Funcional**: Se basa en la definición y uso de funciones.
-- **Guiada por eventos**: El flujo del programa está determinado por eventos externos.
-- **Concurrente**: Permite ejecutar múltiples tareas al mismo tiempo.
+- **Guiada por Eventos**: El flujo del programa está determinado por eventos externos.
+- **Concurrente**: Permite ejecutar múltiples tareas simultáneamente.
 
 ---
 
-Un poco más ampliado, los paradigmas más comunes (los cuales son los mencionados en el tema) son:
+### Paradigmas más Comunes
 
-- **Programación Imperativa (Procedimental):** Este es el enfoque clásico donde el código fuente define claramente los pasos a ejecutar y en qué orden. Se asemeja al funcionamiento de las lenguajes máquina. Las instrucciones se ejecutan secuencialmente, una tras otra, a menos que se encuentre una instrucción de salto. Para facilitar la organización, el código se divide en subprogramas (funciones, procedimientos) que pueden ser invocados entre sí. Ejemplos de lenguajes que siguen este paradigma son C, Pascal y Modula.
-- **Programación Orientada a Objetos:** Este paradigma utiliza el concepto de "clase" como una plantilla para crear "objetos". Un objeto es una instancia de una clase y contiene datos (atributos) y operaciones (métodos) que puede realizar. Los programas se componen de objetos que interactúan entre sí mediante el envío de "mensajes". Las ventajas incluyen la reutilización de código y una mejor organización. Lenguajes como C++ y Java son ejemplos de este paradigma.
-- **Programación Declarativa (Lógica):** En lugar de definir el "cómo" resolver un problema (como en la programación imperativa), este enfoque se centra en describir el "qué" se necesita resolver. Se basa en la lógica de predicados y el razonamiento deductivo. El programador define hechos y reglas, y el sistema se encarga de encontrar la solución. Prolog y SQL son ejemplos de este paradigma.
-- **Programación Funcional:** Este paradigma se basa en la definición y utilización de funciones. Cada función toma una entrada, realiza un procesamiento y devuelve un resultado. Las funciones se pueden combinar y componer para crear programas más complejos. La recursividad (una función que se llama a sí misma) es un concepto importante en este paradigma. Ejemplos de lenguajes funcionales son LISP y Haskell.
-- **Programación Guiada por Eventos:** Este paradigma, relativamente reciente, se basa en un bucle principal que se ejecuta indefinidamente, esperando a que ocurran eventos externos (como la acción de un usuario o la recepción de un mensaje). Cada evento tiene asociado un procedimiento o función que se ejecuta cuando se produce dicho evento. Java y Visual Basic son ejemplos de lenguajes que soportan este paradigma.
-- **Programación Concurrente:** Este paradigma permite ejecutar múltiples tareas al mismo tiempo (en paralelo o de forma pseudo-paralela). Los programas se dividen en procesos o hilos de ejecución que pueden compartir información entre sí. Java y Pascal Concurrente son ejemplos de lenguajes que permiten la programación concurrente.
+#### Programación Imperativa (Procedimental)
+Este enfoque define claramente los pasos a ejecutar en orden secuencial. El código se organiza en subprogramas (funciones, procedimientos). Ejemplos de lenguajes: **C**, **Java**, **Go**.
 
-Un mismo lenguaje de programación puede implementar uno o varios de estos paradigmas, ya que la estructura del código puede variar según el enfoque elegido.
+#### Programación Orientada a Objetos
+Se basa en la creación de **clases** y **objetos**. Los programas están compuestos por objetos que interactúan entre sí. Ventajas: reutilización de código y mejor organización. Ejemplos: **C++**, **Java**.
+
+#### Programación Declarativa (Lógica)
+Este enfoque se centra en el **qué** resolver, dejando que el sistema se encargue del **cómo**. Utiliza reglas y hechos para encontrar soluciones. Ejemplos: **Prolog**, **SQL**.
+
+#### Programación Funcional
+Se basa en la definición y combinación de **funciones**. La recursividad es un concepto clave. Ejemplos: **Python**, **Kotlin**, **JavaScript**.
+
+#### Programación Guiada por Eventos
+El flujo del programa está controlado por eventos externos, como interacciones del usuario. Ejemplos: **Java**, **Visual Basic**.
+
+#### Programación Concurrente
+Permite la ejecución simultánea de múltiples tareas a través de **procesos** o **hilos de ejecución**. Ejemplo: **Java**.
+
+---
+
+Un mismo lenguaje puede implementar varios de estos paradigmas, dependiendo del enfoque del programador.

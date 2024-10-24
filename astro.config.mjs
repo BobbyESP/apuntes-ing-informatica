@@ -9,11 +9,18 @@ export default defineConfig({
   integrations: [starlight({
     title: "PRO I - Apuntes (UVigo)",
 	  description: "Apuntes de la asignatura Programación I de la Universidad de Vigo",
+    locales: {
+      root: {
+        label: "Español",
+        lang: "es",
+      },
+    },
     social: {
-      github: "https://github.com/withastro/starlight",
+      github: "https://github.com/BobbyESP",
+      linkedin: "https://www.linkedin.com/in/gabriel-font%C3%A1n-rodi%C3%B1o-a50968232/",
     },
     expressiveCode: {
-      themes: ["github-dark-dimmed", "solarized-light"], //Temas de syntax highlighting (Bloques de código)
+      themes: ["github-dark-dimmed", "github-light-default"], //Temas de syntax highlighting (Bloques de código)
       styleOverrides: {
         borderRadius: "0.5rem", //Bordes redondeados en los bloques de código
       },
@@ -33,6 +40,13 @@ export default defineConfig({
           ] },
           { label: "Tema 2: Metodología de la programación", items: [
             { label: "Apuntes", slug: "contenido/tema2/apuntes" }
+          ] },
+          { label: "Tema 3: Variables e Instrucciones", items: [
+            { label: "Apuntes", slug: "contenido/tema3/apuntes" },
+            { label: "Ejemplos de las estructuras de control", slug: "contenido/tema3/ejemplos-estructuras-control" }
+          ] },
+          { label: "Tema 4: Programación estructurada", items: [
+            { label: "Apuntes", slug: "contenido/tema4/apuntes" }
           ] },
         ],
       },

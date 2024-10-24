@@ -1,0 +1,244 @@
+---
+title: Tema 3 - Variables e Instrucciones
+description: Qué es un algoritmo, lenguajes de programación, compiladores e intérpretes, paradigmas de programación...
+---
+
+import { Code, Aside, LinkCard  } from "@astrojs/starlight/components";
+
+## Estructura de un Programa
+
+Un programa, en esencia, es la traducción de un algoritmo a un lenguaje que una computadora puede entender y ejecutar.  Esta serie de instrucciones, escritas en un lenguaje de programación específico como C++, tienen una estructura bien definida, compuesta por tres partes fundamentales:
+
+*   **Entrada de datos:** Se refiere a las instrucciones que permiten al programa recibir información del exterior. Esta información puede provenir del teclado, un archivo almacenado en la memoria, un sensor o cualquier otra fuente.  Las instrucciones de entrada se encargan de capturar estos datos y almacenarlos en la memoria central de la computadora para que puedan ser procesados.
+
+*   **Proceso o algoritmo:**  Es el corazón del programa, donde la magia sucede. En esta sección, las instrucciones se encargan de manipular los datos de entrada, realizar cálculos, tomar decisiones y, en definitiva, transformar la información original en los resultados deseados.  El proceso o algoritmo es donde se implementa la lógica para resolver un problema específico.
+
+*   **Salida de datos:** Una vez que el programa ha procesado la información, necesita comunicar los resultados al usuario o a otro sistema. Aquí es donde entran en juego las instrucciones de salida. Estas instrucciones toman los datos procesados y los envían a un dispositivo de salida, que puede ser la pantalla, una impresora, un archivo o cualquier otro destino.
+
+La ejecución de un programa generalmente sigue un flujo secuencial, donde las instrucciones se ejecutan una tras otra en el orden en que están escritas. Sin embargo, las **instrucciones de control**, como las **estructuras condicionales**, permiten alterar este flujo lineal, creando programas no lineales que se adaptan a diferentes situaciones.
+
+**Estructura General de un Algoritmo:**
+
+La estructura de un algoritmo, que es la base de cualquier programa, se puede representar de la siguiente manera:
+
+*   **Cabecera:** Se inicia con la palabra clave "ALGORITMO" seguida del nombre que lo identifica. 
+
+*   **Cuerpo:**  
+    *   **Declaraciones:** En esta sección, se definen los elementos que el algoritmo va a utilizar:
+        *   **Constantes:** Valores que no cambian durante la ejecución del algoritmo.
+        *   **Variables:** Espacios en memoria que almacenan valores que pueden modificarse. 
+        *   **Tipos de datos:** Especifican la naturaleza de los valores que pueden tomar las variables (enteros, reales, caracteres, etc.). 
+    *   **Instrucciones:** Aquí se encuentran las acciones que el algoritmo debe realizar:
+        *   Inicio/fin: Marcan el comienzo y el final del algoritmo.
+        *   Entrada de datos: Instrucciones para obtener información del exterior.
+        *   Salida de datos: Instrucciones para mostrar los resultados al usuario.
+        *   Asignación: Instrucciones que asignan valores a las variables.
+        *   Bifurcación: Instrucciones que permiten tomar decisiones y ejecutar diferentes caminos según ciertas condiciones. 
+        *   Comentarios: Texto que no se ejecuta, pero que sirve para documentar y explicar el código. 
+
+### Estructura de un Programa en C++
+
+`C++`, como lenguaje de programación, tiene una estructura específica para la organización de sus programas:
+
+*   **Directivas de preprocesador:** Son instrucciones especiales que se le dan al compilador (el programa que traduce el código C++ a lenguaje máquina) antes de que comience el proceso de compilación. 
+    *   `#include`: Esta directiva se utiliza para incluir el contenido de un archivo de cabecera (Extensión `.h`) en el programa. Los **archivos de cabecera** contienen definiciones de funciones, clases y otros elementos que el programa puede utilizar. Por ejemplo, la directiva `#include <iostream>`  incluye la biblioteca estándar de entrada/salida, que permite al programa utilizar funciones como `cin` para la entrada de datos y `cout` para la salida.
+    *   `#define`: Esta directiva se utiliza para definir constantes simbólicas o macros. Una macro es un fragmento de código que se reemplaza en el programa durante la precompilación. El ejemplo más sencillo es el que vimos en clase para `lerCadea`:
+        
+        ```c++
+        #define MAXCAD 20 
+        ```
+
+*   **Declaraciones globales:** En esta sección, se declaran funciones y variables que estarán disponibles para todas las funciones del programa. Estas funciones y variables se conocen como globales porque su alcance no está limitado a una función específica.
+
+*   **Función principal (`main()`):** Todo programa en C++ debe tener una función principal llamada `main()`. Es el punto de entrada del programa, es decir, la función que se ejecuta primero cuando el programa se inicia.  La función `main()` normalmente devuelve un valor entero (`int`) que indica si la ejecución del programa fue exitosa o no.
+
+*   **Funciones definidas por el usuario:** Además de la función `main()`, un programa en C++ puede contener funciones definidas por el usuario. Estas funciones permiten modularizar el código, dividiéndolo en bloques más pequeños y manejables.  Cada función tiene un nombre, una lista de parámetros (valores de entrada) y un tipo de retorno (valor de salida). .
+    ```c++ frame="terminal"
+    // Declaración de una función
+    int suma(int a, int b);
+
+    // ... [más codigo, incluido el main()]
+
+    int suma(int a, int b) { // Esta función se puede ejecutar escribiendo `suma(2, 3)` y devolverá 5 como resultado
+        return a + b;
+    }
+    ```
+*   **Comentarios:** Son líneas de texto que el compilador ignora. Se utilizan para documentar y explicar el código, haciéndolo más legible y comprensible para los programadores.  En C++, se pueden usar `//` para comentarios de una sola línea y `/* */` para comentarios de varias líneas.
+    <Aside>En otro tema veremos como documentar las funciones para que DoxyBlocks genera la documentación de nuestro programa de forma automática.</Aside>
+
+## Palabras Reservadas e Identificadores
+
+En C++, como en cualquier lenguaje de programación, existen ciertas palabras que tienen un significado predefinido y no se pueden usar para otros fines. Estas son las **palabras reservadas**. Ejemplos de palabras reservadas son: `int`, `float`, `bool`, `char`, `if`, `else`, `while`, `for`, `switch`, `case`, `break`, `continue`, `return`, etc.  
+
+Por otro lado, los **identificadores** son los nombres que se utilizan para identificar los diferentes elementos de un programa: variables, constantes, funciones, etc.  Estos nombres son creados por el programador y deben seguir ciertas reglas para ser válidos:
+
+*   **Ser significativos:** El nombre de un identificador debe reflejar la función o el dato que representa, facilitando la comprensión del código.
+*   **No coincidir con palabras reservadas:**  No se puede utilizar una palabra reservada como identificador, ya que esto generaría un error de compilación.
+*   **Empezar con un carácter alfabético o un guión bajo (_):**  Los identificadores no pueden comenzar con un número.
+*   **Estar compuestos por letras, números y guiones bajos:** No se permiten espacios ni otros caracteres especiales.
+    <Aside type="caution">Esto también implica que **no se pueden utilizar tildes** en los identificadores!</Aside>
+*   **Ser sensibles a mayúsculas y minúsculas:** `variable1`  y  `Variable1`  son dos identificadores diferentes.
+
+## Variables, Constantes y Tipos de Datos Simples
+
+**Variables:**
+
+Una **variable** es un espacio reservado en la memoria de la computadora que se utiliza para almacenar un valor durante la ejecución de un programa.  El valor de una variable puede cambiar a lo largo del programa, de ahí su nombre. Cada variable tiene un nombre (identificador) que se utiliza para referirse a ella en el código.
+
+**Constantes:**
+
+Una **constante** es similar a una variable, pero su valor no puede cambiar durante la ejecución del programa.  Se utiliza para representar valores fijos, como el número Pi o la velocidad de la luz.
+
+**Declaración de Variables en C++:**
+
+Para utilizar una variable en C++, primero hay que declararla.  La declaración de una variable especifica su tipo y su nombre.  Por ejemplo:
+
+```c++ frame="terminal"
+int edad;  // Declara una variable llamada 'edad' de tipo entero.
+float altura;  // Declara una variable llamada 'altura' de tipo real.
+bool activo;  // Declara una variable llamada 'activo' de tipo lógico (booleano).
+char inicial;  // Declara una variable llamada 'inicial' de tipo carácter. 
+```
+
+**Declaración de Constantes en C++:**
+
+Las constantes se declaran de manera similar a las variables, pero se utiliza la palabra clave `const`  antes del tipo. Por ejemplo:
+
+```c++ frame="terminal"
+const int MAX_INTENTOS = 3;  // Declara una constante llamada 'MAX_INTENTOS' con el valor 3.
+const float PI = 3.141592;  // Declara una constante llamada 'PI' con el valor de Pi.
+```
+
+**Tipos de Datos:**
+
+El **tipo de dato** de una variable o constante define el conjunto de valores que puede almacenar y las operaciones que se pueden realizar con ella.  C++ tiene varios tipos de datos básicos, que se pueden clasificar en:
+
+*   **Tipos numéricos:**
+    *   **Enteros:** Representan números enteros sin parte decimal. 
+        *   `short int` (o simplemente `short`):  Entero corto, ocupa menos memoria. 
+        *   `int`: Entero de tamaño estándar. 
+        *   `long int` (o simplemente `long`): Entero largo, ocupa más memoria.
+    *   **Reales:** Representan números con parte decimal.
+        *   `float`: Real de precisión simple.
+        *   `double`: Real de doble precisión.
+*   **Tipo lógico (booleano):**
+    *   `bool`:  Representa valores de verdad: verdadero (`true`) o falso (`false`).
+*   **Tipo carácter:**
+    *   `char`: Representa un solo carácter, como una letra, un número o un símbolo. Más alante veremos que se pueden convertir a números enteros o modificar su declaración para hacer cadenas de texto.
+*   **Tipo cadena:**
+    *   `string`: Representa una secuencia de caracteres. Existe pero **NO la usamos en clase**.
+
+## Instrucciones de Asignación
+
+La **instrucción de asignación** se utiliza para asignar un valor a una variable. En C++, se utiliza el operador de asignación `=`  para ello.  El valor a la derecha del operador se asigna a la variable a la izquierda del operador. Por ejemplo:
+
+```c++
+edad = 25;  // Asigna el valor 25 a la variable 'edad'.
+altura = 1.75;  // Asigna el valor 1.75 a la variable 'altura'.
+activo = true;  // Asigna el valor 'verdadero' a la variable 'activo'.
+inicial = 'A';  // Asigna el carácter 'A' a la variable 'inicial'.
+```
+
+## Expresiones Aritméticas y Lógicas
+
+**Expresiones Aritméticas:**
+
+Una **expresión aritmética** es una combinación de operandos (constantes, variables o llamadas a funciones) y operadores aritméticos que se evalúa para producir un resultado numérico.  Los operadores aritméticos en C++ son:
+
+*   Suma: `+`
+*   Resta: `-`
+*   Multiplicación: `*`
+*   División: `/`
+*   Módulo (resto de la división entera): `%`
+
+**Expresiones Lógicas:**
+
+Una **expresión lógica** es una combinación de operandos y operadores lógicos que se evalúa para producir un resultado booleano (verdadero o falso). Los operadores lógicos en C++ son:
+
+*   AND ("y" lógico): `&&`
+*   OR ("o" lógico): `||`
+*   NOT (negación lógica): `!`
+
+**Prioridad de Operadores:**
+
+Cuando una expresión contiene varios operadores, el orden en que se evalúan los operadores se determina por su prioridad.  En C++, la prioridad de los operadores es la siguiente:
+
+1.  Paréntesis `()`
+2.  Negación lógica `!`, incremento `++`, decremento `--`, más unario `+`, menos unario `-`
+3.  Multiplicación `*`, división `/`, módulo `%`
+4.  Suma `+`, resta `-`
+5.  Operadores relacionales `<`, `<=`, `>`, `>=`
+6.  Igualdad `==`, desigualdad `!=`
+7.  AND lógico `&&`
+8.  OR lógico `||`
+
+<Aside> La palabra _unario_ significa que solo se utiliza un único operando.</Aside>
+
+**Ejemplo de Expresión:**
+
+```c++
+int resultado = (edad + 5) * 2; // int edad = 25
+```
+
+En esta expresión, primero se evalúa la expresión entre paréntesis `(edad + 5)`.  Suponiendo que la variable `edad`  tiene el valor 25, el resultado de esta expresión sería 30.  Luego, se multiplica 30 por 2, dando como resultado final 60.
+
+## Instrucciones de Entrada/Salida
+
+Las instrucciones de entrada y salida son esenciales para la interacción del programa con el usuario y el entorno.
+
+**Entrada:**
+
+La instrucción `cin` se utiliza para leer datos desde la entrada estándar, que normalmente es el teclado.  Se utiliza el operador (de flujo) de extracción `>>`  para indicar la variable donde se almacenará el valor leído. Por ejemplo:
+
+```c++ frame="terminal"
+int numero;
+cout << "Introduce un número: ";
+cin >> numero;  // Lee un número entero desde el teclado y lo almacena en la variable 'numero'.
+```
+
+**Salida:**
+
+La instrucción `cout` se utiliza para escribir datos en la salida estándar, que normalmente es la pantalla. Se utiliza el operador de inserción `<<` para indicar el valor que se va a escribir. Por ejemplo:
+
+```c++ frame="terminal"
+cout << "El número introducido es: " << numero << endl;  // Escribe un mensaje en la pantalla.
+```
+
+## Estructuras de Control
+
+Las estructuras de control son instrucciones que permiten controlar el flujo de ejecución de un programa.  Se dividen en tres categorías principales:
+
+**Estructuras de Selección:**
+
+*   **Condicional simple (`if`):**  Permite ejecutar un bloque de código solo si se cumple una condición. 
+*   **Condicional doble (`if-else`):**  Permite ejecutar un bloque de código si se cumple una condición, y otro bloque diferente si no se cumple.
+*   **Condicional múltiple (anidada o en cascada):**  Permite evaluar múltiples condiciones de forma secuencial.
+*   **Selección múltiple (`switch`):**  Permite ejecutar diferentes bloques de código según el valor de una expresión.
+
+**Estructuras de Repetición (bucles):**
+
+*   **`while`:** Repite un bloque de código mientras se cumpla una condición. Se comprobará la condición antes de cada ejecución, incluso en la inicial.
+*   **`do-while`:** Ejecuta el código una primera vez, y luego lo repite mientras se cumpla una condición dada.
+*   **`for`:**  Repite un bloque de código un número determinado de veces.
+
+**Estructuras de Salto:**
+
+*   **`break`:** Interrumpe la ejecución de un bucle.
+*   **`continue`:** Termina la iteración actual de un bucle y continúa con la siguiente.
+*   **`return`:** Finaliza la ejecución de una función y devuelve un valor.
+
+<LinkCard
+  title="Ejemplos de uso de las estructuras de control"
+  description="Ejemplos prácticos de cómo utilizar las estructuras de control en C++."
+  href="/contenido/tema3/ejemplos-estructuras-control"
+/>
+
+## Contadores y Acumuladores
+
+**Contadores:**
+
+Un contador es una variable que se utiliza para llevar la cuenta del número de veces que se ha ejecutado un bucle o una acción.  Se suele inicializar con un valor inicial y se incrementa o decrementa en cada iteración.
+
+**Acumuladores:**
+
+Un acumulador es una variable que se utiliza para sumar o acumular valores a lo largo de un bucle o una serie de operaciones. Se suele inicializar con un valor inicial (generalmente 0) y se actualiza en cada iteración sumándole un nuevo valor. 
