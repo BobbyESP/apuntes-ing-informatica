@@ -6,6 +6,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://uvigo-proi.vercel.app',
   integrations: [starlight({
     title: "PRO I - Apuntes (UVigo)",
 	  description: "Apuntes de la asignatura Programación I de la Universidad de Vigo",
