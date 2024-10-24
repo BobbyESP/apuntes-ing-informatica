@@ -6,21 +6,23 @@ description: En este tema se estudian los conceptos básicos de la programación
 El tema 4, "Programación Estructurada", se centra en enseñar métodos para que el código fuente de nuestros programas sea claro, fácil de entender, modificar y mantener.
 
 ## Lo básico (y algo más)
-Este tema se basa en el **Teorema de Böhm-Jacopini** que establece que cualquier función computable puede ser implementada usando únicamente tres tipos de estructuras de contro, de los cuales ya hablamos en temas anteriores:
+El **Teorema de Böhm-Jacopini** es un concepto fundamental en la programación estructurada. Este teorema establece que **cualquier algoritmo puede ser implementado utilizando únicamente tres estructuras de control** (las que ya vimos en temas anteriores):
+- **Secuenciales:** Las instrucciones se ejecutan una tras otra en el orden en que están escritas.
+- **Condicionales:** Permiten la ejecución de diferentes bloques de instrucciones en función de si se cumple o no una determinada condición.
+- **Repetitivas:** Permiten ejecutar un bloque de instrucciones repetidamente mientras una condición sea verdadera.
 
-*   **Estructuras secuenciales:** Las instrucciones se ejecutan una tras otra en el orden en que están escritas.
-*   **Estructuras condicionales:** Permiten ejecutar diferentes conjuntos de instrucciones en función de si se cumple o no una condición.
-*   **Estructuras repetitivas:** Permiten ejecutar un bloque de instrucciones repetidamente mientras se cumpla una condición.
-
-**Un programa estructurado**, por lo tanto, es aquel que se escribe utilizando solo estas tres estructuras de control básicas, evitando el uso de instrucciones de salto como `goto` que pueden hacer que el código sea difícil de seguir e inseguro.
+Este teorema **sentó las bases para la programación estructurada**, un paradigma de programación que aboga por la creación de programas claros, legibles y fáciles de mantener. Al limitar el uso de instrucciones de salto arbitrarias, como `goto`, la programación estructurada promueve un flujo de control más predecible y comprensible, sin saltos que pudiesen romper la ejecución nominal del programa.
 
 ## Beneficios de la Programación Estructurada
-
+* **Programas "Propios":** Un programa que se adhiere al Teorema de Böhm-Jacopini, utilizando únicamente las tres estructuras de control básicas, se considera un programa "propio". Estos programas poseen las siguientes características:
+    - Un único punto de entrada y un único punto de salida.
+    - Al menos un camino de ejecución que va desde el inicio hasta el final del programa.
+    - No hay bucles infinitos.
 *   **Control del flujo de ejecución:** La ejecución del programa se puede seguir fácilmente, ya que solo hay tres formas en que el flujo de control puede cambiar.
 *   **Claridad y legibilidad:** El código es más fácil de entender y seguir, lo que facilita el trabajo en equipo y el mantenimiento.
 *   **Facilidad de mantenimiento:**  Es más sencillo modificar y actualizar el código, ya que los cambios se pueden realizar en módulos específicos.
-*   **Reutilización de código:**  Las funciones y subrutinas (que se estudiarán en el siguiente tema) pueden reutilizarse en diferentes partes del programa o en otros programas.
-*   **Depuración más fácil:** Es más sencillo identificar y corregir errores, ya que la lógica del programa es transparente.
+*   **Reutilización de código:**  Las funciones y procedimientos (o subrutinas) pueden reutilizarse en diferentes partes del programa o en otros programas.
+*   **Depuración Simplificada:** La lógica clara y predecible del código facilita la identificación y la corrección de errores.
 *   **Mayor rendimiento de los programadores:**  La programación estructurada permite a los programadores trabajar de forma más eficiente.
 
 ## Técnicas clave en la programación estructurada
