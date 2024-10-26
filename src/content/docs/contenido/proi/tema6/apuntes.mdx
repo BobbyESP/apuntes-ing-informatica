@@ -1,0 +1,137 @@
+---
+title: Tema 6 - Depuración y Pruebas
+description: Errores, pruebas, caja blanca, caja negra, estrategias de depuración...
+---
+
+En el desarrollo de software, es crucial probar el software implementado y corregir cualquier error presente. Un programa no se considera correcto hasta que se haya verificado, es decir, hasta que se hayan realizado pruebas exitosas que abarquen todos los escenarios posibles y se hayan examinado los resultados de su ejecución.
+
+## ❌ Tipos de Errores
+
+Los errores en programación son inevitables, pero comprender sus diferentes tipos puede ayudarte a detectarlos y corregirlos de manera más eficiente. Existen tres principales tipo:
+
+### **1. Errores de Compilación**
+
+- Estos errores, también conocidos como errores de sintaxis, ocurren cuando el compilador no puede entender el código que has escrito.
+- Esto puede deberse a un error tipográfico, como olvidar un punto y coma al final de una línea de código, o a un uso incorrecto de la sintaxis de la linguaje de programación.
+- El compilador detectará estos errores y detendrá el proceso de compilación, impidiendo que el programa objetivo se genere.
+- Generalmente, los errores de compilación son fáciles de identificar y corregir, ya que el compilador suele proporcionar información específica sobre la ubicación y la naturaleza del error.
+
+### **2. Errores de Ejecución**
+
+- Los errores de ejecución ocurren durante la ejecución del programa, después de que ha sido compilado con éxito.
+- Se producen cuando el programa intenta realizar una operación que no está permitida o no es posible, como dividir entre cero.
+- Cuando se produce un error de ejecución, el programa se detiene y muestra un mensaje de error que puede ayudarte a identificar la causa del problema. Normalmente se impide que el programa continúe ejecutándose.
+- Algunos ejemplos comunes de errores de ejecución incluyen acceder a una posición de memoria no válida, intentar abrir un archivo que no existe o intentar realizar una operación matemática inválida.
+
+### **3. Errores Lógicos**
+
+- Los errores lógicos son los más difíciles de detectar y corregir, ya que el programa se compila y ejecuta sin problemas, pero produce resultados incorrectos o no deseados.
+- Estos errores se deben a errores en la lógica del algoritmo (sí, es tu problema 🤑), como un error en una fórmula matemática o una condición incorrecta en una estructura de control.
+- Para detectar errores lógicos, es necesario realizar pruebas exhaustivas del programa con diferentes conjuntos de datos de entrada y verificar cuidadosamente los resultados obtenidos.
+- Algunos ejemplos de errores lógicos incluyen el uso de un operador incorrecto en una expresión, olvidar actualizar una variable dentro de un bucle o no
+  considerar todos los casos posibles en una estructura de selección.
+
+Obivamente la experiencia del programador, el uso de metodologías de desarrollo adecuadas, el diseño de subprogramas independientes y la atención a los detalles
+son factores que pueden influir en la cantidad y la gravedad de los errores.
+
+La inclusión de instrucciones para mostrar el valor de las variables en puntos específicos del programa (como `cout`), el uso de puntos de ruptura (`breakpoints`) para
+detener la ejecución del programa en determinados puntos y el análisis del código para identificar posibles errores lógicos son prácticas muy recomendadas a la
+hora de encontrar errores y ver que el funcionamiento es el deseado.
+
+## ✅ Pruebas
+
+Para garantizar la calidad del software, se llevan a cabo pruebas exhaustivas que implican la ejecución del programa con diversos datos de entrada para evaluar
+su comportamiento y resultados. Estas pruebas se diseñan para detectar errores y asegurar que el software cumple con los requisitos especificados.
+
+Existen dos metodologías principales para las pruebas de software:
+
+### ⬜ Pruebas de Caja Blanca
+
+También conocidas como pruebas estructurales, las pruebas de caja blanca se basan en el conocimiento de los detalles internos de implementación y las rutas
+de ejecución del software. En este tipo de pruebas, se escriben casos de prueba específicos para verificar las rutas lógicas, bucles, estructuras de decisión
+y conjuntos de condiciones del programa.
+
+Las principales técnicas para crear casos de prueba de caja blanca son:
+
+- **Cobertura de caminos:** Esta técnica busca ejecutar todos los caminos posibles dentro del programa. Se requiere un conjunto de casos de prueba
+  para asegurar que cada camino se recorra al menos una vez, cubriendo tanto las condiciones verdaderas como las falsas.
+- **Pruebas de condiciones:** En esta técnica, se evalúa cada parte de una condición para determinar si se cumple o no. Se crean casos de prueba
+  para cada operando lógico, verificando si la expresión resultante es verdadera o falsa.
+- **Pruebas de bucles:** Estas pruebas se enfocan en las estructuras repetitivas del programa, asegurándose de que no sean infinitas y funcionen correctamente.
+  Se ejecutan casos de prueba para un número determinado de iteraciones, incluyendo cero, una, dos, un número menor al límite, y un número mayor al límite, para evaluar el comportamiento del bucle en diferentes situaciones.
+
+**Ejemplo:** Pruebas de caja blanca para una estructura de selección.
+
+```c++
+int a, b, numVeces;
+... // El resto del código
+if(numVeces > 0) {
+    if (a < 0) {
+        a *= 2;
+    }
+    if (b != 0) {
+        b = 5;
+    }
+}
+```
+
+**Casos de prueba:**
+
+1. **COBERTURA DE CAMINOS** y **PRUEBA DE CONDICIONES**
+
+   - `a = -5, b = 0`: Condición `a` verdadera, condición `b` falsa.
+   - `a = 3, b = 8`: Condición `a` falsa, condición `b` verdadera.
+
+2. **PRUEBA DE BUCLES**
+   - Si `numVeces > 0` se cumple, se ejecutarán las instrucciones del bucle.
+   - Si `numVeces <= 0`, las instrucciones del bucle nunca se ejecutarán.
+
+### ⬛ Pruebas de Caja Negra
+
+Las pruebas de caja negra, también llamadas pruebas funcionales, se realizan desde la perspectiva del usuario. Se centran en la correcta ejecución del software
+en términos de tiempo y precisión, sin considerar los detalles internos de implementación. Se enfocan en las funciones específicas del software y su comportamiento observable.
+
+Dos ejemplos de pruebas de caja negra son:
+
+- **Pruebas de integración:** Estas pruebas verifican la interacción entre diferentes módulos del software. Se combinan los módulos y
+  se prueban como una unidad para asegurar que funcionan correctamente en conjunto.
+- **Pruebas beta:** En esta etapa, se proporciona una versión preliminar del software a un grupo específico de usuarios, generalmente expertos, para que la
+  prueben en un entorno real. Se recopilan comentarios y sugerencias de los usuarios para mejorar la versión final del software.
+
+**Métodos para encontrar datos de prueba que conduzcan a errores:**
+
+- **Partición equivalente:** Divide los parámetros de entrada en clases de datos, llamadas clases de equivalencia. Se asume que cualquier elemento dentro de
+  una clase de equivalencia es representativo del resto del conjunto. Se identifican clases de equivalencia válidas (generan resultados esperados) e inválidas (generan resultados inesperados)
+  para crear casos de prueba.
+- **Valores de prueba extremos:** Se utilizan valores en los límites del rango de entrada para verificar el comportamiento del software en situaciones extremas.
+  Es una técnica complementaria a la partición equivalente.
+
+#### Ejemplos
+**1er ejemplo:** Clases de equivalencia para un contador de horas en un día.
+
+| Casos           | Valor | Clase válida       | Clases inválidas           |
+| --------------- | ----- | ------------------ | -------------------------- |
+| contador entero | `x`   | `1 <= valor <= 24` | `valor < 1` y `valor > 24` |
+
+**2do ejemplo:** Casos de prueba de valores extremos para una variable que indica los **meses del año**.
+
+| Casos                                            | Valores (rango) |
+| ------------------------------------------------ | --------------- |
+| Valor en el límite inferior del rango de entrada | 1               |
+| Valor uno por encima del límite inferior         | 2               |
+| Valor válido dentro del rango                    | 6               |
+| Valor uno por debajo del límite superior         | 11              |
+| Valor en el límite superior del rango de entrada | 12              |
+
+## 🔎 Estrategia de Depuración
+
+La depuración de un programa implica seguir una estrategia que permita evaluar primero los componentes más simples y avanzar progresivamente
+hasta probar todo el software como un conjunto.
+
+**Pasos a seguir:**
+
+- **Pruebas unitarias:** Se prueba cada función o procedimiento individualmente. Pueden ser de caja blanca o de caja negra.
+- **Pruebas de integración:** Se combinan los subprogramas y se prueban en conjunto. Se suelen utilizar pruebas de caja negra.
+- **Pruebas del sistema:** Se combina el programa completo con los componentes de hardware necesarios y se verifica el cumplimiento de
+  los requisitos funcionales. Se emplean pruebas de caja negra.
+- **Pruebas de aceptación:** El usuario final comprueba si el software funciona según lo previsto. Se utilizan pruebas de caja negra.

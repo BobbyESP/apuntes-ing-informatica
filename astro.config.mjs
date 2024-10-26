@@ -92,7 +92,16 @@ export default defineConfig({
                           slug: "contenido/proi/tema5/apuntes",
                         },
                       ],
-                    }
+                    },
+                    {
+                      label: "Tema 6: Depuración y pruebas",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/proi/tema6/apuntes",
+                        },
+                      ],
+                    },
                   ],
                 },
               ],
