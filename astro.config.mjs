@@ -84,6 +84,15 @@ export default defineConfig({
                         },
                       ],
                     },
+                    {
+                      label: "Tema 5: Funciones y procedimientos",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/proi/tema5/apuntes",
+                        },
+                      ],
+                    }
                   ],
                 },
               ],

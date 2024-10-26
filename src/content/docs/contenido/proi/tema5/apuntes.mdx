@@ -1,0 +1,115 @@
+---
+title: Tema 5 - Programación Modular
+description: En este tema se aborda la programación modular, que consiste en dividir un programa en partes más pequeñas llamadas módulos o subprogramas. Se explican los conceptos de funciones y procedimientos, así como el paso de parámetros por valor y por referencia. También se aborda el uso de variables locales y globales, la recursividad y las bibliotecas.
+---
+## 🧮 Funciones y Procedimientos 
+
+La programación modular implica dividir un programa en partes más pequeñas llamadas **módulos o subprogramas**. Estos módulos son independientes entre sí, lo que permite trabajar en ellos de forma paralela y modificarlos sin afectar a los demás. 
+
+Existen dos tipos de subprogramas:
+
+* **Funciones:** Realizan una tarea específica y **devuelven un valor** al programa principal.
+* **Procedimientos:** Realizan una tarea específica pero **no devuelven un valor**. 
+
+La utilización de subprogramas facilita la **reutilización del código** y disminuye la complejidad del programa, lo que lo hace más legible y manejable.
+
+## 🗣️ Declaración e Invocación de Funciones 
+
+Para utilizar una función, primero hay que **declararla**. Esto implica definir su nombre, el tipo de dato que devuelve, y los parámetros que recibe como entrada. 
+
+La **invocación** de una función se realiza desde el programa principal u otro subprograma. Para invocar una función, se escribe su nombre seguido de los parámetros actuales entre paréntesis.
+
+**Ejemplo en C++:**
+
+```c++ frame="terminal"
+// Declaración de una función que calcula el valor absoluto de un número
+int calcularAbsoluto (int x) {
+  if ( x < 0 ) {
+    return -1 * x;
+  } else {
+    return x;
+  }
+}
+
+// Invocación de la función
+int valorAbsoluto = calcularAbsoluto(-5); 
+```
+
+En este ejemplo, la función `calcularAbsoluto` recibe un entero como parámetro y devuelve su valor absoluto. La función se invoca en la línea `int valorAbsoluto = calcularAbsoluto(-5)`, pasando -5 como argumento. El valor devuelto por la función (5) se almacena en la variable `valorAbsoluto`.
+
+## 📨 Paso de Parámetros 
+
+Los parámetros son variables que se utilizan para pasar información entre el programa principal y los subprogramas. Existen dos métodos principales para pasar parámetros: **por valor** y **por referencia**.
+
+### 📦 Paso por Valor 
+
+En el paso por valor, se crea una **copia del valor** del parámetro actual en la memoria. La función trabaja con esta copia, por lo que los cambios que se produzcan en el parámetro dentro de la función **no afectan** al parámetro original.
+
+### 📌 Paso por Referencia
+
+En el paso por referencia, se pasa la **dirección de memoria** del parámetro actual a la función. Esto permite a la función acceder y **modificar** el valor del parámetro original.
+
+**Ejemplo en C++:**
+
+```c++ frame="terminal"
+// Paso por valor
+void intercambiarPorValor(int a, int b) {
+  int temp = a;
+  a = b;
+  b = temp;
+}
+
+// Paso por referencia
+void intercambiarPorReferencia(int &a, int &b) {
+  int temp = a;
+  a = b;
+  b = temp;
+}
+
+int main() {
+  int x = 10;
+  int y = 20;
+
+  intercambiarPorValor(x, y); // No se intercambian los valores
+  cout << "x: " << x << ", y: " << y << endl; // Salida: x: 10, y: 20
+
+  intercambiarPorReferencia(x, y); // Se intercambian los valores
+  cout << "x: " << x << ", y: " << y << endl; // Salida: x: 20, y: 10
+
+  return 0;
+}
+```
+
+En este ejemplo, la función `intercambiarPorValor` recibe dos enteros por valor, por lo que los cambios que realiza en las variables `a` y `b` no se reflejan en las variables `x` e `y` del programa principal. Por otro lado, la función `intercambiarPorReferencia` recibe dos enteros por referencia, por lo que los cambios que realiza en las variables `a` y `b` sí se reflejan en las variables `x` e `y` del programa principal.
+
+## 🌎 Variables Locales y Globales
+
+* **Variables locales:** Se declaran dentro de una función o un bloque de código, y su **ámbito** se limita a esa función o bloque.
+* **Variables globales:** Se declaran fuera de cualquier función, y su **ámbito** es todo el programa.
+
+Es importante tener en cuenta que el uso excesivo de variables globales puede **disminuir la legibilidad** del código y provocar **efectos colaterales**.
+
+Si por algún motivo (no recomendado) tenemos que llamar a una variable global con el mismo nombre que una variable local, podemos hacerlo utilizando el operador de resolución de ámbito `::`.
+
+**Ejemplo en C++:**
+
+```c++ frame="terminal"
+#include <iostream>
+using namespace std;
+
+int x = 10; // Variable global
+
+void funcion() {
+  int x = 20; // Variable local
+  cout << "Variable local: " << x << endl; // Salida: 20
+  cout << "Variable global: " << ::x << endl; // Salida: 10
+}
+```
+
+## 🔄 Recursividad
+
+La recursividad ocurre cuando una función **se llama a sí misma**. La recursividad puede ser una técnica útil para resolver ciertos tipos de problemas, pero es importante usarla con precaución y cuando sea estrictamente necesario, ya que puede llevar a un **consumo excesivo de memoria** si no se implementa correctamente.
+
+## 📚 Bibliotecas
+
+Las bibliotecas son archivos que contienen el código de un conjunto de funciones y procedimientos. El uso de bibliotecas permite **reutilizar código** y evitar la codificación de operaciones comunes.
