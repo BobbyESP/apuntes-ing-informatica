@@ -1,7 +1,3 @@
-Aquí tienes el README modificado en español, con la explicación para clonar y construir el proyecto desde cero usando **pnpm**:
-
----
-
 # Apuntes Ingeniería Informática UVigo
 
 Este proyecto contiene apuntes de Ingeniería Informática para la Universidad de Vigo, organizados y presentados con **Astro** y **Starlight**.
