@@ -34,7 +34,10 @@ Si no tienes experiencia previa, sigue estos pasos para clonar y construir el pr
 ### Requisitos previos
 
 Antes de empezar, asegúrate de tener instalado lo siguiente:
-
+- **Visual Studio Code** y las siguientes extensiones.
+    - `Astro` del creador `Astro`
+    - `MDX` del creador `unified`
+    - `Prettier` del creador `Prettier`
 - **Git**: Para clonar el proyecto (puedes descargarlo aquí: [Git](https://git-scm.com/)).
 - **Node.js**: Necesario para ejecutar el proyecto (descárgalo aquí: [Node.js](https://nodejs.org/)).
 - **pnpm**: Un administrador de paquetes alternativo (instálalo ejecutando `npm install -g pnpm` en la terminal después de instalar Node.js).
