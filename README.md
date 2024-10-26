@@ -1,27 +1,21 @@
-# Starlight Starter Kit: Basics
+Aquí tienes el README modificado en español, con la explicación para clonar y construir el proyecto desde cero usando **pnpm**:
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+---
 
-```
-npm create astro@latest -- --template starlight
-```
+# Apuntes Ingeniería Informática UVigo
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/starlight/tree/main/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/starlight/tree/main/examples/basics)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/withastro/starlight&create_from_path=examples/basics)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwithastro%2Fstarlight%2Ftree%2Fmain%2Fexamples%2Fbasics&project-name=my-starlight-docs&repository-name=my-starlight-docs)
+Este proyecto contiene apuntes de Ingeniería Informática para la Universidad de Vigo, organizados y presentados con **Astro** y **Starlight**.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Estructura del Proyecto
 
-## 🚀 Project Structure
-
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+Dentro del proyecto de Astro + Starlight, encontrarás las siguientes carpetas y archivos:
 
 ```
 .
 ├── public/
 ├── src/
 │   ├── assets/
+│   ├── components/
 │   ├── content/
 │   │   ├── docs/
 │   │   └── config.ts
@@ -31,25 +25,91 @@ Inside of your Astro + Starlight project, you'll see the following folders and f
 └── tsconfig.json
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+- **`src/content/docs/`**: Aquí es donde Starlight busca archivos `.md` o `.mdx` y los convierte en rutas según el nombre del archivo.
+    * Es importante destacar que hay que añadir las rutas en `astro.config.mjs`
+- **`src/assets/`**: Carpeta para agregar imágenes que puedes insertar en los archivos Markdown con enlaces relativos.
+    * Formato recomendado: `webp`
+- **`public/`**: Archivos estáticos, como el icono de la web.
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+## 🛠️ Instrucciones para construir el proyecto desde cero
 
-Static assets, like favicons, can be placed in the `public/` directory.
+Si no tienes experiencia previa, sigue estos pasos para clonar y construir el proyecto:
 
-## 🧞 Commands
+### Requisitos previos
 
-All commands are run from the root of the project, from a terminal:
+Antes de empezar, asegúrate de tener instalado lo siguiente:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- **Git**: Para clonar el proyecto (puedes descargarlo aquí: [Git](https://git-scm.com/)).
+- **Node.js**: Necesario para ejecutar el proyecto (descárgalo aquí: [Node.js](https://nodejs.org/)).
+- **pnpm**: Un administrador de paquetes alternativo (instálalo ejecutando `npm install -g pnpm` en la terminal después de instalar Node.js).
 
-## 👀 Want to learn more?
+Para comprobar si están instalados, abre la terminal y ejecuta:
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+```bash
+git --version
+node --version
+pnpm --version
+```
+
+Si estos comandos devuelven un número de versión, ya estás listo para comenzar.
+
+### Cómo clonar este proyecto
+
+1. **Abre la terminal** en tu computadora (o símbolo del sistema en Windows).
+2. Ejecuta el siguiente comando para clonar el proyecto:
+
+   ```bash
+   git clone https://github.com/BobbyESP/apuntes-ing-informatica.git
+   ```
+
+3. Luego de que el proyecto se descargue, entra a la carpeta del proyecto:
+
+   ```bash
+   cd apuntes-ing-informatica
+   ```
+
+### Cómo instalar las dependencias
+
+1. Asegúrate de estar en la carpeta del proyecto (`apuntes-ing-informatica`).
+2. Ejecuta el siguiente comando para instalar las dependencias:
+
+   ```bash
+   pnpm install
+   ```
+
+Esto descargará todos los paquetes necesarios para que el proyecto funcione correctamente.
+
+### Cómo ejecutar el proyecto localmente
+
+Para ver el proyecto en tu navegador mientras trabajas en él, utiliza el siguiente comando:
+
+```bash
+pnpm run dev
+```
+
+Este comando iniciará un servidor local. Normalmente, podrás acceder al proyecto en tu navegador ingresando a `http://localhost:4321`. Desde aquí, podrás ver los apuntes y realizar cambios en tiempo real.
+
+### Cómo construir el proyecto para producción (no necesario en nuestro caso)
+
+Si deseas crear una versión final del proyecto (optimizada para desplegarla en un servidor), puedes usar el siguiente comando:
+
+```bash
+pnpm run build
+```
+
+Este comando generará una carpeta `dist` con todos los archivos listos para ser desplegados en un servidor.
+
+## 🧞 Comandos adicionales
+
+| Comando                    | Acción                                                  |
+| :------------------------- | :------------------------------------------------------ |
+| `pnpm install`             | Instala las dependencias                                |
+| `pnpm run dev`             | Inicia el servidor local en `localhost:4321`            |
+| `pnpm run build`           | Construye el sitio de producción en `./dist/`           |
+| `pnpm run preview`         | Previsualiza tu sitio construido localmente             |
+| `pnpm run astro ...`       | Ejecuta comandos de CLI como `astro add`, `astro check` |
+| `pnpm run astro -- --help` | Muestra ayuda sobre el uso de la CLI de Astro           |
+
+## 👀 ¿Quieres aprender más?
+
+Consulta la [documentación de Starlight](https://starlight.astro.build/) o lee la [documentación de Astro](https://docs.astro.build).
