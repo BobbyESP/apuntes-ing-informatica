@@ -73,6 +73,10 @@ export default defineConfig({
                           label: "Ejemplos de las estructuras de control",
                           slug: "contenido/proi/tema3/ejemplos-estructuras-control",
                         },
+                        {
+                          label: "Documentación de funciones",
+                          slug: "contenido/proi/tema3/documentacion",
+                        },
                       ],
                     },
                     {

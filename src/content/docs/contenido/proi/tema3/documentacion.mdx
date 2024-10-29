@@ -1,0 +1,32 @@
+---
+title: Documentación de funciones con DoxyBlocks
+description: Aprende a documentar tus funciones en C++ con DoxyBlocks, un plugin para Code::Blocks que genera documentación automática a partir de comentarios.
+---
+
+En este tema aprenderemos a documentar funciones en C++ utilizando DoxyBlocks, un plugin para Code::Blocks que genera documentación automática
+a partir de comentarios en el código fuente. La documentación es una parte fundamental del desarrollo de software,
+ya que facilita la comprensión del código y su mantenimiento a lo largo del tiempo.
+
+## Sintaxis de comentarios
+
+DoxyBlocks utiliza una sintaxis especial para los comentarios que permite identificar los elementos de documentación.
+A continuación se muestra un ejemplo de cómo documentar una función en C++:
+
+```cpp frame="terminal"
+/**
+ * @brief Descripción breve de la función
+ * 
+ * @param arg1 Descripción del primer argumento. Puedes explicar para que se va a usar o que significa este valor en sí.
+ * @param arg2 Descripción del segundo argumento.
+ * @return Tipo de dato devuelto por la función (si es void no se pone nada, ya que no devuelve nada).
+ */
+int suma(int arg1, int arg2) {
+    return arg1 + arg2;
+}
+```
+
+En este ejemplo, se utilizan las etiquetas `@brief`, `@param` y `@return` para describir la función `suma`.
+
+La etiqueta `@brief` se utiliza para proporcionar una descripción breve de la función, mientras que `@param` se utiliza para describir los parámetros de entrada.
+
+Finalmente, `@return` se utiliza para describir el tipo de dato devuelto por la función.
