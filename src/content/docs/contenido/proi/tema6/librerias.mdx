@@ -1,0 +1,98 @@
+---
+title: 📚 Librerías en C++
+description: Aprende sobre las librerías en C++, cómo funcionan, cómo se usan y cómo integrarlas en tu proyecto o en la configuración de tu IDE/compilador.
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+## 📖 Introducción
+
+Las librerías en C++ son conjuntos de funciones y clases que permiten reutilizar código para tareas específicas, ahorrando tiempo y esfuerzo. En C++, se incluyen mediante la directiva `#include`. Existen dos tipos principales de librerías: las estándar, que vienen con el compilador, y las librerías de terceros, que se deben agregar manualmente.
+
+## 🛠️ Librerías estándar
+
+Las librerías estándar de C++ proporcionan herramientas esenciales y vienen incluidas con el compilador. Algunas de las más comunes son:
+
+- `iostream`: para operaciones de entrada y salida.
+- `cmath` / `math.h`: para cálculos matemáticos avanzados.
+- `cstdlib` / `cstdlib.h`: para funciones de conversión y generación de números aleatorios.
+- `ctime` / `time.h`: para funciones de tiempo.
+
+Para incluir una librería estándar en tu código, usa `#include` y el nombre de la librería entre corchetes (`<>`):
+
+```cpp
+#include <iostream>
+#include <cmath>
+
+int main() {
+    std::cout << "Raíz cuadrada de 25: " << sqrt(25) << std::endl;
+    return 0;
+}
+```
+
+En este ejemplo, usamos `iostream` para imprimir un mensaje en pantalla y `cmath` para calcular la raíz cuadrada.
+
+## 🌐 Librerías de terceros
+
+Las librerías de terceros son desarrolladas fuera del estándar de C++ y deben agregarse manualmente al proyecto. Un ejemplo común incluyen OpenCV para procesamiento de imágenes.
+
+## 🛠️ Cómo crear una librería
+
+Para crear una librería propia en C++, sigue estos pasos:
+
+1. **Crear el proyecto**: 
+   - En Code::Blocks o tu IDE preferido, elige el tipo de proyecto `Static library`.
+   - Elimina el archivo `main.c` creado por defecto.
+
+2. **Crear archivos de la librería**: 
+   - Crea un archivo de encabezado `.h` (Archivo > Nuevo > Archivo... > `C/C++ header file`) y un archivo de código fuente `.cpp` (Archivo > Nuevo > Archivo... > `C/C++ Source file`).
+   - Nombra ambos archivos de acuerdo con el nombre de la librería. Ejemplo: para una librería llamada `MiLibreria`, usa `MiLibreria.h` y `MiLibreria.cpp`.
+
+3. **Escribir el código de la librería**:
+   - Declara las funciones en el archivo de encabezado `.h` y define las implementaciones en el archivo `.cpp`:
+
+   ```cpp frame="terminal"
+   // MiLibreria.h
+   #ifndef MILIBRERIA_H //ifndef = if not defined...
+   #define MILIBRERIA_H //define = define the following code with the name MILIBRERIA_H
+
+   int suma(int a, int b);
+
+   #endif //end of the if statement
+   ```
+
+   ```cpp frame="terminal"
+   // MiLibreria.cpp
+   #include "MiLibreria.h"
+
+   int suma(int a, int b) {
+       return a + b;
+   }
+   ```
+
+4. **Compilar la librería**: 
+   - Compila el proyecto para generar un archivo `.a` (para librerías estáticas). Hay otro tipo de librerías (como las dinámicas) que usan el formato `.dll`
+   pero no las hemos visto así que no rayarse.
+
+5. **Agregar la librería a un proyecto**:
+   - Abre la configuración del compilador (`Settings > Compiler...`).
+   - En `Linker settings`, agrega la ruta del archivo `.a` generado en la carpeta `.../bin/Debug` o `.../bin/Release`.
+   - En `Compiler settings`, selecciona la pestaña `Compiler` y añade la ruta completa del archivo `.h` de la librería.
+   - En `Linker`, agrega nuevamente la ruta completa de la librería `.a`.
+
+
+   <Aside type="caution">Hasta donde yo sé, en Linux, `Code::Blocks` pregunta si quieres utilizar el directorio relativo, pero **ESTO NO ES UNA BUENA IDEA**, así que yo recomiendo darle a *No*. </Aside>
+
+Con esta librería ahora puedes hacer uso de la función `suma` en otros proyectos simplemente incluyendo `MiLibreria.h`:
+
+```cpp frame="terminal"
+#include <iostream>
+#include "MiLibreria.h"
+
+int main() {
+    std::cout << "La suma de 5 y 10 es: " << suma(5, 10) << std::endl;
+    return 0;
+}
+```
+
+Ahora tienes una librería personalizada que puedes integrar y reutilizar en otros proyectos.

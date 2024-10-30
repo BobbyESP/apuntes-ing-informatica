@@ -104,6 +104,10 @@ export default defineConfig({
                           label: "Apuntes",
                           slug: "contenido/proi/tema6/apuntes",
                         },
+                        {
+                          label: "Librerías",
+                          slug: "contenido/proi/tema6/librerias",
+                        },
                       ],
                     },
                   ],
