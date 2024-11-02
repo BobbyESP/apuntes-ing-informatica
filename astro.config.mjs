@@ -114,25 +114,7 @@ export default defineConfig({
                 },
               ],
             },
-            {
-              label: "Análisis Matemático",
-              items: [
-                {
-                  label: "Temas",
-                  items: [
-                    {
-                      label: "Tema 1: Números reales",
-                      items: [
-                        {
-                          label: "Apuntes",
-                          slug: "contenido/am/tema1/apuntes",
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
+            { label: "Análisis Matemático", items: [] },
             { label: "Fundamentos matemáticos", items: [] },
             { label: "Sistemas digitales", items: [] },
           ],
