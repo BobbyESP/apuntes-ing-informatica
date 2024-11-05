@@ -4,14 +4,15 @@ description: webiwabo
 ---
 
 import { Aside } from "@astrojs/starlight/components";
+import Latex from "@components/Latex.astro";
 
 Primer temita de FMI, basado en los apuntes de Nevado, Google y nuestro dios, salvador y maestro Gerardo Paredes Torres
 
-## Parte 1: 🗣️🟰🧮 Proposiciones, Op.Lógicos y Tablas de la verdad
+## Parte 1: 🗣️🟰🧮 Proposiciones y Op.Lógicos
 
-## 🗣️🗣️🗣️ Proposiciones 
+### 🗣️🗣️🗣️ <u>Proposiciones</u>
 
-Una proposicion es una oración declarativa (en idioma natural) que puede tener 2 valores: Verdad (**V**) o Falso (**F**).
+Una **proposicion** es una oración declarativa *(en idioma natural)* que puede tener 2 valores: **<span style="color:lightgreen">Verdad(V)</span>** o **<span style="color:red">Falso(F)</span>**.
 
 <Aside>
   - **RECUERDA** Debe tener un valor y no los 2 al mismo tiempo, asi que es verdad ó falso.
@@ -19,20 +20,75 @@ Una proposicion es una oración declarativa (en idioma natural) que puede tener 
 
 Las proposiciones se asignan a una letra minusculas como **r , s , p , q , etc** y ejemplos de ellas son:
 
-- r: España esta en Europa
-- s: Alexis es **GAY**
-- t: BOBR KURWA PIERDOLE
-- p: Alexis le gusta Blanca y Cloe
-- q: 69 / 3 = $$ \nexists $$
+- **r**: **<span style="color:red">ES</span>****<span style="color:yellow">PA</span>****<span style="color:red">ÑA</span>** esta en Europa
+- **s**: Alexis es **<span style="color:red">G</span>****<span style="color:orange">A</span>****<span style="color:yellow">A</span>****<span style="color:green">A</span>****<span style="color:blue">A</span>****<span style="color:purple">A</span>****<span style="color:pink">Y</span>**
+- **t**: **<span style="color:brown">BOBR KURWA PIERDOLE</span>**
+- **p**: Alexis le gusta **<span style="color:white">Blanca</span>** y principalmente **<span style="color:cyan">Cloe</span>**
+- **q**: 69 / 3 = <Latex formula="\nexists"/>
 
 Su **valor de verdad** se determina con **V** o **F** y a las proposiciones anteriores se les asigna uno
 
 - t: BOBR KURWA PIERDOLE es **V**
 
-## 🧮🧮🧮 Op.Lógicos
+### 🧮🧮🧮 <u>Op.Lógicos</u>
 
-Un **Operador Lógico** es un elemento verbal/escrito que permite formar proposiciones (*proposicion compuesta*) a partir de otras (*proposicion atómica*).
+Un **Operador Lógico** es un elemento verbal/escrito que permite formar proposiciones (*proposición compuesta*) a partir de otras (*proposición atómica*).
 
-**Tipos de operadores lógicos**
+**<u> Tipos de operadores lógicos </u>**
 
-* **Disyunción/O inclusivo** *Signo >>>* $$ \falta $$ y *Lectura >>>* "O"
+* **<span style="color:orange">Disyunción/O inclusivo</span>** --> *Signo >>>* "<Latex formula="\lor"/>" | *Lectura >>>* "O"
+<Latex formula="\Longrightarrow"/> <Latex formula="\lor"/> == O
+
+![Tabla OR](@assets/tabla_or.webp)
+
+* **<span style="color:orange">Conjunción</span>** --> *Signo >>>* "<Latex formula="\land"/>" | *Lectura >>>* "Y"
+<Latex formula="\Longrightarrow"/> <Latex formula="\land"/> == Y
+
+![Tabla AND](@assets/tabla_and.webp)
+
+* **<span style="color:red">Negación</span>** --> *Signo >>>* "<Latex formula="\neg"/>" | *Lectura >>>* "NO"
+<Latex formula="\Longrightarrow"/> <Latex formula="\neg"/> == NO
+
+![Tabla NOT](@assets/tabla_not.webp)
+
+* **O exclusivo** --> *Signo >>>* "<Latex formula="\oplus"/>" | *Lectura >>>* "O... O..." (solo uno, no los 2)
+<Latex formula="\Longrightarrow"/> <Latex formula="\oplus"/> == O... O...
+
+![Tabla XOR](@assets/tabla_xor.jpg)
+
+* **<span style="color:yellow">Implicación</span>** --> *Signo >>>* "<Latex formula="\longrightarrow"/>" | *Lectura >>>* "Si... Entonces..."
+<Latex formula="\Longrightarrow"/> <Latex formula="\longrightarrow"/> == Si... Entonces...
+
+![Tabla --->](@assets/tabla_implicacion.webp)
+
+* **<span style="color:yellow">Doble Implicación/Bicondicional</span>** --> *Signo >>>* "<Latex formula="\longleftrightarrow"/>" | *Lectura >>>* "...si, y solo si..."
+<Latex formula="\Longrightarrow"/> <Latex formula="\longleftrightarrow"/> == ...si, y solo si...
+
+![Tabla ---> x2](@assets/tabla_biimplicacion.webp)
+
+#### Tautología *<span style="color:lightgreen">Always true</span>* ✅
+Es una proposición que **siempre** es <span style="color:green">verdad</span>, como puede ser: *"A Carlos le gusta los porros --> V"*.
+
+#### Contradicción *<span style="color:indianred">Always false</span>* ❌
+Es una proposición que **siempre** es <span style="color:red">falsa</span>, como puede ser: *"Alexis no le gusta Cloe --> F"*.
+
+#### Contingencia *<span style="color:yellow">Depende</span>* ❔❔❔
+Es una proposición que **depende** de los <span style="color:yellow">valores de verdad</span> de los elementos que forman la proposicion, asi que puede ser verdad o falso.
+
+## Parte 2: 🥐🥐🥐 Equivalencias Lógicas
+
+### Relativas a **OR** , **AND** y **NOT**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
