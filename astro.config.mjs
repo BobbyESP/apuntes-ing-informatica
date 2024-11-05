@@ -114,9 +114,141 @@ export default defineConfig({
                 },
               ],
             },
-            { label: "Análisis Matemático", items: [] },
-            { label: "Fundamentos matemáticos", items: [] },
-            { label: "Sistemas digitales", items: [] },
+            {
+              label: "Análisis Matemático",
+              items: [
+                {
+                  label: "Temas",
+                  items: [
+                    {
+                      label: "Tema 1: El cuerpo de los números reales",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/am/tema1/apuntes",
+                        },
+                      ],
+                    },
+                    {
+                      label: "Tema 2:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/am/tema2/apuntes", 
+                        }
+                      ]
+                    },
+                    {
+                      label: "Tema 3:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/am/tema3/apuntes",
+                        }
+                      ]
+                    },
+                    {
+                      label: "Tema 4:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/am/tema4/apuntes",
+                        }
+                      ]
+                    },
+                    {
+                      label: "Tema 5:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/am/tema5/apuntes",
+                        }
+                      ]
+                    },
+                    {
+                      label: "Tema 6:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/am/tema6/apuntes",
+                        }
+                      ]
+                    },
+                    {
+                      label: "Tema 7:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/am/tema7/apuntes",
+                        }
+                      ]
+                    }
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Fundamentos matemáticos",
+              items: [
+                {
+                  label: "Temas",
+                  items: [
+                    {
+                      label: "Tema 1: Lógica",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/fmi/tema1/apuntes",
+                        },
+                      ],
+                    },
+                    {
+                      label: "Tema 2:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/fmi/tema2/apuntes",
+                        }
+                      ]
+                    },
+                    {
+                      label: "Tema 3:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/fmi/tema3/apuntes",
+                        }
+                      ]
+                    }
+                  ],
+                },
+              ],
+            },
+            {
+              label: "Sistemas digitales",
+              items: [
+                {
+                  label: "Temas",
+                  items: [
+                    {
+                      label:
+                        "Tema 1: Sistemas de numeración y códigos binarios",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/sd/tema1/apuntes",
+                        },
+                      ],
+                    },
+                    {
+                      label: "Tema 2:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/sd/tema2/apuntes",
+                        }
+                      ]
+                    },
+                    {
+                      label: "Tema 3:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/sd/tema3/apuntes",
+                        }
+                      ]
+                    },
+                    {
+                      label: "Tema 4:", items: [
+                        {
+                          label: "Apuntes", slug: "contenido/sd/tema4/apuntes",
+                        }
+                      ]
+                    }
+                  ],
+                },
+              ],
+            },
           ],
         },
       ],
