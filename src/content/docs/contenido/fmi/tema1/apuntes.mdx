@@ -115,15 +115,58 @@ P <Latex formula="\land"/> (Q <Latex formula="\lor"/> R) <Latex formula="\Longri
 <Latex formula="\neg"/> (P <Latex formula="\land"/> Q) <Latex formula="\Longrightarrow"/> ( <Latex formula="\neg"/> P <Latex formula="\lor"/> <Latex formula="\neg"/> Q)
 
 * <u>**Equivalencia Fundamental de la Implicación**</u> (La unica importante...)💋💋💋
-<p>P <Latex formula="\longrightarrow"/> Q <Latex formula="\Longleftrightarrow"/> <Latex formula="\neg"/> P <Latex formula="\lor"/> Q</p>
+P <Latex formula="\longrightarrow"/> Q <Latex formula="\Longleftrightarrow"/> <Latex formula="\neg"/> P <Latex formula="\lor"/> Q
+
+## Parte 3: Predicados y Cuantificadores ❌❔❕
+
+### Predicados 🙊🙈🙉
+
+<u>**Definición:**</u> Una sentencia **P** con variables "X1, X2, ...Xn" se llama predicado P(X1,X2,...Xn) y se relaciona con un universo **U** (basicamente el conjunto de números que pertenece: **R**,**N**,**Z**,**Q**,etc).
+
+<p>Tambien se pueden realizar operaciones lógicas con los predicados:</p> 
+* <Latex formula="\neg"/>P(X) <Latex formula="\Longrightarrow"/> todo lo que no cumpla la sentencia P o su contrario.
+* (P <Latex formula="\lor"/> Q) (X) <Latex formula="\Longrightarrow"/> todo lo que cumple la sentencia P o Q o las dos.
+* (P <Latex formula="\land"/> Q) (X) <Latex formula="\Longrightarrow"/> todo lo que cumple la sentencia P y Q al mismo tiempo.
+
+### Cuantificadores 🧮🧾
+
+* <span style="color:LightBlue">**Cuantificadores Universales:**</span> <Latex formula="\forall"/> <Latex formula="\Longrightarrow"/> **Para todo** es el cuantificador que nos indica que P(X) se cumple en cada X de su dominio/universo, sus contraejemplo som que hay al menos 1 X que no cumple la proposición o ninguna X cumple la proposición.
+* <span style="color:LightPink">**Cuantificadores Existencial:**</span> <Latex formula="\exists"/> <Latex formula="\Longrightarrow"/> **Existe** es el cuantificador que nos indica que P(X) se cumple al menos en una X de su dominio/universo, sus contraejemplo son que no hay ni una X que cumpla la proposicion o todas las X cumplen la proposición.
+* <span style="color:Violet">**Cuantificadores Existencial ÚNICO:**</span> <Latex formula="\exists!"/> <Latex formula="\Longrightarrow"/> **Existe un único** es el cuantificador que nos indica que P(X) se cumple solo y unicamente en una X de su dominio/universo, sus contraejemplos son que hay más de una X/todas las X cumplen la proposición o no hay una X que cumpla la proposición.
+
+<Aside>
+  - <Latex formula="\exists!"/> P(X) <Latex formula="\Longrightarrow"/> <Latex formula="\exists"/> P(X) <Latex formula="\land"/> [ ( <Latex formula="\forall"/> X1, <Latex formula="\forall"/> X2, ( P(X1) <Latex formula="\land"/> P(X2) ) <Latex formula="\longrightarrow"/> X1=X2 ]
+</Aside>
+
+**Negación Cuantificadores**❌
 
 
+<Latex formula="\neg"/> ( <Latex formula="\forall"/> P(X) ) <Latex formula="\Longrightarrow"/> <Latex formula="\exists"/> <Latex formula="\neg"/> P(X)
 
 
+<Latex formula="\neg"/> ( <Latex formula="\exists"/> P(X) ) <Latex formula="\Longrightarrow"/> <Latex formula="\forall"/> <Latex formula="\neg"/> P(X)
 
 
+<Latex formula="\neg"/> ( <Latex formula="\exists!"/> P(X) ) <Latex formula="\Longrightarrow"/> <Latex formula="\forall"/> <Latex formula="\neg"/> P(X) <Latex formula="\lor"/> [ ( <Latex formula="\exists"/> X1, <Latex formula="\exists"/> X2, X1 =/= X2, ( P(X1) <Latex formula="\land"/> P(X2) ) ]
 
 
+**Cuantificadore aniñados/compuestos**⚙️🛠️2️⃣
+
+
+<Latex formula="\forall"/> X, <Latex formula="\forall"/> Y, P(X,Y) <Latex formula="\Longrightarrow"/> para todo **par** de X e Y se cumple la proposición.
+
+
+<Latex formula="\exists"/> X, <Latex formula="\exists"/> Y, P(X,Y) <Latex formula="\Longrightarrow"/> al menos hay un **par** de X e Y donde se cumple la proposición.
+
+
+<Latex formula="\forall"/> X, <Latex formula="\exists"/> Y, P(X,Y) <Latex formula="\Longrightarrow"/> para **todas** las X, cada una tienen **al menos una** Y que cumple la proposición.
+
+
+<Latex formula="\exists"/> X, <Latex formula="\forall"/> Y, P(X,Y) <Latex formula="\Longrightarrow"/> existe **al menos una** X, que cumple la proposición para **todas** las diferentes Y del dominio/universo. 
+
+## Parte 4: Razonamiento Deductivo 🧠💡🌻
+
+### Reglas de Inferencia 🤫🤫🤫
 
 
 
