@@ -130,47 +130,59 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 2:", items: [
+                      label: "Tema 2:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/am/tema2/apuntes", 
-                        }
-                      ]
+                          label: "Apuntes",
+                          slug: "contenido/am/tema2/apuntes",
+                        },
+                      ],
                     },
                     {
-                      label: "Tema 3:", items: [
+                      label: "Tema 3:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/am/tema3/apuntes",
-                        }
-                      ]
+                          label: "Apuntes",
+                          slug: "contenido/am/tema3/apuntes",
+                        },
+                      ],
                     },
                     {
-                      label: "Tema 4:", items: [
+                      label: "Tema 4:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/am/tema4/apuntes",
-                        }
-                      ]
+                          label: "Apuntes",
+                          slug: "contenido/am/tema4/apuntes",
+                        },
+                      ],
                     },
                     {
-                      label: "Tema 5:", items: [
+                      label: "Tema 5:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/am/tema5/apuntes",
-                        }
-                      ]
+                          label: "Apuntes",
+                          slug: "contenido/am/tema5/apuntes",
+                        },
+                      ],
                     },
                     {
-                      label: "Tema 6:", items: [
+                      label: "Tema 6:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/am/tema6/apuntes",
-                        }
-                      ]
+                          label: "Apuntes",
+                          slug: "contenido/am/tema6/apuntes",
+                        },
+                      ],
                     },
                     {
-                      label: "Tema 7:", items: [
+                      label: "Tema 7:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/am/tema7/apuntes",
-                        }
-                      ]
-                    }
+                          label: "Apuntes",
+                          slug: "contenido/am/tema7/apuntes",
+                        },
+                      ],
+                    },
                   ],
                 },
               ],
@@ -191,19 +203,23 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 2:", items: [
+                      label: "Tema 2:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/fmi/tema2/apuntes",
-                        }
-                      ]
+                          label: "Apuntes",
+                          slug: "contenido/fmi/tema2/apuntes",
+                        },
+                      ],
                     },
                     {
-                      label: "Tema 3:", items: [
+                      label: "Tema 3:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/fmi/tema3/apuntes",
-                        }
-                      ]
-                    }
+                          label: "Apuntes",
+                          slug: "contenido/fmi/tema3/apuntes",
+                        },
+                      ],
+                    },
                   ],
                 },
               ],
@@ -225,26 +241,32 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 2:", items: [
+                      label: "Tema 2:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/sd/tema2/apuntes",
-                        }
-                      ]
+                          label: "Apuntes",
+                          slug: "contenido/sd/tema2/apuntes",
+                        },
+                      ],
                     },
                     {
-                      label: "Tema 3:", items: [
+                      label: "Tema 3:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/sd/tema3/apuntes",
-                        }
-                      ]
+                          label: "Apuntes",
+                          slug: "contenido/sd/tema3/apuntes",
+                        },
+                      ],
                     },
                     {
-                      label: "Tema 4:", items: [
+                      label: "Tema 4:",
+                      items: [
                         {
-                          label: "Apuntes", slug: "contenido/sd/tema4/apuntes",
-                        }
-                      ]
-                    }
+                          label: "Apuntes",
+                          slug: "contenido/sd/tema4/apuntes",
+                        },
+                      ],
+                    },
                   ],
                 },
               ],
