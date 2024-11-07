@@ -8,9 +8,9 @@ import Latex from "@components/Latex.astro";
 
 Primer temita de FMI, basado en los apuntes de Nevado, Google y nuestro dios, salvador y maestro Gerardo Paredes Torres
 
-## Parte 1: 🗣️🟰🧮 Proposiciones y Op.Lógicos
+## Parte 1: Proposiciones/Op.Lógicos 🗣️🟰🧮
 
-### 🗣️🗣️🗣️ <u>Proposiciones</u>
+### 🗣️🗣️🗣️ Proposiciones
 
 Una **proposicion** es una oración declarativa *(en idioma natural)* que puede tener 2 valores: **<span style="color:lightgreen">Verdad(V)</span>** o **<span style="color:red">Falso(F)</span>**.
 
@@ -30,7 +30,7 @@ Su **valor de verdad** se determina con **V** o **F** y a las proposiciones ante
 
 - t: BOBR KURWA PIERDOLE es **V**
 
-### 🧮🧮🧮 <u>Op.Lógicos</u>
+### 🧮🧮🧮 Op.Lógicos
 
 Un **Operador Lógico** es un elemento verbal/escrito que permite formar proposiciones (*proposición compuesta*) a partir de otras (*proposición atómica*).
 
@@ -75,7 +75,7 @@ Es una proposición que **siempre** es <span style="color:red">falsa</span>, com
 #### Contingencia *<span style="color:yellow">Depende</span>* ❔❔❔
 Es una proposición que **depende** de los <span style="color:yellow">valores de verdad</span> de los elementos que forman la proposicion, asi que puede ser verdad o falso.
 
-## Parte 2: 🥐🥐🥐 Equivalencias Lógicas
+## Parte 2: Equivalencias Lógicas 🥐🥐🥐
 
 ### Relativas a **OR** , **AND** , **NOT** y **IMPLICA**
 
@@ -167,6 +167,64 @@ P <Latex formula="\longrightarrow"/> Q <Latex formula="\Longleftrightarrow"/> <L
 ## Parte 4: Razonamiento Deductivo 🧠💡🌻
 
 ### Reglas de Inferencia 🤫🤫🤫
+
+Basados en <span style="color:Green">**Tautologías**</span> y son equivalencias 100% equivalentes y intercambiables.
+
+* <u>**Adición**</u> (Alexis = Alexis + Ser trapo)👠👠👠
+<p>P <Latex formula="\Longrightarrow"/> P <Latex formula="\lor"/> Q</p>
+
+* <u>**Simplificación**</u> (Carrera Robar Manosear)🐒🐒🐒
+<p>P <Latex formula="\land"/> Q <Latex formula="\Longrightarrow"/> P</p>
+
+* <u>**Conjunción**</u> (Bruno + Drogas = EL GUERRERO DRAGON)🐼🐉👲🏼
+<p>(P) <Latex formula="\land"/> (Q) <Latex formula="\Longrightarrow"/> P <Latex formula="\land"/> Q</p>
+
+* <u>**Modus Ponens**</u> (u cafe)☕☕☕
+<p>P <Latex formula="\land"/> ( P <Latex formula="\longrightarrow"/> Q) <Latex formula="\Longrightarrow"/> Q</p>
+
+* <u>**Modus Tollens**</u> (SYYYYYMPHOOOOOONYYYYY!!!)🐬🐬🐬🦄🦄🦄🌈🌈🌈
+<p><Latex formula="\neg"/> Q <Latex formula="\land"/> ( P <Latex formula="\longrightarrow"/> Q ) <Latex formula="\Longrightarrow"/> <Latex formula="\neg"/> P</p>
+
+* <u>**Siloxismo Hipotético**</u> (Naya PHD Amor)💗💗💗
+<p>( P <Latex formula="\longrightarrow"/> Q ) <Latex formula="\land"/> ( Q <Latex formula="\longrightarrow"/> R ) <Latex formula="\Longrightarrow"/> P <Latex formula="\longrightarrow"/> R</p>
+
+* <u>**Siloxismo Disyuntivo**</u> (bobby no te metas en el LOL...) 🐷🐷🐷
+<p>( ( P <Latex formula="\lor"/> Q ) <Latex formula="\land"/> ( <Latex formula="\neg"/> P) ) <Latex formula="\Longrightarrow"/> Q</p>
+
+* <u>**Ley de Resolución**</u> (Alexis x Miku es más probable que Alexis x Cloe D:)💘💘💘
+<p>( ( P <Latex formula="\lor"/> Q ) <Latex formula="\land"/> ( <Latex formula="\neg"/> P <Latex formula="\lor"/> R) ) <Latex formula="\Longrightarrow"/> ( Q <Latex formula="\lor"/> R )</p>
+
+<Aside type="caution">
+FALACIAS: razonamientos incorrectos basados en **CONTINGENCIAS**, no en tautologías, asi que cuidado de hacer cosas fuera de las equivalencias o inferencias
+</Aside>
+
+## Parte 5: Metodos de demostración 👲🏼🐷👲🏼
+
+### Sistema Matemático ➕➖✖️➗
+
+* Se suponen verdaderos los *Axiomas*
+* Las *Definiciones* se utilizan para crear nuevos conceptos
+* Se deducen *Teoremas*
+
+**Teoremas** (Si como los de Nobita Nobi👆🏼🧐)
+
+Una <span style="color:Purple">**Sentencia**</span> que se puede verificar que es <span style="color:Green">**Verdad**</span>, suele venir como:
+* P <Latex formula="\longrightarrow"/> Q
+* <Latex formula="\forall"/> P(X)
+* <Latex formula="\exists"/> P(X)
+
+**Tipos de teoremas** (Carlos deja el TCG y ponte a estudiar)♠️♥️♦️♣️♠️♥️♦️♣️
+* <span style="color:Blue">**Proposición**</span>: teorema pequeño
+* <span style="color:Red">**Lema**</span>: teorema simple usado en otros teoremas
+* <span style="color:Green">**Corolario**</span>: teorema comprobado por otros teoremas
+
+**Metodos demostración**
+<p>Los metodos de demostración más usados y que nos tenemos que aprender son **3**, realmente 4 si cuentas inducción, pero ese ya te lo sabes (verdad?????)</p>
+* **Directa**: pruebas el problema y le das la razon, osea, pruebas que es verdad
+* **Contra-Recíproco**: pruebas la negación y dependiendo de su valor, el original es verdad o falso
+* **Reducción al Absurdo**: llevas la proposicion a un punto absurdo, provando que obviamente lo que te dice la proposicion es verdad o falso
+* **Inducción**: YA TE LO SABES HDP
+
 
 
 
