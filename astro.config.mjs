@@ -148,7 +148,7 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 4:",
+                      label: "Tema 4: Funciones, Límites y Continuidad",
                       items: [
                         {
                           label: "Apuntes",
