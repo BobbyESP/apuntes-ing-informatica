@@ -157,7 +157,7 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 5:",
+                      label: "Tema 5: Funciones Reales de una Variable Real",
                       items: [
                         {
                           label: "Apuntes",

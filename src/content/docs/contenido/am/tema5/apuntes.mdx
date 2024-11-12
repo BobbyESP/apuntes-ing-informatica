@@ -1,4 +1,60 @@
 ---
-title: Tema 5 -
-description: alexis le gusta...
+title: Tema 5 - Funciones Reales de una Variable Real
+description: Derivación de funciones reales de una variable real, definición formal de derivada, cociente incremental, interpretaciones de la derivada, derivadas laterales, propiedades fundamentales de las funciones derivables, aplicaciones claves de la derivada.
 ---
+
+import Latex from "@components/Latex.astro";
+
+## Definición Formal de Derivada
+
+Dada una función <Latex formula="f: (a, b) \subset \mathbb{R} \rightarrow \mathbb{R}"/> y un punto <Latex formula="x_0 \in (a, b)"/>,
+decimos que <Latex formula="f"/> es derivable en <Latex formula="x_0"/> si existe y es finito el siguiente límite:
+
+  <Latex formula="f'(x_0) = \lim_{{x \to x_0}} \frac{{f(x) - f(x_0)}}{{x - x_0}}" display={true}/>
+
+- Este límite, si existe, se llama la **derivada** de <Latex formula="f"/> en <Latex formula="x_0"/> y se denota por <Latex formula="f'(x_0)"/>.
+
+## Tasa de variación media Cociente Incremental
+
+La expresión <Latex formula="\frac{{f(x) - f(x_0)}}{{x - x_0}}"/> se conoce como la **tasa de variación media** (TVM) o el **cociente incremental** de la función <Latex formula="f"/> en el intervalo <Latex formula="[x_0, x]"/>.
+
+Intuitivamente se puede decir que la tasa de variación media mide la **pendiente** de la recta secante que pasa por los puntos <Latex formula="(x_0, f(x_0))" box={true}/> y <Latex formula="(x, f(x))" box={true}/> en la gráfica de la función. 
+
+## Interpretaciones de la Derivada
+
+### Interpretación Geométrica
+La derivada <Latex formula="f'(x_0)"/> representa la **pendiente de la recta tangente** a la gráfica de la función <Latex formula="y = f(x)"/> en el punto <Latex formula="(x_0, f(x_0))"/>. A medida que <Latex formula="x"/> se acerca a <Latex formula="x_0"/>, la recta secante se aproxima a la recta tangente y el cociente incremental se acerca a la derivada.
+
+### Interpretación Física
+Si <Latex formula="s(t)"/> describe la posición de un objeto en función del tiempo <Latex formula="t"/>, entonces la derivada <Latex formula="s'(t)"/> representa la **velocidad instantánea** del objeto en el instante <Latex formula="t"/>. La tasa de variación media, en este caso, sería la velocidad media en un intervalo de tiempo.
+
+## Derivadas Laterales
+
+A veces, el límite del cociente incremental existe solo cuando <Latex formula="x"/> se aproxima a <Latex formula="x_0"/> desde un lado específico:
+por la derecha (<Latex formula="x > x_0" box={true}/>) o por la izquierda (<Latex formula="x < x_0" box={true}/>).
+En estos casos, se habla de **derivada por la derecha** (<Latex formula="f'(x_0^+)" box={true}/>) o **derivada por la izquierda** (<Latex formula="f'(x_0^-)" box={true}/>). 
+
+Una función es derivable en un punto <Latex formula="x_0"/> si y solo si estas derivadas laterales <u>**existen y son iguales**</u>, en cuyo caso coinciden con la derivada común <Latex formula="f'(x_0)"/> en ese punto.
+
+## Propiedades Fundamentales de las Funciones Derivables
+
+Una propiedad clave de las funciones derivables es que la derivabilidad en un punto <Latex formula="x_0"/> implica que la función es continua en ese punto. Sin embargo, lo contrario no siempre se cumple: una función puede ser continua en un punto sin ser derivable en él, como en el caso de la función valor absoluto <Latex formula="f(x) = |x|"/>, que es continua en <Latex formula="x = 0"/> pero no derivable allí.
+
+Además, existen varias reglas que simplifican el cálculo de derivadas cuando se trabaja con combinaciones de funciones básicas:
+
+- Para la **suma y resta** de funciones, <Latex formula="(f \pm g)'(x_0) = f'(x_0) \pm g'(x_0)"/>.
+- Para el **producto** de funciones, <Latex formula="(f \cdot g)'(x_0) = f'(x_0) · g(x_0) + f(x_0) · g'(x_0)"/>.
+- Para el **cociente** de funciones, <Latex formula="\left( \frac{f}{g} \right)'(x_0) = \frac{{f'(x_0) · g(x_0) - f(x_0) · g'(x_0)}}{{[g(x_0)]^2}}"/>, siempre que <Latex formula="g(x_0) \neq 0"/>.
+- Al **multiplicar una función por una constante** <Latex formula="\lambda"/>, su derivada es <Latex formula="(\lambda · f)'(x_0) = \lambda · f'(x_0)"/>.
+
+Otra regla fundamental es la **regla de la cadena**, que permite derivar funciones compuestas. Si <Latex formula="f"/> es derivable en <Latex formula="x_0"/> y <Latex formula="g"/> es derivable en <Latex formula="f(x_0)"/>, entonces <Latex formula="(g \circ f)'(x_0) = g'(f(x_0)) · f'(x_0)" box={true}/>. Esta regla indica que la derivada de la función compuesta es el producto de la derivada de la función exterior evaluada en la interior, por la derivada de la función interior.
+
+## Aplicaciones Claves de la Derivada
+
+La derivada tiene múltiples aplicaciones prácticas, entre las que destacan:
+
+- **Regla de L'Hôpital**: útil para resolver **límites indeterminados** de la forma <Latex formula="\frac{0}{0}"/> o <Latex formula="\frac{\infty}{\infty}"/>. Según esta regla, si el límite del cociente de las derivadas existe, entonces el límite del cociente de las funciones originales también existe y coincide con él.
+- **Determinación de máximos y mínimos relativos**: Un punto <Latex formula="x_0"/> es un **máximo relativo** si <Latex formula="f(x) \leq f(x_0)"/> en un entorno de <Latex formula="x_0"/>, y un **mínimo relativo** si <Latex formula="f(x) \geq f(x_0)"/> en un entorno de <Latex formula="x_0"/>. Además, si una función es derivable en <Latex formula="x_0"/> y tiene un extremo relativo en ese punto, entonces <Latex formula="f'(x_0) = 0"/>. Esta condición es **necesaria, pero no suficiente**.
+- **Teorema de Rolle**: establece que si una función es continua en <Latex formula="[a, b]"/>, derivable en <Latex formula="(a, b)"/>, y <Latex formula="f(a) = f(b)"/>, entonces existe un punto <Latex formula="c"/> en el intervalo donde <Latex formula="f'(c) = 0"/>.
+- **Teorema del Valor Medio**: garantiza que si una función es continua en <Latex formula="[a, b]"/> y derivable en <Latex formula="(a, b)"/>, entonces existe un punto <Latex formula="c"/> en el intervalo donde <Latex formula="f'(c) = \frac{{f(b) - f(a)}}{{b - a}}"/>. Este teorema asegura la existencia de un punto donde la tangente a la curva tiene la misma pendiente que la secante entre los extremos del intervalo.
+- **Concavidad y puntos de inflexión**: La **segunda derivada**, <Latex formula="f''"/>, permite determinar la **concavidad** de una función. Si <Latex formula="f''(x) > 0"/> en un intervalo, la función es **cóncava hacia arriba** en ese intervalo, mientras que si <Latex formula="f''(x) < 0"/>, es **cóncava hacia abajo**. Un cambio de signo en <Latex formula="f''"/> indica un **punto de inflexión**. 
