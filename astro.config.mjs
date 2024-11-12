@@ -166,7 +166,7 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 6:",
+                      label: "Tema 6: Integración de funciones reales de variable real",
                       items: [
                         {
                           label: "Apuntes",

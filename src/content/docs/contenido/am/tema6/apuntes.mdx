@@ -1,4 +1,68 @@
 ---
-title: Tema 6 -
-description: tlvz puede ser que sea...
+title: Tema 6 - Integración de funciones reales de variable real
+description: Cálculo integral, integral definida, propiedades, Teorema Fundamental del Cálculo, primitivas, técnicas de integración, integrales impropias, aplicaciones.
 ---
+
+import Latex from "@components/Latex.astro";
+
+El cálculo integral es fundamental para determinar áreas bajo curvas, volúmenes de sólidos de revolución y resolver problemas en física, ingeniería y economía. Aunque puede parecer un tema independiente, el **Teorema Fundamental del Cálculo** revela su conexión con la derivación, mostrando que ambas operaciones son inversas entre sí.
+
+Para una función continua <Latex formula="f" /> en un intervalo <Latex formula="[a, b]" />, la **integral definida** se denota como <Latex formula="\int_{a}^{b} f(x) \, dx" /> y representa, si <Latex formula="f" /> es positiva, el área bajo la curva de <Latex formula="f" /> entre <Latex formula="x=a" /> y <Latex formula="x=b" />.
+
+## Propiedades de la Integral Definida
+
+- **Aditividad:** La integral sobre un intervalo <Latex formula="[a, b]" /> se puede descomponer:  
+  <Latex formula="\int_{a}^{b} f(x) \, dx = \int_{a}^{c} f(x) \, dx + \int_{c}^{b} f(x) \, dx ,\ donde \ a < c < b" display={true}/>
+
+- **Linealidad:**  
+  - La integral de una suma es la suma de las integrales.  
+  - La integral de una constante por una función es igual a la constante multiplicada por la integral de la función.
+
+- **Monotonía:** Si <Latex formula="f(x) \leq g(x)" /> para todo <Latex formula="x" /> en <Latex formula="[a, b]" />, entonces <Latex formula="\int_{a}^{b} f(x) \, dx \leq \int_{a}^{b} g(x) \, dx" box={true}/>.
+
+## Teorema Fundamental del Cálculo
+
+Este teorema establece la relación inversa entre derivación e integración. 
+
+1. Si <Latex formula="f" /> es continua en <Latex formula="[a, b]" />, la función <Latex formula="F(x) = \int_{a}^{x} f(t) \, dt" box={true}/> es derivable en <Latex formula="[a, b]" /> y <Latex formula="F'(x) = f(x)" />. Es decir, <Latex formula="F" /> es una primitiva de <Latex formula="f" />.
+
+2. La **Regla de Barrow** permite calcular la integral definida de <Latex formula="f" /> conociendo una primitiva <Latex formula="G" /> de <Latex formula="f" />:  
+   <Latex formula="\int_{a}^{b} f(x) \, dx = G(b) - G(a)" box={true}/>.
+
+## Primitivas e Integrales Inmediatas
+
+Algunas integrales inmediatas útiles son:
+- <Latex formula="\int x^n \, dx = \frac{x^{n+1}}{n+1} + C" /> para <Latex formula="n \neq -1" />.
+- <Latex formula="\int \frac{1}{x} \, dx = \ln|x| + C" />.
+- <Latex formula="\int e^x \, dx = e^x + C" />.
+- <Latex formula="\int \sin(x) \, dx = -\cos(x) + C" />.
+- <Latex formula="\int \cos(x) \, dx = \sin(x) + C" />.
+
+## Técnicas de Integración
+
+Para funciones más complejas, se utilizan técnicas como:
+
+- **Integración por partes:**  
+  Basada en la regla de la derivada del producto, se expresa como:  
+  <Latex formula="\int u \, dv = uv - \int v \, du" display={true}/> donde <Latex formula="u" box={true}/> y <Latex formula="v" box={true}/> son funciones derivables.
+
+- **Integración por cambio de variable:**  
+  Basada en la regla de la cadena, permite simplificar integrales mediante sustitución de variables.
+
+## Integrales Impropias
+
+Las integrales impropias se definen como límites de integrales definidas. Se clasifican en:
+
+- **Integrales impropias de primera especie**: El intervalo de integración es no acotado.
+- **Integrales impropias de segunda especie**: La función a integrar no está acotada en el intervalo de integración.
+- **Integrales impropias de tercera especie**: Combinan ambas características.
+
+## Aplicaciones de la Integral Definida
+
+- **Área entre dos curvas**:  
+  Para calcular el área entre las curvas <Latex formula="y = f(x)" /> e <Latex formula="y = g(x)" /> en <Latex formula="[a, b]" />, se usa la fórmula:  
+  <Latex formula="A = \int_{a}^{b} |f(x) - g(x)| \, dx" display={true}/>
+
+- **Longitud de un arco de curva**:  
+  La longitud de un arco de la curva <Latex formula="y = f(x)" /> entre <Latex formula="x = a" /> y <Latex formula="x = b" />, donde <Latex formula="f" /> es derivable, se calcula como:  
+  <Latex formula="L = \int_{a}^{b} \sqrt{1 + [f'(x)]^2} \, dx" display={true}/>
