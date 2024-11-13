@@ -5,9 +5,10 @@ import katex from 'katex';
 interface Props {
   formula: string;
   display?: boolean; // Formula will be displayed in a form of a centered block.
+  box?: boolean; // Formula will be displayed in a box.
 }
 
-const { formula, display = false } = Astro.props;
+const { formula, display = false, box = false } = Astro.props;
 
 const html = katex.renderToString(formula, {
   throwOnError: false,
@@ -15,4 +16,10 @@ const html = katex.renderToString(formula, {
 });
 ---
 
-<span set:html={html} />
+{ box ? (
+  <span class="dark:bg-slate-800 bg-slate-200 inline p-1 rounded">
+    <span set:html={html} />
+  </span>
+) : (
+  <span set:html={html} />
+)}

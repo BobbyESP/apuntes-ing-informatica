@@ -1,4 +1,141 @@
 ---
-title: Tema 4 -
+title: Tema 4 - Funciones Reales de Variable Real, Límites y Continuidad
 description: arriba españa?
 ---
+
+import { Aside } from "@astrojs/starlight/components";
+import Latex from "@components/Latex.astro";
+
+## Funciones Reales de Variable Real
+
+### Introducción
+
+Una función, denotada como <Latex formula="f: A \to B" />, se compone de un dominio (<Latex formula="A = Dom(f)" />)
+y un rango (<Latex formula="B = Rang(f)" />), con una regla que relaciona cada elemento <Latex formula="x \in A" /> con un único elemento
+
+<Latex formula="y \in B" />. Esta correspondencia se representa como <Latex formula="y = f(x)" /> o <Latex formula="x \to f(x)" />
+. La imagen de <Latex formula="f" />, <Latex formula="Im(f) = f(A)" />, incluye todos
+los valores que <Latex formula="f(x)" /> puede tomar.
+
+Cuando tanto <Latex formula="A" /> como <Latex formula="B" /> son subconjuntos de los números reales (<Latex formula="A, B \subset R" />), <Latex formula="f" /> se conoce como una función real de una variable real.
+
+### Tipos de Funciones
+
+Las funciones reales de variable real se pueden clasificar según diferentes propiedades, incluyendo:
+
+- **Inyectiva:** Cada elemento del rango se relaciona con un único elemento del dominio.
+- **Sobreyectiva:** Todos los elementos del rango tienen al menos un elemento del dominio que se relaciona con ellos.
+- **Biyectiva:** La función es tanto inyectiva como sobreyectiva.
+- **Creciente/Decreciente:** El valor de la función aumenta/disminuye a medida que aumenta el valor de la variable independiente.
+- **Estrictamente Creciente/Decreciente:** La función es creciente/decreciente y, además, no hay dos valores distintos de la variable independiente que produzcan el mismo valor de la función (es decir, es inyectiva).
+- **Monótona:** La función es creciente o decreciente.
+- **Estrictamente Monótona:** La función es estrictamente creciente o estrictamente decreciente.
+- **Acotada Superior/Inferiormente:** La función tiene un valor máximo/mínimo.
+- **Acotada:** La función está acotada superior e inferiormente.
+
+### Operaciones con Funciones
+
+Es posible realizar diferentes operaciones con funciones, como la **composición** (<Latex formula="g \circ f" />) y la
+**inversión** (<Latex formula="f^{-1}" />).
+
+La composición de funciones se define como <Latex formula="(g \circ f)(x) := g(f(x))" />, donde:
+
+- <Latex formula="f: A \to B" /> y <Latex formula="g: C \to D" />, siendo <Latex formula="B \subset C" /> (`B`
+  un subconjunto de `C`).
+
+<Aside>
+  {" "}
+  Una función tiene inversa, <Latex formula="f^{-1}: B \to A" />, si y solo si <Latex formula="f" />{" "}
+  es biyectiva.{" "}
+</Aside>
+
+### Límites de una Función
+
+El límite de una función <Latex formula="f(x)" /> cuando <Latex formula="x" /> tiende a un punto <Latex formula="x_0" />,
+denotado como <Latex formula="\lim_{x \to x_0} f(x) = l" />, describe el comportamiento de la función cerca de ese punto.
+Se dice que el límite existe si <Latex formula="f(x)" /> se acerca a un valor <Latex formula="l" /> a medida que <Latex formula="x" />
+se acerca a <Latex formula="x_0" />, sin importar el valor de <Latex formula="f(x_0)" />.
+
+Los límites laterales, por la izquierda (<Latex formula="\lim_{x \to x_0^-} f(x)" />) y por la derecha (<Latex formula="\lim_{x \to x_0^+} f(x)" />),
+describen el comportamiento de la función cuando <Latex formula="x" /> se acerca a <Latex formula="x_0" /> por valores menores o mayores, respectivamente.
+El límite de una función existe **si y solo si** los límites laterales existen y son iguales.
+
+### Propiedades de los Límites
+
+Existen varias propiedades fundamentales que simplifican el cálculo de límites. Entre las más importantes se encuentran:
+
+- **Límites de sumas, restas, productos y cocientes:** El límite de una suma, resta, producto o cociente de funciones es igual a la suma, resta, producto o cociente de los límites de cada una de las funciones, respectivamente, siempre que los límites individuales existan.
+  - Para el caso de un **cociente**, es necesario que el límite del denominador no sea cero.
+
+## Asíntotas de Funciones
+
+Las **asíntotas** son rectas que se aproximan a la gráfica de una función en el infinito. Existen tres tipos de asíntotas: <u> verticales</u>, <u>horizontales</u> y <u>oblicuas</u>.
+
+### Asíntotas Verticales
+
+Una recta <Latex formula="x = x_0" /> es una asíntota vertical de la función <Latex formula="f" /> si el límite de la función
+en ese punto es infinito (<Latex formula="\lim_{x \to x_0^-} f(x) = \pm \infty" /> o <Latex formula="\lim_{x \to x_0^+} f(x) = \pm \infty" />).
+
+### Asíntotas Horizontales
+
+Una recta <Latex formula="y = L" /> es una asíntota horizontal de la función <Latex formula="f" />
+si el límite de la función cuando <Latex formula="x" /> tiende a <Latex formula="+\infty" /> o <Latex formula="-\infty" />
+es igual a <Latex formula="L" /> (<Latex formula="\lim_{x \to +\infty} f(x) = L" /> o <Latex formula="\lim_{x \to -\infty} f(x) = L" />).
+
+### Asíntotas Oblicuas
+
+Una recta <Latex formula="y = mx + n" /> (<Latex formula="m \neq 0" />) es una asíntota oblicua de la función <Latex formula="f" />
+si el límite de la diferencia entre la función y la recta es cero cuando <Latex formula="x" /> tiende a <Latex formula="+\infty" />
+o <Latex formula="-\infty" /> (<Latex formula="\lim_{x \to \pm\infty} (f(x) - mx - n) = 0" />).
+
+#### Fórmulas de la A.O.
+- <Latex formula="y = mx + n" />
+- <Latex formula="m = \lim_{{x \to \pm \infty}} \frac{{f(x)}}{{x}}" />
+- <Latex formula="n = \lim_{{x \to \pm \infty}} (f(x) - mx)" />
+
+### Tabla de tipos de asíntotas
+
+<div class="flex justify-center">
+| Tipo de Asíntota | Definición                                                                                               |
+|------------------|----------------------------------------------------------------------------------------------------------|
+| A.Vertical       | <Latex formula="\lim_{{x \to k}} f(x) = \infty" />                                                       |
+| A.Horizontal     | <Latex formula="\lim_{{x \to \infty}} f(x) = k" />                                                       |
+| A.Oblícua        | Si <Latex formula="f(x)" /> tiene A.H., **NO** tiene A.O.                                                |
+</div>
+
+## Continuidad de Funciones
+
+Una función <Latex formula="f" /> es **continua** en un punto <Latex formula="x_0" />
+si el límite de la función en ese punto es igual al valor de la función en ese punto (<Latex formula="\lim_{x \to x_0} f(x) = f(x_0)" />).
+En términos simples, una función continua se puede dibujar "sin levantar el lápiz del papel".
+
+### Propiedades de las Funciones Continuas
+
+Las funciones continuas tienen varias propiedades importantes:
+
+- **Suma, resta, producto y cociente:** La suma, resta, producto y cociente de funciones continuas también son funciones continuas,
+  siempre que en el caso del cociente el denominador no sea cero en el punto de interés.
+- **Composición:** La composición de funciones continuas es continua.
+- **Intercambio con el límite:** Si <Latex formula="f" /> es continua, se puede intercambiar la función con el límite:
+  <Latex formula="\lim_{n \to \infty} f(x_n) = f(\lim_{n \to \infty} x_n)" />.
+
+### Tipos de Discontinuidades
+
+Si una función no es continua en un punto, se dice que tiene una discontinuidad en ese punto. Existen diferentes tipos de discontinuidades:
+
+- **Evitable:** El límite de la función existe en el punto de discontinuidad, pero es diferente del valor de la función en ese punto.
+  Se puede "evitar" la discontinuidad redefiniendo la función en ese punto para que coincida con el límite.
+- **Esencial de primera especie:**
+  - **De salto:** Los límites laterales existen pero son diferentes.
+  - **De tipo infinito:** El límite de la función en el punto de discontinuidad es infinito.
+- **Esencial de segunda especie:** Al menos uno de los límites laterales no existe.
+
+### Teoremas Importantes sobre Funciones Continuas
+
+Dos teoremas fundamentales sobre funciones continuas son el Teorema de Bolzano y el Teorema de Weierstrass.
+
+- **Teorema de Bolzano:** Si una función <Latex formula="f" /> es continua en un intervalo cerrado <Latex formula="[a, b]" /> y
+  los valores de la función en los extremos del intervalo tienen signos opuestos (<Latex formula="f(a) \cdot f(b) < 0" />),
+  entonces existe al menos un punto <Latex formula="c \in (a, b)" /> tal que <Latex formula="f(c) = 0" />.
+- **Teorema de Weierstrass:** Si una función <Latex formula="f" /> es continua en un intervalo cerrado <Latex formula="[a, b]" />,
+  entonces <Latex formula="f" /> está acotada y alcanza sus valores máximo y mínimo en algún punto del intervalo.

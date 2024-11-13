@@ -148,7 +148,7 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 4:",
+                      label: "Tema 4: Funciones, Límites y Continuidad",
                       items: [
                         {
                           label: "Apuntes",
@@ -157,7 +157,7 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 5:",
+                      label: "Tema 5: Funciones Reales de una Variable Real",
                       items: [
                         {
                           label: "Apuntes",
@@ -166,7 +166,7 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 6:",
+                      label: "Tema 6: Integración de funciones reales de variable real",
                       items: [
                         {
                           label: "Apuntes",
