@@ -4,6 +4,7 @@ description: Derivación de funciones reales de una variable real, definición f
 ---
 
 import Latex from "@components/Latex.astro";
+import FirebaseCollectionFiles from "@components/FirebaseCollectionFiles.astro";
 
 ## Definición Formal de Derivada
 
@@ -58,3 +59,5 @@ La derivada tiene múltiples aplicaciones prácticas, entre las que destacan:
 - **Teorema de Rolle**: establece que si una función es continua en <Latex formula="[a, b]"/>, derivable en <Latex formula="(a, b)"/>, y <Latex formula="f(a) = f(b)"/>, entonces existe un punto <Latex formula="c"/> en el intervalo donde <Latex formula="f'(c) = 0"/>.
 - **Teorema del Valor Medio**: garantiza que si una función es continua en <Latex formula="[a, b]"/> y derivable en <Latex formula="(a, b)"/>, entonces existe un punto <Latex formula="c"/> en el intervalo donde <Latex formula="f'(c) = \frac{{f(b) - f(a)}}{{b - a}}"/>. Este teorema asegura la existencia de un punto donde la tangente a la curva tiene la misma pendiente que la secante entre los extremos del intervalo.
 - **Concavidad y puntos de inflexión**: La **segunda derivada**, <Latex formula="f''"/>, permite determinar la **concavidad** de una función. Si <Latex formula="f''(x) > 0"/> en un intervalo, la función es **cóncava hacia arriba** en ese intervalo, mientras que si <Latex formula="f''(x) < 0"/>, es **cóncava hacia abajo**. Un cambio de signo en <Latex formula="f''"/> indica un **punto de inflexión**. 
+
+<FirebaseCollectionFiles coleccion="am/temas/tema5/archivos"/>
