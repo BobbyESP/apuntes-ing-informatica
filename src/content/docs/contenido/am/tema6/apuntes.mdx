@@ -4,6 +4,7 @@ description: Cálculo integral, integral definida, propiedades, Teorema Fundamen
 ---
 
 import Latex from "@components/Latex.astro";
+import FirebaseCollectionFiles from "@components/FirebaseCollectionFiles.astro";
 
 El cálculo integral es fundamental para determinar áreas bajo curvas, volúmenes de sólidos de revolución y resolver problemas en física, ingeniería y economía. Aunque puede parecer un tema independiente, el **Teorema Fundamental del Cálculo** revela su conexión con la derivación, mostrando que ambas operaciones son inversas entre sí.
 
@@ -66,3 +67,5 @@ Las integrales impropias se definen como límites de integrales definidas. Se cl
 - **Longitud de un arco de curva**:  
   La longitud de un arco de la curva <Latex formula="y = f(x)" /> entre <Latex formula="x = a" /> y <Latex formula="x = b" />, donde <Latex formula="f" /> es derivable, se calcula como:  
   <Latex formula="L = \int_{a}^{b} \sqrt{1 + [f'(x)]^2} \, dx" display={true}/>
+
+  <FirebaseCollectionFiles coleccion="am/temas/tema6/archivos"/>
