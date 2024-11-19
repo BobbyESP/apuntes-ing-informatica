@@ -238,6 +238,10 @@ export default defineConfig({
                           label: "Apuntes",
                           slug: "contenido/sd/tema1/apuntes",
                         },
+                        {
+                          label: "Profundización en sistemas de numeración",
+                          slug: "contenido/sd/tema1/sistemas-numeracion",
+                        },
                       ],
                     },
                     {

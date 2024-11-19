@@ -1,0 +1,117 @@
+---
+title: "Profundización en los Sistemas de Numeración"
+description: "En este apartado profundizaremos en los sistemas de numeración y su importancia en los sistemas digitales."
+---
+## Base de un Sistema de Numeración
+
+La **base** de un sistema de numeración determina el número de símbolos diferentes utilizados para representar las cantidades en ese sistema. 
+Por ejemplo, el sistema decimal que usamos a diario tiene base 10, utilizando los símbolos del 0 al 9 (SON SÍMBOLOS, NO NÚMEROS).
+
+##  Conversión entre Sistemas de Numeración
+
+La conversión entre sistemas de numeración es fundamental para trabajar con sistemas digitales. A continuación explico los métodos para convertir entre 
+los sistemas decimal, binario y hexadecimal, que son los más utilizados en este ámbito.
+
+### Decimal a Binario
+
+Para convertir un número decimal a binario, se pueden utilizar dos métodos:
+
+*   **Método de Divisiones Sucesivas:**
+    1.  Se divide la parte entera del número decimal entre 2.
+    2.  Se anota el resto de la división (0 o 1).
+    3.  Se repiten los pasos 1 y 2 con el cociente obtenido, hasta que el cociente sea 0.
+    4.  La secuencia de restos obtenida, leída en orden inverso, es la representación binaria de la parte entera del número decimal.
+
+    Para la parte fraccionaria:
+    1. Se multiplica la parte fraccionaria del número decimal por 2.
+    2. Se anota la parte entera del resultado (0 o 1).
+    3. Se repiten los pasos 1 y 2 con la parte fraccionaria del resultado, hasta obtener una parte fraccionaria igual a cero o hasta alcanzar
+     la precisión deseada.
+    4. La secuencia de partes enteras obtenida, leída en orden, es la representación binaria de la parte fraccionaria del número decimal.
+
+*   **Método de Potencias de 2:** 
+    1. Se identifican las potencias de 2 que son menores o iguales a la parte entera del número decimal.
+    2. Si una potencia de 2 "cabe" en el número decimal, el bit correspondiente a esa posición es 1, de lo contrario es 0.
+    3. Se suman las potencias de 2 que se utilizaron para obtener el número decimal.
+    4. Para la parte fraccionaria, se sigue un proceso similar, utilizando potencias negativas de 2.
+
+### Binario a Decimal
+
+Para convertir un número binario a decimal, se realiza una suma ponderada de los bits que lo componen.
+
+1.  Se multiplica cada bit por su peso, que es la potencia de 2 correspondiente a su posición (empezando por 2<sup>0</sup> para el bit menos significativo).
+2. Se suman los resultados obtenidos en el paso anterior.
+
+### Decimal a Hexadecimal
+
+La conversión de decimal a hexadecimal se realiza mediante divisiones sucesivas por 16.
+
+1.  Se divide la parte entera del número decimal entre 16.
+2.  Se anota el resto de la división, utilizando los símbolos del 0 al 9 y las letras A-F para los valores del 10 al 15.
+3.  Se repiten los pasos 1 y 2 con el cociente obtenido, hasta que el cociente sea 0.
+4.  La secuencia de restos obtenida, leída en orden inverso, es la representación hexadecimal de la parte entera del número decimal.
+
+Para la parte fraccionaria:
+1. Se multiplica la parte fraccionaria del número decimal por 16.
+2. Se anota la parte entera del resultado, utilizando los símbolos del 0 al 9 y las letras A-F para los valores del 10 al 15.
+3. Se repiten los pasos 1 y 2 con la parte fraccionaria del resultado, hasta obtener una parte fraccionaria igual a cero o hasta alcanzar la precisión deseada.
+4. La secuencia de partes enteras obtenida, leída en orden, es la representación hexadecimal de la parte fraccionaria del número decimal.
+
+### Hexadecimal a Decimal
+
+Para convertir un número hexadecimal a decimal, se realiza una suma ponderada de los dígitos que lo componen.
+
+1.  Se multiplica cada dígito hexadecimal por su peso, que es la potencia de 16 correspondiente a su posición (empezando por 16<sup>0</sup> para el dígito menos significativo).
+2.  Se suman los resultados obtenidos en el paso anterior.
+
+### Binario a Hexadecimal
+
+La conversión de binario a hexadecimal es sencilla debido a que 16 es una potencia de 2 (2<sup>4</sup>).
+
+1.  Se agrupan los bits del número binario en grupos de 4, comenzando por la derecha (bit menos significativo).
+2.  Si es necesario, se añaden ceros a la izquierda del bit más significativo para completar el último grupo de 4.
+3.  Se reemplaza cada grupo de 4 bits por su equivalente hexadecimal.
+
+### Hexadecimal a Binario
+
+Para convertir un número hexadecimal a binario:
+
+1.  Se reemplaza cada dígito hexadecimal por su equivalente binario de 4 bits.
+
+## Otros Sistemas de Numeración
+
+Además de los sistemas decimal, binario y hexadecimal, existen otros sistemas de numeración, algunos de los cuales se mencionan en las fuentes.  Estos incluyen:
+
+*   **Ternario:** Base 3, utilizando los símbolos 0, 1 y 2.
+*   **Cuaternario:** Base 4, utilizando los símbolos 0, 1, 2 y 3.
+*   **Octal:** Base 8, utilizando los símbolos del 0 al 7. 
+
+Si bien el sistema octal se utilizaba anteriormente en la informática, en la actualidad no se usa comúnmente.
+
+## Aplicaciones de los Sistemas de Numeración
+
+Los diferentes sistemas de numeración tienen aplicaciones específicas en la informática y la electrónica digital:
+
+*   **Binario:** Es el sistema fundamental para la representación de la información dentro de los sistemas digitales, debido a la correspondencia directa con los estados alto y bajo de las señales binarias. 
+*   **Hexadecimal:** Se utiliza para representar direcciones de memoria, códigos de colores en diseño web, y para expresar valores binarios de forma compacta. 
+*   **Decimal:** Es el sistema que utilizamos los humanos para realizar cálculos y comprender las magnitudes.
+
+## Tabla de Sistemas de Numeración
+| Decimal | Binario | Octal | Hexadecimal |
+|---------|---------|-------|-------------|
+| 0       | 0000    | 0     | 0           |
+| 1       | 0001    | 1     | 1           |
+| 2       | 0010    | 2     | 2           |
+| 3       | 0011    | 3     | 3           |
+| 4       | 0100    | 4     | 4           |
+| 5       | 0101    | 5     | 5           |
+| 6       | 0110    | 6     | 6           |
+| 7       | 0111    | 7     | 7           |
+| 8       | 1000    | 10    | 8           |
+| 9       | 1001    | 11    | 9           |
+| 10      | 1010    | 12    | A           |
+| 11      | 1011    | 13    | B           |
+| 12      | 1100    | 14    | C           |
+| 13      | 1101    | 15    | D           |
+| 14      | 1110    | 16    | E           |
+| 15      | 1111    | 17    | F           |

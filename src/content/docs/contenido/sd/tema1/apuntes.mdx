@@ -2,3 +2,82 @@
 title: Tema 1 - Sistemas de numeración y códigos binarios
 description: carlos sufre :(
 ---
+
+La información, en el ámbito de los sistemas digitales, se transmite, almacena y procesa utilizando señales eléctricas.  
+Esto se debe principalmente a factores económicos y tecnológicos. Para representar la información, se pueden utilizar varios parámetros de una señal eléctrica,
+como la tensión, la intensidad de la corriente, la frecuencia o la fase. Sin embargo, en este contexto, nos centraremos en el uso de la **tensión** para
+representar información.
+
+## Señales Analógicas y Digitales
+
+Las señales eléctricas pueden ser analógicas o digitales. Las **señales analógicas** toman infinitos valores no numerables a lo largo del tiempo,
+como por ejemplo, una señal de audio. En cambio, las **señales digitales** solo toman un número finito de valores distintos en cada instante de tiempo.
+Un caso particular de las señales digitales son las **señales binarias**, que solo pueden tomar dos valores: alto o bajo, que representan los valores lógicos `1` y `0`.
+
+Para procesar información analógica en un sistema digital, se utiliza un **convertidor analógico-digital (CAD)**,
+que convierte la señal analógica en una señal digital. Esta señal digital se procesa mediante circuitos que operan con señales binarias y,
+finalmente, la información procesada se convierte de nuevo a formato analógico mediante un **convertidor digital-analógico (CDA)** si es necesario.
+
+## Sistemas Digitales y Señales Binarias
+
+Los sistemas digitales operan principalmente con señales binarias. Esto se debe a que es más fácil diseñar sistemas que trabajen con dos niveles de tensión,
+lo que simplifica la electrónica y reduce los costes. Además, los sistemas digitales son menos susceptibles a las interferencias y al ruido, lo que aumenta
+su fiabilidad.
+
+Para representar cualquier valor digital utilizando señales binarias, se utiliza un conjunto de señales binarias que forman un número binario.
+La cantidad de señales binarias necesarias depende del rango de valores que se desea representar. Utilizando un número suficiente de señales binarias,
+incluso se pueden representar valores analógicos con un error mínimo.
+
+## Sistemas de Numeración
+
+Un sistema de numeración es una forma de representar cantidades de manera simbólica utilizando un conjunto de reglas. En los sistemas posicionales,
+el valor de un dígito depende de su posición y de la base del sistema. La **base** de un sistema de numeración indica la cantidad de símbolos diferentes
+que se utilizan para representar las cantidades.
+
+### Sistema Binario
+
+El sistema binario es un sistema posicional de **base 2** que utiliza solo dos símbolos: 0 y 1. Es el sistema utilizado por los sistemas digitales debido a
+su correspondencia directa con los dos niveles de tensión con los que operan.
+
+Para convertir un número decimal a binario, se divide sucesivamente la parte entera entre 2 y se toman los restos de las divisiones en orden inverso.
+Para la parte fraccionaria, se multiplica sucesivamente por 2 y se toman las partes enteras de los resultados en orden.
+
+### Sistema Hexadecimal
+
+El sistema hexadecimal es un sistema posicional de **base 16** que utiliza los símbolos del 0 al 9 y las letras A-F para representar los valores del 10 al 15.
+Es útil para representar números binarios de forma compacta, ya que cada dígito hexadecimal corresponde a un grupo de 4 bits.
+
+### Tabla de Sistemas de Numeración
+
+| Sistema de Numeración | Base | Símbolos utilizados                            |
+| --------------------- | ---- | ---------------------------------------------- |
+| Binario               | 2    | 0, 1                                           |
+| Ternario              | 3    | 0, 1, 2                                        |
+| Cuaternario           | 4    | 0, 1, 2, 3                                     |
+| Octal                 | 8    | 0, 1, 2, 3, 4, 5, 6, 7                         |
+| Decimal               | 10   | 0, 1, 2, 3, 4, 5, 6, 7, 8, 9                   |
+| Hexadecimal           | 16   | 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F |
+
+## Representación de Números con Signo
+
+Para representar números negativos en sistemas digitales, se utilizan diferentes formatos binarios que incluyen un bit de signo.
+
+- **Código signo-magnitud:** El bit más significativo (MSB) indica el signo, mientras que los demás bits representan la magnitud del número.
+- **Código complemento a 1:** El negativo de un número se obtiene invirtiendo todos sus bits.
+- **Código complemento a 2:** El negativo de un número se obtiene invirtiendo todos sus bits y sumando 1 al resultado.
+
+## Códigos Binarios
+
+Un código binario es una correspondencia biunívoca entre dos formas de representar información. Permiten representar información como números,
+caracteres o símbolos utilizando solo los dígitos binarios 0 y 1.
+
+### Tipos de Códigos Binarios
+
+Existen diferentes tipos de códigos binarios, como:
+
+- **Códigos numéricos:** Se usan para representar cantidades numéricas, como el **binario natural** y el **BCD** (Decimal Codificado en Binario).
+  El BCD tiene variantes como el **exceso 3** y el **Aiken**.
+- **Códigos alfanuméricos:** Permiten representar caracteres alfanuméricos, como letras y números. El más utilizado es el **ASCII**
+  (Código Estándar Americano para el Intercambio de Información).
+- **Códigos detectores/correctores de errores:** Se utilizan para detectar y corregir errores en la transmisión de datos.
+  Un ejemplo son los códigos de **paridad par/impar**.
