@@ -1,4 +1,63 @@
 ---
-title: Tema 2 -
+title: Tema 2 - Métodos algebraicos de análisis y síntesis de circuitos lógicos
 description: mamaguevo el que lo lea
 ---
+
+import { Aside } from "@astrojs/starlight/components";
+import Latex from "@components/Latex.astro";
+
+Tema de bastante importancia para la materia y el que si o si tienes que aprenderte para aprobar el examen, asi que hazlo hdp 
+* *por: Sebas UGU*
+
+## <u>ALGEBRA DE BOOLE</u>
+
+<Aside>
+  - <u>**RECUERDA:**</u> La logica de Boole utiliza **0** y **1** del sistema binario que son equivalentes a de la lógica proposicional **F** y **V** y tambien a **V = 0** y **V = 5** del sistema de voltaje electrico
+</Aside>
+
+### <u>AXIOMAS</u>
+
+Los axiomas son equivalencias muy muy basicas que no se necesitan comprobar ni mencionar, se asumen como ciertas ( como puede ser A*1 = A ), aqui hay algunos ejemplos ( aprendetelos son utiles para simplicar, son parecidos a los de FMI )
+
+* **X + 0 = X** 
+* **X * 1 = X**
+* **X + Y = Y + X** 
+* **X * Y = Y * X**
+* **X * ( Y + Z ) = X * Y + X * Z** 
+* **X + ( Y * Z ) = ( X + Y ) * ( X + Z )**
+* **X + <Latex formula="\overline{X}"/> = 1**
+* **X * <Latex formula="\overline{X}"/> = 0**
+
+### <u>PROPIEDADES</u>
+
+La lógica booleana tiene ciertas propiedades que solo un sistema de dos estados/valores tendría (tmb aprendetelas bb 💗)
+
+* **X + X = X**
+* **X * X = X**
+* **<Latex formula="\overline{\overline X}"/> = X**
+* **X + 1 = 1**
+* **X * 0 = 0**
+* **( X + Y ) + Z = X + ( Y + Z )**
+* **( X * Y ) * Z = X * ( Y * Z )**
+* **<Latex formula="\overline{X * Y}"/> = <Latex formula="\overline{X}"/> + <Latex formula="\overline{Y}"/>**
+* **<Latex formula="\overline{X + Y}"/> = <Latex formula="\overline{X}"/> * <Latex formula="\overline{Y}"/>**
+
+<Aside>
+  - <u>**DUALIDAD:**</u> Cada expresión **CIERTA** en la lógica booleana tiene una expresión *Dual* que tambien lo es, se obtiene intercambiando " + " por " * " y " 1 " por " 0 " y viceversa  
+  - LAS NEGACIONES NO CAMBIAN, NO LAS TOQUES
+  - **Ejemplo:** *X + <Latex formula="\overline{X}"/> = 1* su operación dual es *X * <Latex formula="\overline{X}"/> = 0*
+</Aside>
+
+### <u>ELEMENTOS DE LAS FUNCIONES</u>
+
+* **VARIABLE LÓGICA:** cualquier incognita como x , y , z , a , b... puede tomar cada una valores entre 0 y 1, son usadas para representar matemáticamente entradas de circuitos
+* **CONSTANTE LÓGICA:** una variable que tiene un valor fijo y invariable, suelen denominarse con letras griegas como: <Latex formula="\lambda"/>
+* **FUNCION LÓGICA:** función compuesta de variable que sirve para representar matemáticamente una salida de un circuito, se suele represemtar con f, g...
+
+### <u>FORMAS DE DEFINIR UNA FUNCION</u>
+
+* **TABLAS DE LA VERDAD**
+* **EXP:LOGICA.NO.CANONICA**
+* **EXP:LOGICA.CANONICA**
+
+## Puertas Lógicas
