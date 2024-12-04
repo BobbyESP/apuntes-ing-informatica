@@ -1,0 +1,229 @@
+---
+title: Tema 8 - Arrays y matrices
+description: Arrays y matrices en C/C++, definición, uso, ejemplos...
+---
+import { Aside  } from "@astrojs/starlight/components";
+
+## 📖 Definición
+
+Un **array** es una estructura de datos estática que permite almacenar un conjunto finito y ordenado de datos homogéneos (todos del mismo tipo). Cada dato almacenado se denomina **elemento** y puede ser accedido mediante un índice numérico que indica su posición en el array.
+
+### Características principales
+
+- **Homogeneidad:** Todos los elementos del array deben ser del mismo tipo, lo que facilita su tratamiento.
+- **Memoria consecutiva:** Los datos se almacenan en posiciones consecutivas de memoria, permitiendo un acceso rápido y eficiente.
+- **Tamaño fijo:** El tamaño del array debe definirse en tiempo de compilación y no puede cambiar dinámicamente durante la ejecución del programa.
+- **Acceso por índice:** Cada elemento es accesible mediante un índice, comenzando en `0` para el primer elemento y terminando en `N-1` para el último, donde `N` es el tamaño del array.
+- **Eficiencia:** Los arrays son ideales para trabajar con grandes volúmenes de datos debido a su bajo coste en términos de sobrecarga.
+
+---
+
+## 📋 Vectores (Arrays Unidimensionales)
+
+Un **vector** es un array de una única dimensión. Se utiliza para almacenar una lista lineal de elementos relacionados, como una serie de números o valores.
+
+### Declaración
+
+La sintaxis para declarar un vector en C++ es la siguiente:
+
+```c++
+// Sintaxis general
+tipo nombreVector[TAM]; // TAM es el número de elementos
+```
+
+#### Ejemplo
+
+```c++
+float v1[5];
+int v2[4];
+```
+En este caso, `v1` es un vector de 5 elementos de tipo `float` y `v2` un vector de 4 elementos de tipo `int`.
+
+### Operaciones con vectores
+
+#### 1. **Asignación e Inicialización**
+
+La asignación permite establecer el valor de un elemento específico, mientras que la inicialización define valores para todos los elementos al momento de la declaración:
+
+```c++ frame="terminal"
+// Asignación de un solo elemento
+v[0] = 10;
+
+// Inicialización completa
+int v[5] = {1, 2, 3, 4, 5};
+
+// Inicialización implícita
+float v[] = {2.5, 3.7, 1.4};
+```
+
+#### 2. **Lectura y Escritura**
+
+Estas operaciones permiten interactuar con el usuario para introducir o mostrar datos almacenados en el vector:
+
+```c++
+for (int i = 0; i < TAM; i++) {
+    cin >> v[i]; // Lectura
+    cout << v[i] << " "; // Escritura
+}
+```
+
+#### 3. **Recorrido**
+
+El recorrido implica procesar todos los elementos del vector mediante bucles. Ejemplo:
+
+```c++
+for (int i = 0; i < TAM; i++) {
+    cout << "Elemento " << i << ": " << v[i] << endl;
+}
+```
+
+#### 4. **Actualización**
+
+La actualización permite modificar o reorganizar los elementos del vector. Por ejemplo, insertar un valor en una posición específica:
+
+```c++
+if (numElementos < TAM) {
+    for (int i = numElementos; i > pos; i--) {
+        v[i] = v[i-1];
+    }
+    v[pos] = nuevoValor;
+    numElementos++;
+}
+```
+
+---
+
+## 📊 Matrices (Arrays Bidimensionales)
+
+Una **matriz** es un array bidimensional que puede representarse como una tabla o rejilla. Es útil para almacenar datos relacionados en filas y columnas, como tablas de datos o imágenes.
+
+### Declaración
+
+La sintaxis para declarar matrices es:
+
+```c++
+// Sintaxis general
+tipo nombreMatriz[filas][columnas];
+```
+
+#### Ejemplo
+
+```c++
+int matriz[3][4];
+float matriz2[2][2] = {{1.1, 2.2}, {3.3, 4.4}};
+```
+En este caso, `matriz` es una matriz de 3 filas y 4 columnas de tipo entero.
+
+### Operaciones con matrices
+
+#### 1. **Asignación e Inicialización**
+
+Al igual que los vectores, se pueden asignar valores directamente o inicializar toda la matriz:
+
+```c++
+matriz[0][1] = 5;
+
+// Inicialización completa
+tipo m[2][3] = {{1, 2, 3}, {4, 5, 6}};
+```
+
+#### 2. **Lectura y Escritura**
+
+Utilizamos bucles anidados para procesar todos los elementos de la matriz:
+
+```c++
+for (int i = 0; i < filas; i++) {
+    for (int j = 0; j < columnas; j++) {
+        cin >> matriz[i][j];
+        cout << matriz[i][j] << " ";
+    }
+    cout << endl;
+}
+```
+
+#### 3. **Recorrido**
+
+El recorrido puede ser por filas o columnas, dependiendo de la necesidad. Ejemplo:
+
+```c++
+for (int i = 0; i < filas; i++) {
+    for (int j = 0; j < columnas; j++) {
+        cout << "Elemento en [" << i << "][" << j << "]: " << matriz[i][j] << endl;
+    }
+}
+```
+
+### Ventajas de las matrices
+
+- Organización clara de datos en filas y columnas.
+- Fácil representación de datos bidimensionales.
+- Acceso eficiente mediante índices.
+
+---
+
+## 📐 Arrays Multidimensionales
+
+Los **arrays multidimensionales** permiten representar datos en más de dos dimensiones, como cubos o hipercubos de datos.
+
+### Declaración
+
+```c++
+// Sintaxis general
+tipo nombreArray[dim1][dim2]...[dimN];
+
+// Ejemplo
+double cubo[3][3][3];
+```
+
+El acceso a los elementos requiere especificar índices para cada dimensión:
+
+```c++
+cubo[1][2][0] = 4.5;
+```
+
+### Uso y ejemplos
+
+Estos arrays son útiles en aplicaciones complejas como simulaciones científicas, gráficos 3D o análisis de datos.
+
+---
+
+## 📬 Arrays como parámetros
+
+Los arrays pueden ser pasados como argumentos a funciones. En C++, por defecto, los arrays se pasan por referencia, lo que significa que los cambios realizados en la función se reflejan en el array original.
+
+### Declaración de funciones con arrays
+
+```c++
+// Declaración de la función
+tipo funcion(tipo array[]);
+
+// Ejemplo
+float calcularMedia(float datos[], int TAM);
+```
+
+#### Ejemplo completo
+
+```c++ frame="terminal"
+#include <iostream>
+using namespace std;
+
+#define TAM 5
+
+float calcularMedia(float datos[], int TAM) {
+    float suma = 0.0;
+    for (int i = 0; i < TAM; i++) {
+        suma += datos[i];
+    }
+    return suma / TAM;
+}
+
+int main() {
+    float datos[TAM] = {2.8, 5.6, 4.3, 9.7, 1.2};
+    float media = calcularMedia(datos, TAM);
+    cout << "La media es: " << media << endl;
+    return 0;
+}
+```
+<Aside type="caution">Los arrays son estructuras fundamentales que permiten manejar grandes volúmenes de datos de manera eficiente.
+Sin embargo, su uso inadecuado puede provocar errores difíciles de detectar, como accesos fuera de los límites permitidos.
+Por ello, es importante verificar siempre los rangos de índices y asegurar la correcta inicialización de los elementos antes de su uso.</Aside>

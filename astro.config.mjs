@@ -110,6 +110,33 @@ export default defineConfig({
                         },
                       ],
                     },
+                    {
+                      label: "Tema 7: Uniones y estructuras",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/proi/tema7/apuntes",
+                        },
+                      ],
+                    },
+                    {
+                      label: "Tema 8: Arrays y matrices",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/proi/tema8/apuntes",
+                        },
+                      ],
+                    },
+                    {
+                      label: "Tema 9: Archivos",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/proi/tema9/apuntes",
+                        },
+                      ],
+                    },
                   ],
                 },
               ],

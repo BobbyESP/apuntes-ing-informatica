@@ -1,0 +1,244 @@
+---
+title: Tema 7 - Uniones y estructuras
+description: Uniones y estructuras (conjunto de datos) en C/C++, diferencias, uso, ventajas y desventajas...
+---
+
+## 📂 Estructuras
+
+Las estructuras en C/C++ son tipos de datos compuestos que permiten agrupar datos heterogéneos bajo un mismo identificador. Este enfoque es útil cuando se desea trabajar con información que está relacionada lógicamente pero que puede ser de diferentes tipos, como números, cadenas de texto o incluso otras estructuras. Cada uno de estos datos agrupados recibe el nombre de **campo o miembro**.
+
+### Características principales
+
+Las estructuras presentan varias ventajas y características clave que las hacen útiles para organizar datos complejos:
+
+- **Diversidad de tipos:** Cada campo puede ser de un tipo diferente, como números enteros, flotantes, caracteres o incluso otras estructuras.
+- **Identificación única:** Cada campo dentro de la estructura debe tener un nombre único que permita su acceso individual.
+- **Orden fijo:** Los campos se definen en un orden específico dentro de la estructura, y este orden se respeta en memoria.
+- **Reutilización:** Una vez definida, la estructura puede ser utilizada para declarar múltiples variables del mismo tipo.
+
+### Definición y uso
+
+La declaración de una estructura en C++ sigue esta sintaxis básica:
+
+```c++ frame="terminal"
+struct NombreEstructura {
+    tipo1 nombreMiembro1;
+    tipo2 nombreMiembro2;
+    ...
+    tipoN nombreMiembroN;
+};
+
+NombreEstructura nombreVariable; // Declaración de variables
+```
+
+Por ejemplo, si queremos modelar información sobre un libro, podemos definir una estructura llamada `Libro` como sigue:
+
+#### Ejemplo
+
+```c++ frame="terminal"
+struct Libro {
+    char titulo[100];
+    char autor[100];
+    float precio;
+    int numPaginas;
+};
+
+Libro miLibro;
+```
+
+En este caso, `miLibro` es una variable que contiene información como el título, el autor, el precio y el número de páginas de un libro. Cada uno de estos datos se accede utilizando el operador `.`.
+
+### Estructuras anidadas
+
+En ocasiones, los datos dentro de una estructura pueden estar relacionados de forma jerárquica. Para estos casos, es posible definir estructuras dentro de otras estructuras. Esto se conoce como **estructuras anidadas**.
+
+#### Ejemplo de estructura anidada
+
+```c++ frame="terminal"
+struct Fecha {
+    int dia;
+    int mes;
+    int año;
+};
+
+struct Libro {
+    char titulo[100];
+    char autor[100];
+    Fecha fechaPublicacion;
+    float precio;
+    int numPaginas;
+};
+
+Libro miLibro;
+```
+
+Aquí, `miLibro` incluye un campo `fechaPublicacion`, que a su vez es una estructura `Fecha` con tres campos: `dia`, `mes` y `año`. Esto permite organizar datos complejos de forma clara y estructurada.
+
+## 🔀 Uniones
+
+Las uniones en C/C++ son similares a las estructuras, pero con una diferencia fundamental: todos los miembros de una unión comparten el mismo espacio de memoria. Esto significa que solo un miembro de la unión puede almacenar datos en un momento dado, lo que las hace ideales para ahorrar memoria cuando se tiene la certeza de que solo se necesita un dato activo a la vez.
+
+### Características principales
+
+- **Memoria compartida:** Los miembros de la unión utilizan el mismo espacio en memoria, cuyo tamaño será igual al del miembro más grande.
+- **Exclusividad:** Solo un miembro puede contener un valor válido en un momento dado.
+- **Modificación mutua:** Cambiar el valor de un miembro afecta al contenido de los demás, ya que todos ocupan la misma posición en memoria.
+
+### Definición y uso
+
+La declaración de una unión sigue una sintaxis similar a la de una estructura:
+
+```c++
+union NombreUnion {
+    tipo1 nombreMiembro1;
+    tipo2 nombreMiembro2;
+    ...
+    tipoN nombreMiembroN;
+};
+
+NombreUnion nombreVariable; // Declaración de variables
+```
+
+#### Ejemplo de unión
+
+```c++
+union Temperatura {
+    float cel;
+    float fah;
+    float kel;
+};
+
+Temperatura temperaturaHoy;
+```
+
+En este ejemplo, `temperaturaHoy` puede almacenar un valor en Celsius, Fahrenheit o Kelvin, pero solo uno de ellos estará activo en un momento dado.
+
+## ⚙️ Operaciones
+
+### Acceso a los miembros
+
+Para acceder a los miembros de una estructura o unión, utilizamos el operador `.` cuando trabajamos directamente con la variable o `->` si trabajamos con un puntero.
+
+#### Ejemplo con acceso directo
+
+```c++
+miLibro.precio = 59.8;
+cout << miLibro.titulo;
+```
+
+#### Ejemplo con punteros
+
+```c++
+Libro *ptrLibro = &miLibro;
+ptrLibro->precio = 45.5;
+```
+
+### Asignación
+
+En C++, es posible asignar valores a una estructura de tres maneras principales:
+
+1. **Asignación global:** Copiar todos los valores de una estructura a otra del mismo tipo.
+
+   ```c++
+   otroLibro = miLibro;
+   ```
+
+2. **Asignación individual:** Modificar los valores campo a campo.
+
+   ```c++
+   miLibro.precio = 59.8;
+   otroLibro.fechaPublicacion.dia = 26;
+   ```
+
+3. **Inicialización directa:** Proporcionar valores a todos los campos durante la declaración.
+
+   ```c++
+   Libro otroLibro = {"La Niña", "Carmen Mola", 28.5, 327};
+   ```
+
+### Lectura y escritura
+
+Las operaciones de lectura y escritura también se realizan campo a campo:
+
+```c++
+cin >> miLibro.fechaPublicacion.mes;
+cout << miLibro.titulo;
+```
+
+## 🛠️ Estructuras como parámetros
+
+Las estructuras pueden ser pasadas a funciones de dos maneras principales:
+
+- **Por valor:** Se pasa una copia de la estructura, por lo que los cambios realizados dentro de la función no afectan a la estructura original.
+- **Por referencia:** Se pasa la dirección de la estructura, lo que permite modificar directamente los valores originales.
+
+#### Ejemplo con funciones
+
+```c++ frame="terminal"
+#include <iostream>
+using namespace std;
+
+struct Persona {
+    char nombre[100];
+    char DNI[10];
+    int edad;
+};
+
+void introducir(Persona &p);
+void visualizar(Persona p);
+
+int main() {
+    Persona unaPersona;
+    introducir(unaPersona);
+    visualizar(unaPersona);
+    return 0;
+}
+
+void introducir(Persona &p) {
+    cin >> p.nombre;
+    cin >> p.DNI;
+    cin >> p.edad;
+}
+
+void visualizar(Persona p) {
+    cout << p.nombre;
+    cout << p.DNI;
+    cout << p.edad;
+}
+```
+
+En este caso, `introducir` modifica directamente los valores de la estructura `unaPersona` porque se pasa por referencia, mientras que `visualizar` solo lee los valores.
+
+## 📚 Ejemplo práctico completo
+
+Definamos una estructura más compleja para representar un vehículo. En este caso, incluiremos una unión para manejar diferentes unidades de peso:
+
+```c++ frame="terminal"
+struct Vehiculo {
+    char tipo[50];
+    char marca[50];
+    int numRuedas;
+    float precio;
+    union {
+        float pesoKg;
+        float pesoToneladas;
+    } peso;
+};
+
+int main() {
+    Vehiculo v;
+    cout << "Introduce el tipo: ";
+    cin >> v.tipo;
+    cout << "Introduce la marca: ";
+    cin >> v.marca;
+    cout << "Introduce el número de ruedas: ";
+    cin >> v.numRuedas;
+    cout << "Introduce el precio: ";
+    cin >> v.precio;
+    cout << "Introduce el peso en kg: ";
+    cin >> v.peso.pesoKg;
+
+    cout << "Vehículo: " << v.tipo << ", " << v.marca << ", Precio: " << v.precio << "€\n";
+    return 0;
+}
+```

@@ -1,0 +1,220 @@
+---
+title: Tema 9 - Archivos
+description: Archivos en C/C++, operaciones básicas, modos de apertura, ejemplos...
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+## 📖 Definición
+
+En programación, un archivo es una **colección de datos estructurados** que se almacena de manera **permanente** en un dispositivo de almacenamiento, como un <u>disco duro</u> o una <u>unidad de estado sólido (SSD)</u>. A diferencia de los datos que residen en variables o estructuras en la memoria principal (<u>RAM</u>), los datos almacenados en un archivo **permanecen intactos** incluso después de que el programa haya terminado su ejecución, es decir, **no son volátiles ni temporales**.
+
+Un archivo es, en términos simples, un flujo secuencial de **bytes**. Estos bytes pueden representar diferentes tipos de datos, como texto, imágenes o datos binarios. El formato del archivo (texto o binario) y las reglas para leerlo o escribirlo dependen de la **estructura definida** por el programador o el sistema. Además, un archivo puede contener datos en un formato predefinido, que generalmente es elegido por el desarrollador en función del tipo de aplicación que se está construyendo.
+
+En términos más generales, un archivo puede considerarse como un **conjunto de registros organizados**. Un **registro** es una unidad lógica de datos compuesta por varios **campos**, que son las partes más pequeñas de información dentro del registro. Los registros, aunque pueden tener una estructura diferente, están relacionados entre sí y tienen características comunes que permiten ser gestionados eficientemente. Esto facilita que los datos sean fácilmente **recuperables**, **actualizables**, **eliminables** o **almacenables**.
+
+Cuando varios archivos relacionados se agrupan y gestionan juntos, forman lo que comúnmente se conoce como una **base de datos**. En una base de datos, los archivos no solo almacenan datos, sino que también permiten organizar y acceder a ellos de manera eficiente, favoreciendo la manipulación, búsqueda y análisis de grandes volúmenes de información.
+
+![Diagrama de los registros en los archivos](@assets/registros_archivos.webp)
+
+En el lenguaje de programación C++, los archivos son gestionados mediante el uso de **flujos** (**streams**). Estos flujos funcionan como **canales de comunicación** entre el programa y el dispositivo de almacenamiento, permitiendo tanto la lectura como la escritura de datos de manera estructurada y eficiente.
+
+## 📚 Tipos de flujos de entrada/salida
+
+| Tipo de Flujo | Descripción                                                                                                                                                    |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `istream`     | Flujos de **entrada** estándar. Permite leer datos desde la entrada del programa (por ejemplo, desde el teclado o un archivo).                                 |
+| `ostream`     | Flujos de **salida** estándar. Permite enviar datos a la salida del programa (por ejemplo, a la consola o un archivo).                                         |
+| `iostream`    | Flujos de **entrada/salida** estándar. Permite tanto leer como escribir datos de manera bidireccional (por ejemplo, consola o archivos).                       |
+| `ifstream`    | Flujos de **entrada de archivos**. Permite leer datos desde un archivo, específicamente.                                                                       |
+| `ofstream`    | Flujos de **salida de archivos**. Permite escribir datos en un archivo, específicamente.                                                                       |
+| `fstream`     | Flujos de **entrada/salida de archivo**. Permite tanto leer como escribir datos en un archivo, haciendo posible la manipulación bidireccional de los archivos. |
+
+## 📂 Tipos de acceso: secuencial y directo
+
+Los datos almacenados en un archivo pueden ser accedidos de dos formas principales:
+
+### 🔄 Acceso secuencial
+
+En este modo, los registros del archivo se procesan en el orden en que fueron almacenados, uno tras otro. Es como leer un libro página por página sin saltarse ninguna.
+
+- **Ventajas:**
+  - Fácil de implementar.
+  - Ideal para operaciones que procesan todos los registros del archivo.
+- **Desventajas:**
+  - Poco eficiente para acceder a datos específicos, ya que requiere recorrer todo el archivo hasta llegar al registro deseado.
+
+#### Ejemplo práctico
+```c++ frame="terminal"
+#include <iostream>
+#include <fstream> //Librería para manejo de archivos (fstream == File stream)
+using namespace std;
+
+int main() {
+    ifstream archivoEntrada("datos.txt"); //Apertura del archivo en modo lectura
+    if (!archivoEntrada) {
+        cout << "No se pudo abrir el archivo." << endl;
+        return 1;
+    }
+    string linea;
+    while (getline(archivoEntrada, linea)) { //Leer línea por línea. El valor se almacena en "linea".
+        cout << linea << endl;
+    }
+    archivoEntrada.close(); //Cierre del archivo
+    return 0;
+}
+```
+
+### ⚡ Acceso directo
+
+Permite leer o escribir en cualquier posición del archivo sin necesidad de recorrerlo secuencialmente.
+
+- **Ventajas:**
+  - Rápido para acceder a registros específicos.
+- **Desventajas:**
+  - Más complejo de implementar, ya que requiere conocer la posición exacta del registro.
+
+#### Ejemplo práctico
+```c++ frame="terminal"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    fstream archivo("datos.bin", ios::in | ios::out | ios::binary); //Apertura del archivo en modo lectura/escritura binaria
+    if (!archivo) {
+        cout << "No se pudo abrir el archivo." << endl;
+        return 1; //Salir del programa con error
+    }
+
+    archivo.seekp(0, ios::end); // Posiciona el puntero al final del archivo
+    int nuevoDato = 100;
+    archivo.write((char *)(&nuevoDato), sizeof(int)); //Se hace un cast del puntero a char para escribir el "100" en el archivo
+
+    archivo.seekg(0, ios::beg); // Vuelve al inicio para lectura
+    int dato;
+    archivo.read((char *)(&dato), sizeof(int));
+    cout << "Dato leído: " << dato << endl;
+
+    archivo.close();
+    return 0;
+}
+```
+
+## 🔨 Operaciones con archivos
+
+Para trabajar con archivos en C++, se deben realizar las siguientes operaciones básicas:
+
+### 🛠 Crear
+
+Crea un nuevo archivo en el sistema. Si un archivo con el mismo nombre ya existe, se sobrescribe.
+
+```cpp
+ofstream archivoSalida("nuevoArchivo.txt");
+archivoSalida.close();
+```
+
+#### Ejemplo:
+```cpp frame="terminal"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ofstream archivo("saludo.txt");
+    archivo << "Hola, mundo!" << endl;
+    archivo.close();
+    return 0;
+}
+```
+
+### 📂 Abrir
+
+Abre un archivo existente para leer, escribir o ambas operaciones. Es importante especificar el modo de apertura.
+
+```cpp
+ifstream archivoEntrada("datos.txt", ios::in); // Modo lectura
+ofstream archivoSalida("datos.txt", ios::app); // Modo escritura, agregando al final
+```
+
+Modos comunes:
+- `ios::in`: Abrir para lectura.
+- `ios::out`: Abrir para escritura.
+- `ios::app`: Agregar datos al final del archivo.
+- `ios::binary`: Abrir en modo binario.
+- `ios::trunc`: Borrar el contenido del archivo si existe.
+
+#### Ejemplo:
+```cpp frame="terminal"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ofstream archivo("datos.txt", ios::app); //Abrir en modo escritura, agregando al final del todo
+    archivo << "Nueva línea de texto." << endl; //Escribir en el archivo mediante el operador "<<"
+    archivo.close();
+    return 0;
+}
+```
+
+### 🛑 Cerrar
+
+Finaliza la comunicación entre el programa y el archivo, liberando los recursos asociados.
+
+```cpp
+archivoEntrada.close();
+archivoSalida.close();
+```
+
+## 📖 Leer
+
+Permite recuperar datos almacenados en el archivo y cargarlos en memoria.
+
+<Aside> `getLine` devuelve `true` en caso de éxito, `false` si no hay más líneas. Útil para cuando no se conoce el número de líneas.</Aside>
+```cpp
+ifstream archivo("datos.txt");
+string linea;
+while (getline(archivo, linea)) {
+    cout << linea << endl;
+}
+archivo.close();
+```
+
+Para archivos binarios:
+
+```cpp
+ifstream archivoBin("datos.bin", ios::binary);
+int numero;
+archivoBin.read((char *) &numero, sizeof(int)); //Leer un entero. Se usa/castea un puntero de tipo char para leerlo del archivo.
+archivoBin.close();
+```
+
+### ✍️ Escribir
+
+Permite guardar datos en el archivo desde la memoria principal.
+
+```cpp
+ofstream archivo("datos.txt");
+archivo << "Hola, archivo!" << endl;
+archivo.close();
+```
+
+Para archivos binarios:
+
+```cpp
+ofstream archivoBin("datos.bin", ios::binary);
+int numero = 42;
+archivoBin.write((char*) &numero, sizeof(int));
+archivoBin.close();
+```
+
+### 🔄 Renombrar
+
+Cambia el nombre de un archivo existente:
+
+```cpp
+rename("archivoViejo.txt", "archivoNuevo.txt");
+```
+
+--- POR ACABAR ---
