@@ -135,6 +135,10 @@ export default defineConfig({
                           label: "Apuntes",
                           slug: "contenido/proi/tema9/apuntes",
                         },
+                        {
+                          label: "Ejemplos complejos",
+                          slug: "contenido/proi/tema9/ejemplos",
+                        },
                       ],
                     },
                   ],

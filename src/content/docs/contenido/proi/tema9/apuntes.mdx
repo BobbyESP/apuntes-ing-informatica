@@ -217,4 +217,49 @@ Cambia el nombre de un archivo existente:
 rename("archivoViejo.txt", "archivoNuevo.txt");
 ```
 
---- POR ACABAR ---
+## 🗂 Tipos de archivos
+
+### 📄 Archivos de texto
+
+Contienen información legible por humanos y pueden ser editados con cualquier editor de texto.
+
+- **Ventajas:** Fáciles de crear y depurar.
+- **Desventajas:** Menos eficientes en espacio y velocidad comparados con archivos binarios.
+
+#### Ejemplo
+```cpp
+ofstream archivo("datos.txt");
+archivo << "Linea 1\nLinea 2\n"; // "\n" es el salto de línea
+archivo.close();
+```
+
+### 💾 Archivos binarios
+
+Almacenan datos en formato binario, lo que los hace más compactos y eficientes, pero menos legibles.
+
+#### Ejemplo
+```cpp
+ofstream archivoBin("datos.bin", ios::binary);
+int numero = 12345;
+archivoBin.write((char*) &numero, sizeof(int));
+archivoBin.close();
+```
+
+<Aside>`char*` es un puntero de tipo caracter que podemos hacer que apunte a una dirección de memoria, obteniendo así su valor.</Aside>
+
+## ⚙️ Control de entrada/salida (E/S)
+
+En C++, es posible controlar el estado de las operaciones de E/S mediante indicadores y funciones asociadas:
+
+- **`eof()`**: Devuelve verdadero si se ha alcanzado el final del archivo.
+- **`fail()`**: Devuelve verdadero si hubo un error en la operación.
+- **`bad()`**: Indica errores graves como fallos de hardware.
+- **`good()`**: Verifica que no hay errores en el flujo.
+
+### Ejemplo
+```cpp
+ifstream archivo("datos.txt");
+if (archivo.fail()) {
+    cout << "Error al abrir el archivo." << endl;
+}
+```

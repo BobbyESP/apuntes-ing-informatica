@@ -1,0 +1,246 @@
+---
+title: Ejemplos de uso y manejo de archivos con C/C++
+description: En este documento se presentan ejemplos de uso y manejo de archivos con C/C++.
+---
+
+Este documento contiene ejemplos prácticos, desde básicos hasta complejos, sobre el manejo de archivos en C++, basados en el contenido del tema 9. Se abordan operaciones fundamentales como la creación, lectura, escritura y acceso directo, además de incluir implementaciones avanzadas.
+
+
+## 🔄 Acceso secuencial
+
+### Crear y leer un archivo de texto secuencialmente
+
+```cpp frame="terminal"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    // Crear archivo y escribir en él
+    ofstream archivoSalida("secuencial.txt");
+    if (!archivoSalida) {
+        cerr << "Error al crear el archivo." << endl;
+        return 1;
+    }
+    archivoSalida << "Primera línea\nSegunda línea\nTercera línea";
+    archivoSalida.close();
+
+    // Leer el archivo
+    ifstream archivoEntrada("secuencial.txt");
+    if (!archivoEntrada) {
+        cerr << "Error al abrir el archivo." << endl;
+        return 1;
+    }
+    string linea;
+    while (getline(archivoEntrada, linea)) {
+        cout << linea << endl;
+    }
+    archivoEntrada.close();
+    return 0;
+}
+```
+
+### Leer archivos línea por línea con delimitadores personalizados
+
+```cpp frame="terminal"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream archivo("datos.txt");
+    if (!archivo) {
+        cerr << "Error al abrir el archivo." << endl;
+        return 1;
+    }
+    string linea;
+    while (getline(archivo, linea, ';')) { // Usa ';' como delimitador
+        cout << linea << endl;
+    }
+    archivo.close();
+    return 0;
+}
+```
+
+---
+
+## ⚡ Acceso directo
+
+### Escribir y leer datos de manera aleatoria en un archivo binario
+
+```cpp frame="terminal"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    // Crear y escribir datos en un archivo binario
+    fstream archivo("binario.dat", ios::out | ios::binary);
+    if (!archivo) {
+        cerr << "Error al abrir el archivo." << endl;
+        return 1;
+    }
+    int numeros[] = {10, 20, 30, 40, 50};
+    archivo.write((char*)numeros, sizeof(numeros));
+    archivo.close();
+
+    // Leer un elemento específico
+    archivo.open("binario.dat", ios::in | ios::binary);
+    if (!archivo) {
+        cerr << "Error al abrir el archivo para lectura." << endl;
+        return 1;
+    }
+    int numero;
+    archivo.seekg(2 * sizeof(int), ios::beg); // Ir al tercer elemento
+    archivo.read((char*)&numero, sizeof(int));
+    cout << "Número leído: " << numero << endl;
+    archivo.close();
+    return 0;
+}
+```
+
+---
+
+## 🛠 Operaciones avanzadas con archivos
+
+### Combinación de archivos: intercalar líneas de dos archivos
+
+```cpp frame="terminal"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    // Crear dos archivos de entrada
+    ofstream archivo1("archivo1.txt");
+    archivo1 << "Línea A1\nLínea A2\nLínea A3";
+    archivo1.close();
+
+    ofstream archivo2("archivo2.txt");
+    archivo2 << "Línea B1\nLínea B2\nLínea B3";
+    archivo2.close();
+
+    // Crear archivo de salida
+    ifstream entrada1("archivo1.txt");
+    ifstream entrada2("archivo2.txt");
+    ofstream salida("combinado.txt");
+
+    string linea1, linea2;
+    while (getline(entrada1, linea1) && getline(entrada2, linea2)) {
+        salida << linea1 << endl;
+        salida << linea2 << endl;
+    }
+
+    entrada1.close();
+    entrada2.close();
+    salida.close();
+
+    return 0;
+}
+```
+
+---
+
+### Procesar un archivo binario con estructuras
+
+```cpp frame="terminal"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+struct Persona {
+    char nombre[50];
+    int edad;
+    float salario;
+};
+
+int main() {
+    // Crear archivo binario y escribir estructuras
+    ofstream archivo("personas.dat", ios::binary);
+    Persona personas[] = {
+        {"Juan", 30, 1500.5},
+        {"Ana", 25, 1800.75},
+        {"Luis", 35, 2000.0}
+    };
+    archivo.write((char*)personas, sizeof(personas)); //o sizeof(Persona) * 3
+    archivo.close();
+
+    // Leer las estructuras
+    ifstream entrada("personas.dat", ios::binary);
+    Persona persona;
+    while (entrada.read((char*)&persona, sizeof(Persona))) {
+        cout << "Nombre: " << persona.nombre << endl;
+        cout << "Edad: " << persona.edad << endl;
+        cout << "Salario: " << persona.salario << endl;
+        cout << "----------------------" << endl;
+    }
+    entrada.close();
+
+    return 0;
+}
+```
+
+---
+
+## 📋 Ejemplo práctico completo
+
+### Crear un sistema básico para administrar días de la semana
+
+```cpp frame="terminal"
+#include <iostream>
+#include <fstream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    const char* dias[] = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+
+    // Guardar días en un archivo binario
+    ofstream salida("dias.dat", ios::binary);
+    for (int i = 0; i < 7; i++) {
+        salida.write(dias[i], strlen(dias[i]) + 1); // Incluye el terminador null
+    }
+    salida.close();
+
+    // Leer días de forma secuencial
+    ifstream entrada("dias.dat", ios::binary);
+    char buffer[20];
+    cout << "Días de la semana:" << endl;
+    while (entrada.read(buffer, sizeof(buffer))) {
+        cout << buffer << endl;
+    }
+    entrada.close();
+
+    return 0;
+}
+```
+
+### Manejo de errores en operaciones con archivos
+
+```cpp frame="terminal"
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream archivoEntrada("no_existente.txt");
+    if (!archivoEntrada) {
+        cerr << "Error: El archivo no existe." << endl;
+        return 1;
+    }
+
+    string linea;
+    while (getline(archivoEntrada, linea)) {
+        cout << linea << endl;
+    }
+
+    if (archivoEntrada.eof()) {
+        cout << "Lectura completada." << endl;
+    } else {
+        cerr << "Error durante la lectura." << endl;
+    }
+
+    archivoEntrada.close();
+    return 0;
+}
+```
