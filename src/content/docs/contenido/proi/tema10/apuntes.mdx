@@ -1,0 +1,334 @@
+---
+title: Tema 10 - Punteros y gestión dinámica de memoria
+description: Este tema aborda en profundidad el concepto de punteros, la asignación y liberación de memoria, y su relación con arrays y estructuras
+---
+
+import { Aside } from "@astrojs/starlight/components";
+
+## 📌 Concepto de Puntero
+
+Un **puntero** es una variable que almacena la dirección de memoria de otra variable. En C++, los punteros son fundamentales para manejar memoria dinámica y optimizar algoritmos que acceden frecuentemente a grandes volúmenes de datos.
+
+### Características principales:
+
+1. **Dirección de memoria:** Un puntero almacena la ubicación de otra variable en memoria.
+2. **Tipos:** Siempre debe declararse el tipo de dato al que apunta el puntero.
+3. **Declaración:**
+   ```cpp
+   tipo *nombrePuntero;
+   ```
+   Ejemplo:
+   ```cpp
+   int *pEntero;
+   float *pReal;
+   ```
+4. **Operadores asociados:**
+   - `&`: Devuelve la dirección de memoria de una variable.
+   - `*`: Accede al contenido almacenado en la dirección apuntada por el puntero.
+
+#### Ejemplo:
+
+```cpp frame="terminal"
+#include <iostream>
+using namespace std;
+
+int main() {
+    int valor = 42;
+    int *p = &valor; // El puntero almacena la dirección de 'valor'
+
+    cout << "Dirección de valor: " << p << endl;
+    cout << "Contenido apuntado por p: " << *p << endl;
+
+    *p = 84; // Modifica 'valor' usando el puntero
+    cout << "Nuevo valor de valor: " << valor << endl;
+
+    return 0;
+}
+```
+
+Salida:
+
+```
+Dirección de valor: 0x7ffee59a4a8
+Contenido apuntado por p: 42
+Nuevo valor de valor: 84
+```
+
+---
+
+## 🛠️ Asignación y Liberación de Memoria
+
+En C++, la memoria puede reservarse dinámicamente durante la ejecución del programa. Esto es crucial cuando no se conoce el tamaño de los datos en tiempo de compilación.
+La gestión de esta memoria dinámica se realiza en el **montón (heap)**, un área de memoria donde se alojan las variables dinámicas, cuya memoria se reserva
+y libera en tiempo de ejecución.
+
+### 1.  `new`: Reserva memoria
+La palabra clave `new` se usa para solicitar un bloque de memoria del tamaño del tipo de dato especificado. Devuelve un puntero a la primera posición de la memoria asignada.
+
+```cpp
+int *p = new int; // Reserva memoria para un entero
+*p = 10;          // Asigna el valor 10 a esa memoria
+```
+
+Para arrays:
+
+```cpp
+int *arr = new int[5]; // Reserva memoria para un array de 5 enteros
+```
+
+### 2. `delete`: Libera memoria
+
+Es crucial liberar la memoria asignada dinámicamente con `delete` cuando ya no se necesita. Esto previene fugas de memoria, un problema común cuando la memoria reservada no se libera.
+
+```cpp
+delete p;       // Libera la memoria de un entero
+delete[] arr;   // Libera la memoria de un array
+```
+
+#### Ejemplo completo
+
+```cpp frame="terminal"
+#include <iostream>
+using namespace std;
+
+int main() {
+    int *p = new int;
+    if (p == nullptr) { //nullptr es un puntero nulo
+        cerr << "Error al asignar memoria." << endl;
+        return 1;
+    }
+    *p = 20;
+    cout << "Valor almacenado: " << *p << endl;
+
+    delete p; // Libera la memoria
+    return 0;
+}
+```
+
+## ➕ Operaciones con Punteros
+
+### Direccionamiento e Indireccionamiento
+
+Como ya dijimos, el operador `&` obtiene la dirección de memoria de una variable, mientras que `*` accede al contenido en esa dirección.
+Con estes operadores, podemos manejar las variables a nuestro gusto.
+
+#### Ejemplo
+
+```cpp
+int x = 50;
+int *p = &x;
+cout << "Dirección de x: " << p << endl;
+cout << "Contenido en p: " << *p << endl;
+```
+
+### Comparación de Punteros
+
+Los punteros pueden compararse con operadores como `==` o `!=` para verificar si apuntan a la misma dirección.
+
+#### Ejemplo
+
+```cpp
+int a, b;
+int *p1 = &a, *p2 = &b;
+cout << (p1 == p2 ? "Apuntan al mismo lugar" : "Apuntan a lugares distintos") << endl;
+```
+
+### Aritmética de Punteros
+
+Se pueden realizar operaciones como suma, resta y comparación sobre punteros. Estas operaciones son útiles al trabajar con arrays.
+
+#### Ejemplo
+
+```cpp
+int arr[5] = {10, 20, 30, 40, 50};
+int *p = arr;
+
+cout << "Primer elemento: " << *p << endl;
+cout << "Segundo elemento: " << *(p + 1) << endl;
+```
+
+---
+
+## 📂 Punteros y Funciones
+
+Los punteros pueden pasarse a funciones como argumentos, permitiendo modificar los valores originales.
+
+#### Ejemplo
+
+```cpp
+void modificar(int *p) {
+    *p += 10;
+}
+
+int main() {
+    int x = 5;
+    modificar(&x);
+    cout << "Nuevo valor: " << x << endl;
+    return 0;
+}
+```
+
+## 🔄 Formas de Acceso a Variables y Arrays con Punteros
+
+Los punteros permiten acceder y manipular variables o arrays de diferentes maneras. A continuación, exploraremos las técnicas más comunes:
+
+### 1. Acceso Directo
+
+Usando el operador de indireccionamiento (`*`) para acceder al valor almacenado en la dirección apuntada por el puntero.
+
+#### Ejemplo
+
+```cpp
+int valor = 100;
+int *p = &valor;
+cout << "Valor: " << *p << endl; // Acceso directo al contenido
+```
+
+### 2. Recorrido de Arrays
+
+Un puntero puede moverse dentro de un array usando aritmética de punteros.
+
+#### Ejemplo
+
+```cpp
+int arr[5] = {10, 20, 30, 40, 50};
+int *p = arr;
+
+for (int i = 0; i < 5; i++) {
+    cout << "Elemento " << i << ": " << *(p + i) << endl;
+}
+```
+
+### 3. Iteración con Incremento
+
+El puntero puede ser incrementado para recorrer secuencialmente un array.
+
+#### Ejemplo
+
+```cpp
+int arr[3] = {1, 2, 3};
+int *p = arr;
+
+while (p < arr + 3) {
+    cout << *p << " ";
+    p++; // Incrementa el puntero
+}
+```
+
+### 4. Manipulación de Subarrays
+
+Un puntero puede apuntar a una sección específica de un array y operar solo con esa parte.
+
+#### Ejemplo:
+
+```cpp
+int arr[5] = {1, 2, 3, 4, 5};
+int *subArray = &arr[2];
+
+for (int i = 0; i < 3; i++) {
+    cout << "Elemento: " << *(subArray + i) << endl;
+}
+```
+
+## 🧬 Punteros y Estructuras
+
+Los punteros pueden usarse para apuntar a estructuras. Esto permite crear estructuras dinámicamente y acceder a sus miembros utilizando el operador `->`.
+
+#### Ejemplo
+
+```cpp
+
+struct Persona {
+    char nombre;
+    int edad;
+};
+
+...
+
+Persona *pPersona = new Persona;
+
+(*pPersona).edad = 30; // Alternativa 1
+
+pPersona->edad = 30; // Alternativa 2, más común
+
+delete pPersona;
+
+```
+
+## 🏗️ Arrays Dinámicos
+
+Un array dinámico es aquel cuyo tamaño se determina en tiempo de ejecución. Son útiles para trabajar con estructuras de datos que varían en tamaño.
+
+#### Ejemplo
+
+```cpp frame="terminal"
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Introduce el tamaño del array: ";
+    cin >> n;
+
+    int *arr = new int[n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = i * 10;
+    }
+
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    delete[] arr; // Libera la memoria
+    return 0;
+}
+```
+
+## 📚 Ejemplo Completo: Manejo de Memoria Dinámica
+
+Diseñemos un programa que gestiona un grupo de estudiantes con memoria dinámica y además, usando estructuras:
+
+```cpp frame="terminal"
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Estudiante {
+    string nombre;
+    int edad;
+    float promedio;
+};
+
+int main() {
+    int n;
+    cout << "Introduce el número de estudiantes: ";
+    cin >> n;
+
+    Estudiante *estudiantes = new Estudiante[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "Introduce los datos del estudiante " << i + 1 << endl;
+        cout << "Nombre: ";
+        cin >> estudiantes[i].nombre;
+        cout << "Edad: ";
+        cin >> estudiantes[i].edad;
+        cout << "Promedio: ";
+        cin >> estudiantes[i].promedio;
+    }
+
+    cout << "Datos de los estudiantes:" << endl;
+    for (int i = 0; i < n; i++) {
+        cout << "Nombre: " << estudiantes[i].nombre << ", Edad: " << estudiantes[i].edad
+             << ", Promedio: " << estudiantes[i].promedio << endl;
+    }
+
+    delete[] estudiantes; // Libera la memoria
+    return 0;
+}
+```
+
+<Aside type="caution">
+  La gestión dinámica de memoria con punteros es poderosa pero requiere cuidado.
+  Libera siempre la memoria reservada para evitar **fugas de memoria**
+</Aside>

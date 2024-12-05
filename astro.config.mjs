@@ -141,6 +141,24 @@ export default defineConfig({
                         },
                       ],
                     },
+                    {
+                      label: "Tema 10: Punteros y gestión dinámica de memoria",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/proi/tema10/apuntes",
+                        }
+                      ],
+                    },
+                    {
+                      label: "Tema 11: Cadenas",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/proi/tema11/apuntes",
+                        }
+                      ],
+                    },
                   ],
                 },
               ],

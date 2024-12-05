@@ -1,0 +1,344 @@
+---
+title: Tema 11 - Cadenas
+description: Cadenas de caracteres en C/C++, definición, uso, funciones de la librería string...
+---
+
+## 📌 Conceptos Generales
+
+Una **cadena** es un conjunto ordenado de caracteres almacenados en memoria contigua. En C++, las cadenas pueden manejarse como:
+
+1. **Vectores de caracteres:** Similares a los arrays, donde cada elemento es un carácter.
+2. **Objetos de la clase `String`:** Proporcionan funcionalidades avanzadas y facilidades adicionales.
+
+### Características:
+
+- La longitud de una cadena es el número de caracteres que contiene.
+- El carácter nulo (`\0`) indica el final de la cadena.
+- Las cadenas pueden ser constantes o variables.
+
+#### Tipos de cadenas:
+
+1. **Cadenas de longitud fija:** Vectores de longitud predefinida con relleno en blanco si la cadena no ocupa todo el espacio.
+2. **Cadenas de longitud variable:** Pueden variar hasta un límite máximo, terminando siempre con `\0`.
+3. **Cadenas de longitud indefinida:** Implementadas mediante estructuras dinámicas como listas enlazadas.
+
+#### Ejemplo básico:
+
+```cpp
+char cad1[10] = "Hola"; // Longitud fija
+char cad2[] = "Mundo";  // Longitud automática
+```
+
+---
+
+## 🎨 Tratamiento mediante Vectores de Caracteres
+
+### 1. Declaración e Inicialización
+
+Se utiliza el tipo `char` para definir cadenas como vectores de caracteres:
+
+#### Ejemplo:
+
+```cpp
+char cad1[16] = "C++ Avanzado"; // Incluye espacio para \0
+char cad2[] = "Cadenas";        // Tamaño automático
+char cad3[50] = "Programación"; // Espacio extra disponible
+```
+
+### 2. Acceso a los Elementos
+
+El operador de indexación (`[]`) permite acceder a cada carácter de la cadena. La indexación comienza en 0, al igual que en cualquier array.
+
+#### Ejemplo:
+
+```cpp
+char cad[] = "Hola";
+cout << cad[0]; // Imprime 'H'
+cad[1] = 'E';   // Modifica a 'HEla'
+```
+
+### 3. Lectura de Cadenas
+
+1. Usando `cin` (lee hasta un espacio en blanco):
+
+   ```cpp
+   char nombre[50];
+   cin >> nombre; // Lee "Juan"
+   ```
+
+2. Usando `cin.getline` (lee hasta un salto de línea):
+
+   ```cpp
+   char frase[100];
+   cin.getline(frase, 100); // Lee una línea completa
+   ```
+
+### 4. Escritura de Cadenas
+
+Las cadenas pueden imprimirse directamente usando `cout`:
+
+#### Ejemplo:
+
+```cpp
+char saludo[] = "¡Hola, mundo!";
+cout << saludo;
+```
+
+### 5. Asignación de Cadenas
+
+El operador de asignación (`=`) no puede usarse directamente para copiar cadenas. Se utiliza la función `strcpy`:
+
+#### Ejemplo:
+
+```cpp frame="terminal"
+#include <cstring>
+
+char origen[] = "C++";
+char destino[10];
+strcpy(destino, origen); // Copia "C++" a destino
+```
+
+### 6. Cálculo de Longitud
+
+La función `strlen` calcula la longitud de una cadena (excluyendo el carácter `\0`).
+
+#### Ejemplo:
+
+```cpp frame="terminal"
+#include <cstring>
+
+char cad[] = "Hola";
+cout << "Longitud: " << strlen(cad); // Imprime 4
+```
+
+### 7. Comparación de Cadenas
+
+La función `strcmp` compara dos cadenas lexicográficamente:
+
+- Retorna `0` si son iguales.
+- Un valor negativo si la primera es menor.
+- Un valor positivo si la primera es mayor.
+
+#### Ejemplo
+
+```cpp frame="terminal"
+#include <cstring>
+
+char cad1[] = "Hola";
+char cad2[] = "Mundo";
+
+if (strcmp(cad1, cad2) < 0) {
+    cout << "cad1 es menor que cad2";
+}
+```
+
+### 8. Concatenación de Cadenas
+
+La función `strcat` concatena una cadena al final de otra:
+
+#### Ejemplo
+
+```cpp frame="terminal"
+#include <cstring>
+
+char saludo[20] = "Hola";
+char nombre[] = " Mundo";
+strcat(saludo, nombre); // Resultado: "Hola Mundo"
+```
+
+### 9. Búsqueda en Cadenas
+
+La función `strstr` busca una subcadena dentro de otra:
+
+#### Ejemplo
+
+```cpp frame="terminal"
+#include <cstring>
+
+char texto[] = "Aprendiendo C++";
+char *resultado = strstr(texto, "C++");
+if (resultado) {
+    cout << "Encontrado: " << resultado;
+}
+```
+
+### 10. Conversión entre Cadenas y Números
+
+1. `atoi`: Convierte una cadena a un entero.
+2. `atof`: Convierte una cadena a un flotante.
+
+#### Ejemplo
+
+```cpp frame="terminal"
+#include <cstdlib>
+
+char numero[] = "123";
+int valor = atoi(numero);
+cout << "Entero: " << valor;
+```
+
+## 🛠️ La clase `String` de C++
+
+La clase `String` proporciona una forma más cómoda y potente de manejar cadenas en C++.
+
+### 1. Declaración e Inicialización
+
+#### Ejemplo:
+
+```cpp
+#include <string>
+using namespace std;
+
+string mensaje = "Hola, String!";
+```
+
+### 2. Acceso a Elementos
+
+Usando el operador `[]` o la función miembro `at`:
+
+#### Ejemplo:
+
+```cpp
+string saludo = "Hola";
+saludo[0] = 'h';
+cout << saludo.at(0); // Imprime 'h'
+```
+
+### 3. Lectura y Escritura
+
+#### Ejemplo:
+
+```cpp
+string texto;
+getline(cin, texto); // Lee una línea completa
+cout << texto;
+```
+
+### 4. Operaciones con Strings
+
+1. **Asignación:**
+
+   ```cpp
+   string a = "Texto";
+   string b = a; // Copia
+   ```
+
+2. **Concatenación:**
+
+   ```cpp
+   string c = a + b;
+   ```
+
+3. **Comparación:**
+
+   ```cpp
+   if (a == b) {
+       cout << "Son iguales";
+   }
+   ```
+
+4. **Búsqueda:**
+
+   ```cpp
+   size_t pos = a.find("Tex");
+   ```
+
+5. **Extracción:**
+
+   ```cpp
+   string sub = a.substr(0, 4);
+   ```
+
+6. **Intercambio:**
+
+   ```cpp
+   a.swap(b);
+   ```
+
+---
+
+## 📚 Ejemplo Completo
+
+Diseñemos un programa que combina vectores de caracteres y objetos `String`:
+
+```cpp frame="terminal"
+#include <iostream>
+#include <cstring>
+#include <string>
+using namespace std;
+
+int main() {
+    char cad1[20] = "Hola";
+    string cad2 = " Mundo";
+
+    // Concatenar usando strcat
+    strcat(cad1, cad2.c_str());
+    cout << cad1 << endl;
+
+    // Operaciones con String
+    string cad3 = " C++";
+    cad2 += cad3;
+    cout << cad2 << endl;
+
+    return 0;
+}
+```
+
+## Obtener el tamaño de un string o un array de caracteres
+
+En C++, se pueden obtener los tamaños de un `string` y de un array de caracteres de maneras diferentes. Aquí te mostramos cómo hacerlo:
+
+### 1. Tamaño de un `string` de la librería estándar
+
+Para obtener el tamaño de un objeto `string` en C++, puedes usar el método `.size()` o `.length()` que devuelve el número de caracteres en el string.
+
+#### Ejemplo con `string`
+
+```cpp frame="terminal"
+#include <iostream>
+#include <string>
+
+int main() {
+    std::string texto = "Hola Mundo";
+    
+    // Usando size() o length() para obtener el tamaño
+    std::cout << "El tamaño del string es: " << texto.size() << std::endl;
+    
+    return 0;
+}
+```
+
+Ambos métodos (`.size()` y `.length()`) devuelven el mismo valor: el número de caracteres del string, excluyendo el carácter nulo.
+
+### 2. Tamaño de un array de caracteres (C-Style String)
+
+En el caso de un array de caracteres (un string estilo C), puedes usar el operador `sizeof()` para obtener el tamaño total en bytes del array. Sin embargo, si quieres obtener solo la longitud del string (sin contar el carácter nulo `\0`), puedes usar la función `strlen()` de la librería `<cstring>`.
+
+#### Ejemplo con un array de caracteres
+
+```cpp frame="terminal"
+#include <iostream>
+#include <cstring>
+
+int main() {
+    // Array de caracteres
+    char texto[] = "Hola Mundo";
+    
+    // Usando sizeof para obtener el tamaño total en bytes del array
+    std::cout << "El tamaño total del array es: " << sizeof(texto) << " bytes" << std::endl;
+    
+    // Usando strlen para obtener el tamaño del string (sin contar el carácter nulo)
+    std::cout << "El tamaño del string es: " << strlen(texto) << " caracteres" << std::endl;
+    
+    return 0;
+}
+```
+
+### Explicación:
+- `sizeof(texto)` devuelve el tamaño total del array, incluyendo el carácter nulo (`'\0'`) al final.
+- `strlen(texto)` devuelve solo la cantidad de caracteres en el string, sin contar el carácter nulo.
+
+#### Resumen
+
+- **Para un `string`**: Usa `.size()` o `.length()` para obtener el número de caracteres.
+- **Para un array de caracteres**: Usa `sizeof()` para el tamaño total del array o `strlen()` para la longitud del string (sin contar el carácter nulo).
