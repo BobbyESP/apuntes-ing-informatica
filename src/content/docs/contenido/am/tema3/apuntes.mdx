@@ -1,4 +1,93 @@
 ---
-title: Tema 3 -
-description: amogus
+title: Tema 3 - Series de números reales
+description: Series de números reales, convergencia, sumas parciales y tipos especiales.
 ---
+
+import Latex from "@components/Latex.astro";
+
+## Introducción
+Una serie es una "suma infinita" de términos de una sucesión. Formalmente, una serie se escribe como:
+
+<Latex formula="\sum_{n=1}^{\infty} a_n = a_1 + a_2 + a_3 + \dots" display={true} />
+
+Por ejemplo:
+
+<Latex formula="\sum_{n=1}^{\infty} \left(\frac{1}{2}\right)^n = \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \dots = 1" display={true} />
+
+Para estudiar rigurosamente el comportamiento de una serie, se define la **sucesión de sumas parciales**:
+
+<Latex formula="s_n = \sum_{k=1}^n a_k = a_1 + a_2 + \dots + a_n" display={true} />
+
+La convergencia de la serie se basa en la convergencia de esta sucesión.
+
+### Definición
+Una serie <Latex formula="\sum a_n" /> es **convergente** si la sucesión de sumas parciales <Latex formula="\{s_n\}" /> es convergente. Su límite se llama la **suma de la serie**:
+
+<Latex formula="\sum_{n=1}^\infty a_n = \lim_{n \to \infty} s_n" display={true} />
+
+Si <Latex formula="\{s_n\} \to \pm \infty" />, la serie es **divergente**.
+
+### Propiedades
+1. Si se eliminan un número finito de términos, el carácter (convergencia/divergencia) de la serie no cambia.
+2. Si <Latex formula="\sum a_n" /> converge, entonces:
+   <Latex formula="\lim_{n \to \infty} a_n = 0" />
+   (La condición necesaria de convergencia).
+
+**Nota**: El recíproco no es cierto en general. Por ejemplo, la **serie armónica** <Latex formula="\sum \frac{1}{n}" /> cumple que <Latex formula="\lim_{n \to \infty} \frac{1}{n} = 0" />, pero es divergente.
+
+---
+
+## Suma de algunos tipos especiales de series
+### Series geométricas
+Una serie geométrica tiene la forma:
+
+<Latex formula="\sum_{n=1}^\infty r^n, \; |r| < 1" display={true} />
+
+La sucesión de sumas parciales es:
+
+<Latex formula="s_n = r + r^2 + \dots + r^n = \frac{r(1 - r^n)}{1 - r}, \; |r| < 1" />
+
+Tomando el límite cuando <Latex formula="n \to \infty" />:
+
+<Latex formula="\sum_{n=1}^\infty r^n = \frac{r}{1 - r}, \; |r| < 1" display={true} />
+
+#### Ejemplo
+Calcular la fracción irreducible correspondiente al número decimal periódico <Latex formula="0.\overline{9}" />:
+
+<Latex formula="0.\overline{9} = \sum_{n=1}^\infty \frac{9}{10^n} = \frac{9}{10} + \frac{9}{100} + \dots = \frac{9}{1 - \frac{1}{10}} = 1" />
+
+---
+
+## Series de términos positivos
+### Definición
+Una serie <Latex formula="\sum a_n" /> es de **términos positivos** si <Latex formula="a_n \geq 0, \; \forall n \in \mathbb{N}" />. Estas series tienen propiedades especiales:
+
+1. Si <Latex formula="\sum a_n" /> converge, su sucesión de sumas parciales <Latex formula="\{s_n\}" /> está acotada.
+2. Si <Latex formula="\{s_n\}" /> es creciente y no está acotada, entonces <Latex formula="\sum a_n" /> diverge hacia <Latex formula="+\infty" />.
+
+### Criterios de convergencia
+1. **Criterio de comparación**: Sean <Latex formula="\sum a_n" /> y <Latex formula="\sum b_n" /> series de términos positivos. Si existe <Latex formula="n_0 \in \mathbb{N}" /> tal que:
+
+   <Latex formula="0 \leq a_n \leq b_n, \; \forall n \geq n_0" />
+
+   Entonces:
+   - Si <Latex formula="\sum b_n" /> converge, también lo hace <Latex formula="\sum a_n" />.
+   - Si <Latex formula="\sum a_n" /> diverge, también lo hace <Latex formula="\sum b_n" />.
+
+2. **Criterio del cociente**: Sea <Latex formula="\sum a_n" /> una serie de términos positivos. Si:
+
+   <Latex formula="\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = L" />
+
+   Entonces:
+   - Si <Latex formula="L < 1" />, la serie converge.
+   - Si <Latex formula="L > 1" />, la serie diverge.
+   - Si <Latex formula="L = 1" />, el criterio no decide.
+
+3. **Criterio de la raíz**: Sea <Latex formula="\sum a_n" /> una serie de términos positivos. Si:
+
+   <Latex formula="\lim_{n \to \infty} \sqrt[n]{a_n} = L" />
+
+   Entonces:
+   - Si <Latex formula="L < 1" />, la serie converge.
+   - Si <Latex formula="L > 1" />, la serie diverge.
+   - Si <Latex formula="L = 1" />, el criterio no decide.

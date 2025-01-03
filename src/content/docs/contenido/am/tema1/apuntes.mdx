@@ -2,3 +2,98 @@
 title: Tema 1 - El cuerpo de los números reales
 description: wasap
 ---
+
+import Latex from "@components/Latex.astro";
+
+## Introducción
+Existen diversos enfoques para introducir los números reales:
+
+1. **Construcción progresiva**: partiendo de los números naturales <Latex formula="\mathbb{N} = \{1, 2, 3, \dots\}" />, se construyen los números enteros <Latex formula="\mathbb{Z}" />, luego los números racionales <Latex formula="\mathbb{Q}" />, y finalmente los números irracionales como <Latex formula="\sqrt{2}" /> o <Latex formula="\pi" />. Los números reales <Latex formula="\mathbb{R}" /> son la unión de racionales e irracionales.
+2. **Enfoque axiomático**: en este curso se adoptará esta perspectiva, caracterizando <Latex formula="\mathbb{R}" /> mediante axiomas agrupados en tres categorías:
+   - Axiomas de cuerpo.
+   - Axiomas de orden.
+   - Axioma del supremo (completitud o continuidad).
+
+---
+
+## Axiomas de cuerpo
+El conjunto de los números reales <Latex formula="\mathbb{R}" /> tiene dos operaciones internas: suma <Latex formula="+" /> y producto <Latex formula="\cdot" />, que cumplen las siguientes propiedades:
+
+### Propiedades de la suma <Latex formula="+" />
+1. **Asociativa**: <Latex formula="x + (y + z) = (x + y) + z, \forall x, y, z \in \mathbb{R}" />.
+2. **Conmutativa**: <Latex formula="x + y = y + x, \forall x, y \in \mathbb{R}" />.
+3. **Elemento neutro**: existe <Latex formula="0 \in \mathbb{R}" /> tal que <Latex formula="x + 0 = x, \forall x \in \mathbb{R}" />.
+4. **Elemento opuesto**: para todo <Latex formula="x \in \mathbb{R}" /> existe <Latex formula="-x \in \mathbb{R}" /> tal que <Latex formula="x + (-x) = 0" />.
+
+### Propiedades del producto <Latex formula="\cdot" />
+1. **Asociativa**: <Latex formula="x \cdot (y \cdot z) = (x \cdot y) \cdot z, \forall x, y, z \in \mathbb{R}" />.
+2. **Conmutativa**: <Latex formula="x \cdot y = y \cdot x, \forall x, y \in \mathbb{R}" />.
+3. **Elemento unidad**: existe <Latex formula="1 \in \mathbb{R}, 1 \neq 0" />, tal que <Latex formula="x \cdot 1 = x, \forall x \in \mathbb{R}" />.
+4. **Elemento inverso**: para todo <Latex formula="x \neq 0" />, existe <Latex formula="x^{-1} \in \mathbb{R}" /> tal que <Latex formula="x \cdot x^{-1} = 1" />.
+5. **Distributiva**: <Latex formula="x \cdot (y + z) = x \cdot y + x \cdot z, \forall x, y, z \in \mathbb{R}" />.
+
+Un conjunto que cumple estas propiedades tiene estructura de **cuerpo conmutativo**.
+
+---
+
+## Axiomas de orden
+El conjunto <Latex formula="\mathbb{R}" /> está ordenado por una relación <Latex formula="\leq" />, que cumple:
+
+1. **Reflexiva**: <Latex formula="x \leq x, \forall x \in \mathbb{R}" />.
+2. **Antisimétrica**: si <Latex formula="x \leq y" /> y <Latex formula="y \leq x" />, entonces <Latex formula="x = y" />.
+3. **Transitiva**: si <Latex formula="x \leq y" /> y <Latex formula="y \leq z" />, entonces <Latex formula="x \leq z" />.
+4. **Totalidad**: <Latex formula="x \leq y" /> o <Latex formula="y \leq x, \forall x, y \in \mathbb{R}" />.
+5. **Compatibilidad con la suma**: si <Latex formula="x \leq y" />, entonces <Latex formula="x + z \leq y + z, \forall z \in \mathbb{R}" />.
+6. **Compatibilidad con el producto**: si <Latex formula="x \leq y" /> y <Latex formula="z \geq 0" />, entonces <Latex formula="x \cdot z \leq y \cdot z" />.
+
+---
+
+## La recta real
+Los números reales se representan geométricamente como puntos en una recta:
+
+- Si <Latex formula="x < y" />, el punto <Latex formula="x" /> está a la izquierda de <Latex formula="y" />.
+- Los números positivos están a la derecha del 0; los negativos, a la izquierda.
+
+### Intervalos en <Latex formula="\mathbb{R}" />
+
+| Tipo         | Notación      | Definición                                   |
+|--------------|---------------|---------------------------------------------|
+| Abierto      | <Latex formula="(a, b)" />  | <Latex formula="\{ x \in \mathbb{R} : a < x < b \}" />     |
+| Cerrado      | <Latex formula="[a, b]" />  | <Latex formula="\{ x \in \mathbb{R} : a \leq x \leq b \}" /> |
+| Semi-abierto | <Latex formula="(a, b]" />  | <Latex formula="\{ x \in \mathbb{R} : a < x \leq b \}" />   |
+| Semi-cerrado | <Latex formula="[a, b)" />  | <Latex formula="\{ x \in \mathbb{R} : a \leq x < b \}" />   |
+
+Intervalos infinitos también son posibles, como <Latex formula="(-\infty, b]" /> o <Latex formula="[a, +\infty)" />.
+
+---
+
+## Axioma del supremo
+Todo conjunto no vacío y acotado superiormente en <Latex formula="\mathbb{R}" /> tiene un supremo <Latex formula="\sup" />.
+
+<Latex formula="\alpha = \sup(A) \iff \alpha \geq x, \forall x \in A \text{ y } \forall \varepsilon > 0, \exists x \in A : \alpha - \varepsilon < x \leq \alpha" display={true} />
+
+En resumen esto signfica que <Latex formula="\alpha" /> es el menor de los límites superiores de <Latex formula="A" />.
+
+## Axioma del ínfimo
+Análogo al supremo, pero para conjuntos acotados inferiormente.
+
+<Latex formula="\beta = \inf(A) \iff \beta \leq x, \forall x \in A \text{ y } \forall \varepsilon > 0, \exists x \in A : \beta \leq x < \beta + \varepsilon" display={true} />
+
+En resumen esto signfica que <Latex formula="\beta" /> es el mayor de los límites inferiores de <Latex formula="A" />.
+
+---
+
+## Valor absoluto
+El valor absoluto de <Latex formula="x \in \mathbb{R}" /> está definido como:
+
+<Latex formula="|x| = \begin{cases} 
+  x, & \text{si } x \geq 0 \\\\
+  -x, & \text{si } x < 0.
+\end{cases}" display={true} />
+
+**Propiedades:**
+1. <Latex formula="|x| \geq 0" />.
+2. <Latex formula="|x| = 0 \iff x = 0" />.
+3. <Latex formula="|x| = |-x|" />.
+4. <Latex formula="|x \cdot y| = |x| \cdot |y|" />.
+5. <Latex formula="|x + y| \leq |x| + |y|" /> (Desigualdad triangular).

@@ -179,7 +179,7 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 2:",
+                      label: "Tema 2: Sucesiones de números reales",
                       items: [
                         {
                           label: "Apuntes",
@@ -188,7 +188,7 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 3:",
+                      label: "Tema 3: Series de números reales",
                       items: [
                         {
                           label: "Apuntes",

@@ -1,4 +1,91 @@
 ---
-title: Tema 2 -
-description: Carlos sufre 2 :O
+title: Tema 2 - Sucesiones de números reales
+description: Sucesiones de números reales, límites, acotación y operaciones.
 ---
+
+import Latex from "@components/Latex.astro";
+
+## Introducción
+Una sucesión de números reales es una función que asigna a cada número natural un número real. Formalmente:
+
+<Latex formula="f: \mathbb{N} \to \mathbb{R}, \; n \mapsto f(n) = x_n" display={true} />
+
+Esto se denota habitualmente como <Latex formula="\{x_n\}" /> o <Latex formula="\{x_1, x_2, x_3, \dots\}" />, donde <Latex formula="x_n" /> representa el término enésimo de la sucesión. Los términos son los valores generados por la función para cada <Latex formula="n \in \mathbb{N}" />.
+
+### Ejemplos de sucesiones
+1. <Latex formula="\{\frac{1}{n}\} = \{1, \frac{1}{2}, \frac{1}{3}, \dots\}" />
+2. <Latex formula="\{(-1)^n\} = \{-1, 1, -1, 1, \dots\}" />
+3. <Latex formula="\{n^2\} = \{1, 4, 9, 16, \dots\}" />
+4. La sucesión de números primos <Latex formula="\{p_n\} = \{2, 3, 5, 7, 11, \dots\}" />.
+
+No todas las sucesiones tienen una fórmula explícita, como ocurre con los números primos, pero aún pueden ser útiles y estudiadas.
+
+---
+
+## Límite de una sucesión
+### Definición
+Se dice que una sucesión <Latex formula="\{x_n\}" /> converge a un valor <Latex formula="x \in \mathbb{R}" /> si, para cualquier <Latex formula="\varepsilon > 0" />, existe un índice natural <Latex formula="n_0 \in \mathbb{N}" /> tal que para todos <Latex formula="n \geq n_0" />:
+
+<Latex formula="|x_n - x| < \varepsilon" display={true} />
+
+Esto se denota como <Latex formula="\lim_{n \to \infty} x_n = x" /> o <Latex formula="\{x_n\} \to x" />. Intuitivamente, esto significa que los términos de la sucesión se acercan arbitrariamente al valor <Latex formula="x" /> conforme <Latex formula="n" /> crece.
+
+Si <Latex formula="\{x_n\}" /> tiene un límite, se dice que es **convergente**; de lo contrario, es **divergente**.
+
+### Propiedades
+1. Si <Latex formula="\{x_n\} \to x" />, entonces <Latex formula="\{x_n - x\} \to 0" />.
+2. Si <Latex formula="\{x_n\} \to 0" />, entonces <Latex formula="\{|x_n|\} \to 0" />.
+3. Si <Latex formula="\{x_n\}" /> es convergente, cualquier subsucesión <Latex formula="\{x_{n_k}\}" /> también converge al mismo límite.
+
+### Teorema de unicidad del límite
+El límite de una sucesión, si existe, es único. Es decir, si <Latex formula="\{x_n\} \to x" /> y <Latex formula="\{x_n\} \to y" />, entonces <Latex formula="x = y" />.
+
+---
+
+## Acotación de sucesiones
+### Definiciones
+1. **Acotación superior**: <Latex formula="\{x_n\}" /> está acotada superiormente si existe <Latex formula="K \in \mathbb{R}" /> tal que:
+   <Latex formula="x_n \leq K, \; \forall n \in \mathbb{N}" />
+2. **Acotación inferior**: <Latex formula="\{x_n\}" /> está acotada inferiormente si existe <Latex formula="k \in \mathbb{R}" /> tal que:
+   <Latex formula="x_n \geq k, \; \forall n \in \mathbb{N}" />
+3. **Acotada**: <Latex formula="\{x_n\}" /> está acotada si existe <Latex formula="k, K \in \mathbb{R}" /> tales que:
+   <Latex formula="k \leq x_n \leq K, \; \forall n \in \mathbb{N}" />
+
+### Teorema
+Toda sucesión convergente está acotada. Sin embargo, no todas las sucesiones acotadas son convergentes. Por ejemplo, <Latex formula="\{(-1)^n\}" /> es acotada pero no convergente.
+
+---
+
+## Operaciones con límites
+Si <Latex formula="\{x_n\} \to x" /> y <Latex formula="\{y_n\} \to y" />, entonces:
+
+1. <Latex formula="\{x_n + y_n\} \to x + y" />.
+2. <Latex formula="\{x_n \cdot y_n\} \to x \cdot y" />.
+3. Si <Latex formula="y \neq 0" />, <Latex formula="\{x_n / y_n\} \to x / y" />.
+4. (Regla del sandwich) Si <Latex formula="x_n \leq z_n \leq y_n" /> y <Latex formula="\{x_n\}, \{y_n\} \to l" />, entonces <Latex formula="\{z_n\} \to l" />.
+
+---
+
+## Sucesiones especiales
+### El número <Latex formula="e" />
+La sucesión:
+
+<Latex formula="x_n = \left(1 + \frac{1}{n}\right)^n" display={true} />
+
+Es monótona creciente y acotada, por lo que converge al número <Latex formula="e" />:
+
+<Latex formula="e = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n \approx 2.718" display={true} />
+
+### Sucesiones recurrentes
+Una sucesión <Latex formula="\{x_n\}" /> es recurrente si cada término se define en función de los anteriores. Por ejemplo, una sucesión de orden <Latex formula="p" /> cumple:
+
+<Latex formula="x_{n+p} = g(x_n, x_{n+1}, \dots, x_{n+p-1}), \; n \geq 1" display={true} />
+
+Para determinar sus términos, se necesitan <Latex formula="p" /> valores iniciales. Muchas técnicas numéricas emplean sucesiones recurrentes para aproximar soluciones.
+
+#### Ejemplo
+Demostrar que la sucesión definida como:
+
+<Latex formula="x_1 = 2, \; x_{n+1} = \sqrt{2 + x_n}" />
+
+Es convergente y calcular su límite.
