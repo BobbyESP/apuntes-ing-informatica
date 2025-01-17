@@ -1,4 +1,80 @@
 ---
-title: Tema 3 -
-description: UwU OwO IwI EwE AwA
+title: Tema 3 - Combinatoria
+description: La combinatoria es una rama esencial de la **matemática discreta** que se enfoca en problemas de enumeración y conteo. Se utiliza para determinar el número de posibles arreglos o selecciones de un conjunto de objetos bajo ciertas condiciones. 
 ---
+
+import { Aside } from "@astrojs/starlight/components";
+import Latex from "@components/Latex.astro";
+
+## 1. Fundamentos de Conteo
+
+### Regla del Producto
+
+La regla del producto se basa en el **cardinal del producto cartesiano** de conjuntos finitos. Si una tarea puede dividirse en dos tareas consecutivas, donde la primera puede realizarse de <Latex formula="n_1" /> maneras y la segunda de <Latex formula="n_2" /> maneras, entonces la tarea completa puede realizarse de <Latex formula="n_1 \cdot n_2" /> maneras.
+
+- **Ejemplo:** En una sala con 32 ordenadores, cada uno con 24 puertos, hay <Latex formula="32 \cdot 24 = 768" /> puertos diferentes.
+- **Ejemplo:** El número de cadenas de bits de longitud 8 es <Latex formula="2^8 = 256" />, ya que cada bit tiene 2 opciones (0 o 1).
+
+### Regla de la Suma
+
+La regla de la suma se aplica cuando se tienen tareas **incompatibles**, es decir, que no pueden realizarse simultáneamente. Si una tarea se puede realizar de <Latex formula="n_1" /> maneras y una segunda tarea de <Latex formula="n_2" /> maneras, y ambas tareas son incompatibles, entonces una de las dos tareas puede realizarse de <Latex formula="n_1 + n_2" /> maneras.
+
+- **Ejemplo:** Un estudiante puede elegir un trabajo de fin de grado de tres listas con 23, 15 y 19 propuestas respectivamente. Tiene <Latex formula="23 + 15 + 19 = 57" /> proyectos posibles para elegir.
+
+### Principio del Complementario
+
+El principio del complementario se utiliza cuando es más fácil calcular el número de casos donde *no* se cumple una propiedad, y luego se resta del total de casos posibles. Si una tarea puede realizarse de <Latex formula="n_1" /> maneras y, exigiendo que se cumpla una propiedad específica, de <Latex formula="n_2" /> maneras, entonces la tarea puede realizarse sin cumplir la propiedad de <Latex formula="n_1 - n_2" /> maneras.
+
+- **Ejemplo:** Para contraseñas de 6 caracteres (letras mayúsculas y dígitos) que contengan al menos un dígito, se calcula el total de contraseñas posibles <Latex formula="37^6" /> y se resta el total de contraseñas sin dígitos <Latex formula="27^6" />.
+
+### Principio de Inclusión-Exclusión
+
+El principio de inclusión-exclusión se utiliza cuando las tareas pueden realizarse simultáneamente, lo cual impide usar la regla de la suma directamente. Si una tarea puede realizarse de <Latex formula="n_1" /> formas, una segunda tarea de <Latex formula="n_2" /> formas, y ambas simultáneamente de <Latex formula="n_{12}" /> formas, entonces una de las dos tareas puede realizarse de <Latex formula="n_1 + n_2 - n_{12}" /> maneras.
+
+- **Ejemplo:** Para cadenas de 8 bits que comienzan con 0 o terminan en 11, se suman las cadenas que empiezan por 0 ( <Latex formula="2^7" /> ) y las que terminan en 11 ( <Latex formula="2^6" /> ), y se resta el número de cadenas que cumplen ambas condiciones <Latex formula="2^5" />.
+
+### Principio de las Cajas
+
+El principio de las cajas establece que si hay más objetos que cajas, al menos una caja tendrá más de un objeto.
+
+- **Principio restringido:** Si <Latex formula="k + 1" /> o más objetos se colocan en <Latex formula="k" /> cajas, al menos una caja contiene dos o más objetos.
+- **Principio generalizado:** Si <Latex formula="n" /> objetos se colocan en <Latex formula="k" /> cajas, al menos una caja contiene <Latex formula="\lceil n / k \rceil" /> o más objetos.
+- **Ejemplo:** En un grupo de 367 personas, al menos dos cumplen años el mismo día.
+
+## 2. Estructuras de Combinatoria
+
+### Permutaciones
+
+Las permutaciones son las diferentes maneras en que se pueden ordenar todos los elementos de un conjunto.
+
+- **Permutaciones sin repetición:** El número de permutaciones de un conjunto de <Latex formula="n" /> elementos es <Latex formula="n!" />.
+  - **Ejemplo:** Las permutaciones del conjunto <Latex formula="\{1, 2, 3\}" /> son <Latex formula="3!" /> = 6.
+- **Permutaciones con repetición:** El número de permutaciones de <Latex formula="n" /> elementos donde hay <Latex formula="n_1" /> del primer tipo, <Latex formula="n_2" /> del segundo tipo, ..., <Latex formula="n_k" /> del k-ésimo tipo es:  
+  <Latex formula="\frac{n!}{n_1! \cdot n_2! \cdot \ldots \cdot n_k!}" display={true} />
+  - **Ejemplo:** El número de formas de reordenar las letras de la palabra PAPAYA es  
+    <Latex formula="\frac{6!}{2! \cdot 3! \cdot 1!} = 60" display={true} />
+
+### Variaciones
+
+Las variaciones son las diferentes maneras de ordenar <Latex formula="r" /> elementos tomados de un conjunto de <Latex formula="n" /> elementos.
+
+- **Variaciones sin repetición:** El número de variaciones de orden <Latex formula="r" /> de un conjunto de <Latex formula="n" /> elementos es  
+  <Latex formula="\frac{n!}{(n - r)!}" display={true} />
+  - **Ejemplo:** El número de palabras de 6 letras distintas que se pueden formar con 10 letras distintas es  
+    <Latex formula="\frac{10!}{(10-6)!} = 151200" display={true} />
+- **Variaciones con repetición:** El número de variaciones de orden <Latex formula="r" /> de un conjunto de <Latex formula="n" /> elementos, donde los elementos pueden repetirse, es <Latex formula="n^r" />.
+  - **Ejemplo:** El número de cadenas de longitud 3que se pueden formar con las letras N, O es  
+    <Latex formula="2^3 = 8" display={true} />.
+
+### Combinaciones
+
+Las combinaciones son las diferentes maneras de seleccionar <Latex formula="r" /> elementos de un conjunto de <Latex formula="n" /> elementos, donde el orden no importa.
+
+- **Combinaciones sin repetición:** El número de combinaciones de orden <Latex formula="r" /> de un conjunto de <Latex formula="n" /> elementos es  
+  <Latex formula="\frac{n!}{(n - r)! \cdot r!}" display={true}/>
+  - **Ejemplo:** El número de combinaciones de orden 2 del conjunto <Latex formula="\{1, 2, 3\}" /> es  
+    <Latex formula="\frac{3!}{(3-2)! \cdot 2!} = 3" display={true}/>
+- **Combinaciones con repetición:** El número de combinaciones con repetición de orden <Latex formula="r" /> de un conjunto de <Latex formula="n" /> elementos es  
+  <Latex formula="\frac{(n + r - 1)!}{r! \cdot (n - 1)!}" display={true}/>
+  - **Ejemplo:** El número de formas de seleccionar tres piezas de fruta de una cesta con manzanas y peras es  
+    <Latex formula="\frac{(2+3-1)!}{3! \cdot 1!} = 4" display={true}/>

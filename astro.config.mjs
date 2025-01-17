@@ -223,15 +223,6 @@ export default defineConfig({
                         },
                       ],
                     },
-                    {
-                      label: "Tema 7:",
-                      items: [
-                        {
-                          label: "Apuntes",
-                          slug: "contenido/am/tema7/apuntes",
-                        },
-                      ],
-                    },
                   ],
                 },
               ],
@@ -252,7 +243,7 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 2:",
+                      label: "Tema 2: Funciones",
                       items: [
                         {
                           label: "Apuntes",
@@ -261,11 +252,24 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 3:",
+                      label: "Tema 3: Combinatoria",
                       items: [
                         {
                           label: "Apuntes",
                           slug: "contenido/fmi/tema3/apuntes",
+                        },
+                        {
+                          label: "Teorema del binomio",
+                          slug: "contenido/fmi/tema3/teorema-binomio",
+                        }
+                      ],
+                    },
+                    {
+                      label: "Tema 4: Relaciones",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/fmi/tema4/apuntes",
                         },
                       ],
                     },
@@ -294,29 +298,11 @@ export default defineConfig({
                       ],
                     },
                     {
-                      label: "Tema 2:",
+                      label: "Tema 2: Métodos algebraicos de análisis y síntesis de circuitos lógicos",
                       items: [
                         {
                           label: "Apuntes",
                           slug: "contenido/sd/tema2/apuntes",
-                        },
-                      ],
-                    },
-                    {
-                      label: "Tema 3:",
-                      items: [
-                        {
-                          label: "Apuntes",
-                          slug: "contenido/sd/tema3/apuntes",
-                        },
-                      ],
-                    },
-                    {
-                      label: "Tema 4:",
-                      items: [
-                        {
-                          label: "Apuntes",
-                          slug: "contenido/sd/tema4/apuntes",
                         },
                       ],
                     },
