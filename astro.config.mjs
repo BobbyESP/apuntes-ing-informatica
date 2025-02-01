@@ -40,6 +40,7 @@ export default defineConfig({
           items: [
             {
               label: "Programación I",
+              collapsed: true,
               items: [
                 {
                   label: "Temas",
@@ -165,6 +166,7 @@ export default defineConfig({
             },
             {
               label: "Análisis Matemático",
+              collapsed: true,
               items: [
                 {
                   label: "Temas",
@@ -229,6 +231,7 @@ export default defineConfig({
             },
             {
               label: "Fundamentos matemáticos",
+              collapsed: true,
               items: [
                 {
                   label: "Temas",
@@ -279,6 +282,7 @@ export default defineConfig({
             },
             {
               label: "Sistemas digitales",
+              collapsed: true,
               items: [
                 {
                   label: "Temas",
