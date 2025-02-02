@@ -165,6 +165,26 @@ export default defineConfig({
               ],
             },
             {
+              label: "Programación II",
+              collapsed: true,
+              items: [
+                {
+                  label: "Temas",
+                  items: [
+                    {
+                      label: "Tema 1: Clases y objetos",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/proii/tema1/apuntes",
+                        },
+                      ],
+                    }
+                  ],
+                }
+              ]
+            },
+            {
               label: "Análisis Matemático",
               collapsed: true,
               items: [

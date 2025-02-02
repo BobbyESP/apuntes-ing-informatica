@@ -1,0 +1,90 @@
+---
+title: Tema 1 - Clases y objetos
+description: Clases y objetos en Java y otros lenguajes de programación orientada a objetos.
+---
+
+import { Aside  } from "@astrojs/starlight/components";
+
+## Programción orientada a objetos
+
+La **programación orientada a objetos (POO)** es un paradigma de programación basado en la creación y manipulación de **objetos**, que son instancias de **clases**. Su objetivo es modelar problemas del mundo real mediante entidades que combinan datos (atributos) y comportamientos (métodos).  
+
+La POO permite organizar el código de manera modular y reutilizable, favoreciendo el mantenimiento y la escalabilidad de los programas. Se basa en cuatro principios fundamentales: **abstracción, encapsulamiento, herencia y polimorfismo**, que facilitan la estructuración del software en componentes independientes pero interconectados.  
+
+Este paradigma es ampliamente utilizado en lenguajes como **Java, Kotlin, C#, C++ y Python**, entre otros, y es fundamental en el desarrollo de software moderno.
+
+### Los pilares de la POO
+La POO, como ya hemos dicho antes, se basa en **cuatro** características básicas, las cuales son **abstracción, encapsulamiento, herencia y polimorfismo**:  
+
+- **Abstracción**: Consiste en representar los elementos esenciales de un objeto y ocultar los detalles innecesarios. Permite modelar conceptos del mundo real en clases y objetos sin preocuparse por la implementación interna.  
+
+- **Encapsulamiento**: Es el principio de ocultar los datos internos de un objeto y exponer solo lo necesario a través de métodos públicos. Se logra con modificadores de acceso (privado, protegido, público) y evita la manipulación indebida del estado del objeto. Esto ofrece seguridad y facilita el mantenimiento del código.  
+
+- **Herencia**: Permite que una clase (subclase) herede atributos y métodos de otra (superclase). Facilita la reutilización de código y la creación de jerarquías de clases, fomentando la modularización y la extensibilidad.  
+
+- **Polimorfismo**: Permite que un mismo método o función pueda tener diferentes comportamientos según el contexto. Puede manifestarse mediante sobrecarga (métodos con el mismo nombre pero diferentes parámetros) o sobrescritura (una subclase redefine un método de la superclase).
+
+### Transición hacia la POO
+Antes de que la programación orientada a objetos se popularizara, se utilizaban otros paradigmas como la **programación estructurada** y la **programación modular**. Estos enfoques siguen siendo válidos y se combinan con la POO en muchos proyectos de software.
+
+#### Programación estructurada
+Es un paradigma anterior a la programación orientada a objetos que se basa en la división del código en **bloques lógicos y secuencias de control bien definidas**, evitando el uso excesivo de saltos incontrolados (*goto*). Se apoya en tres estructuras fundamentales: **secuencia (ejecución ordenada de instrucciones), selección (condicionales como *if* o *switch*) y repetición (bucles como *for* o *while*)**. Su objetivo es mejorar la legibilidad, mantenibilidad y depuración del código.  
+
+#### Programación modular  
+Es un enfoque que busca dividir un programa en **módulos independientes y reutilizables**, donde cada módulo representa una parte específica de la funcionalidad del software. Estos módulos pueden ser **funciones, procedimientos o archivos independientes**, permitiendo la organización del código de manera más clara y escalable. La programación orientada a objetos puede considerarse una evolución de este paradigma, ya que las clases y objetos funcionan como módulos que encapsulan datos y comportamiento.
+(ya nos encontraremos con Maven o Gradle, no os preocupéis JAJAJA)
+
+## **Clase**  
+Una **clase** es una plantilla o un modelo que define la estructura y el comportamiento de un conjunto de objetos. Es como un plano arquitectónico que especifica qué atributos (datos/variables) y qué métodos (acciones/funciones) tendrá cada objeto basado en esa clase.  
+
+Por ejemplo, en Java:  
+```java frame="terminal"
+class Coche {
+    String marca;
+    int velocidad;
+
+    void acelerar() {
+        velocidad += 10;
+    }
+
+    void frenar() {
+        velocidad -= 10;
+    }
+}
+```
+Aquí, la clase `Coche` define que todos los coches tendrán una **marca** y una **velocidad**, además de un método para **acelerar** y otro **frenar**.  
+
+## **Objeto**  
+Un **objeto** es una instancia de una clase, es decir, una entidad concreta creada a partir de la plantilla que define la clase.  
+
+Podríamos definirlo por tres elementos fundamentales:  
+
+1. **Estado**: Representa los datos o atributos del objeto. Define sus características y puede cambiar a lo largo del tiempo.  
+
+2. **Comportamiento**: Son las acciones o métodos que el objeto puede realizar. Definen cómo interactúa con otros objetos y cómo modifica su estado.  
+
+3. **Identidad**: Es lo que distingue a un objeto de otro, incluso si tienen el mismo estado y comportamiento. Cada objeto ocupa una ubicación única en memoria, por lo tanto, son completamente distintos e independientes.  
+
+Un objeto se crea a partir de una clase mediante el operador `new` y puede acceder a sus atributos y métodos.  
+
+Por ejemplo:  
+```java frame="terminal"
+Coche miCoche = new Coche();
+miCoche.marca = "Toyota";
+miCoche.acelerar();
+```
+Aquí, `miCoche` es un objeto de la clase `Coche` con su propio estado y comportamiento.  
+
+En resumen, la **clase** es la definición, mientras que el **objeto** es la instancia concreta que existe en memoria y puede interactuar con otros objetos.  
+
+### **Almacenamiento en memoria**  
+Los objetos generalmente se almacenan en el **heap**, un área de memoria dinámica que permite la creación y destrucción de instancias en tiempo de ejecución. Sin embargo, en algunos lenguajes o contextos, pueden existir optimizaciones como la asignación en el **stack** si el objeto tiene un tiempo de vida corto y es determinista.
+
+En **Java**, por ejemplo, todos los objetos se almacenan en el **heap**, mientras que las **variables locales** y la lista de referencias se almacenan en el stack.
+
+<Aside>Se le denomina *referencias* al identificador que apunta a un objeto (como los `pointers` de C/C++).</Aside>
+
+No todos los lenguajes manejan la memoria de la misma manera. En lenguajes como **Java y Python**, la memoria es gestionada automáticamente mediante un sistema de **recolección de basura (garbage collection)**, que libera los objetos que ya no están en uso (tanto de forma directa como indirecta).
+
+En cambio, en lenguajes como **C++**, la gestión de memoria es manual y requiere que el programador libere los recursos explícitamente con `delete` 
+para evitar fugas de memoria (memory leaks).
