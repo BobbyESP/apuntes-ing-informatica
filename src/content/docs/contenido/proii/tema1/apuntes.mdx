@@ -3,7 +3,7 @@ title: Tema 1 - Clases y objetos
 description: Clases y objetos en Java y otros lenguajes de programación orientada a objetos.
 ---
 
-import { Aside  } from "@astrojs/starlight/components";
+import { Aside, LinkCard } from "@astrojs/starlight/components";
 
 ## Programción orientada a objetos
 
@@ -34,7 +34,7 @@ Es un paradigma anterior a la programación orientada a objetos que se basa en l
 Es un enfoque que busca dividir un programa en **módulos independientes y reutilizables**, donde cada módulo representa una parte específica de la funcionalidad del software. Estos módulos pueden ser **funciones, procedimientos o archivos independientes**, permitiendo la organización del código de manera más clara y escalable. La programación orientada a objetos puede considerarse una evolución de este paradigma, ya que las clases y objetos funcionan como módulos que encapsulan datos y comportamiento.
 (ya nos encontraremos con Maven o Gradle, no os preocupéis JAJAJA)
 
-## **Clase**  
+## Clase 
 Una **clase** es una plantilla o un modelo que define la estructura y el comportamiento de un conjunto de objetos. Es como un plano arquitectónico que especifica qué atributos (datos/variables) y qué métodos (acciones/funciones) tendrá cada objeto basado en esa clase.  
 
 Por ejemplo, en Java:  
@@ -54,7 +54,45 @@ class Coche {
 ```
 Aquí, la clase `Coche` define que todos los coches tendrán una **marca** y una **velocidad**, además de un método para **acelerar** y otro **frenar**.  
 
-## **Objeto**  
+### **Método**  
+Un **método** es una función definida dentro de una clase que representa el comportamiento de un objeto. Permite que los objetos realicen acciones y manipulen sus atributos.  
+
+Por ejemplo, en Java:  
+```java frame="terminal"
+class Coche {
+    int velocidad = 0;
+
+    void acelerar() {
+        velocidad += 10;
+    }
+}
+```
+Aquí, `acelerar()` es un método que incrementa la velocidad del coche.
+
+### **Sobrecarga de métodos**  
+La **sobrecarga de métodos** (*method overloading*) es una técnica que permite definir varios métodos con el mismo nombre dentro de una clase, pero con diferentes parámetros (cantidad o tipo). Esto mejora la legibilidad y flexibilidad del código.  
+
+Ejemplo en Java:  
+```java frame="terminal"
+class Coche {
+    void acelerar() {
+        System.out.println("El coche acelera.");
+    }
+
+    void acelerar(int cantidad) {
+        System.out.println("El coche acelera " + cantidad + " km/h.");
+    }
+}
+```
+Aquí, el método `acelerar()` tiene dos versiones: una sin parámetros y otra que recibe un entero. El compilador elige cuál ejecutar según los argumentos proporcionados a la hora de llamar a la función.
+
+<LinkCard
+  title="Ejemplo con una clase Punto"
+  description="Ejemplo de una clase Punto en Java que calcula la distancia entre dos de ellos o desde el origen."
+  href="/contenido/proii/tema1/ejemplo-punto"
+/>
+
+## Objeto  
 Un **objeto** es una instancia de una clase, es decir, una entidad concreta creada a partir de la plantilla que define la clase.  
 
 Podríamos definirlo por tres elementos fundamentales:  
@@ -88,3 +126,4 @@ No todos los lenguajes manejan la memoria de la misma manera. En lenguajes como 
 
 En cambio, en lenguajes como **C++**, la gestión de memoria es manual y requiere que el programador libere los recursos explícitamente con `delete` 
 para evitar fugas de memoria (memory leaks).
+

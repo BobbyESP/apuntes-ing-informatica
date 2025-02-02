@@ -178,6 +178,10 @@ export default defineConfig({
                           label: "Apuntes",
                           slug: "contenido/proii/tema1/apuntes",
                         },
+                        {
+                          label: "Ejemplo clase Punto",
+                          slug: "contenido/proii/tema1/ejemplo-punto",
+                        }
                       ],
                     }
                   ],
