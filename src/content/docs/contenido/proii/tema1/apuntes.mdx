@@ -28,10 +28,14 @@ La POO, como ya hemos dicho antes, se basa en **cuatro** características básic
 Antes de que la programación orientada a objetos se popularizara, se utilizaban otros paradigmas como la **programación estructurada** y la **programación modular**. Estos enfoques siguen siendo válidos y se combinan con la POO en muchos proyectos de software.
 
 #### Programación estructurada
-Es un paradigma anterior a la programación orientada a objetos que se basa en la división del código en **bloques lógicos y secuencias de control bien definidas**, evitando el uso excesivo de saltos incontrolados (*goto*). Se apoya en tres estructuras fundamentales: **secuencia (ejecución ordenada de instrucciones), selección (condicionales como *if* o *switch*) y repetición (bucles como *for* o *while*)**. Su objetivo es mejorar la legibilidad, mantenibilidad y depuración del código.  
+Es un paradigma anterior a la programación orientada a objetos que se basa en la división del código en **bloques lógicos y secuencias de control bien definidas**, evitando el uso excesivo de saltos incontrolados (*goto*).
+
+Se apoya en tres estructuras fundamentales: **secuencia (ejecución ordenada de instrucciones), selección (condicionales como *if* o *switch*) y repetición (bucles como *for* o *while*)**. Su objetivo es mejorar la legibilidad, mantenibilidad y depuración del código.  
 
 #### Programación modular  
-Es un enfoque que busca dividir un programa en **módulos independientes y reutilizables**, donde cada módulo representa una parte específica de la funcionalidad del software. Estos módulos pueden ser **funciones, procedimientos o archivos independientes**, permitiendo la organización del código de manera más clara y escalable. La programación orientada a objetos puede considerarse una evolución de este paradigma, ya que las clases y objetos funcionan como módulos que encapsulan datos y comportamiento.
+Es un enfoque que busca dividir un programa en **módulos independientes y reutilizables**, donde cada módulo representa una parte específica de la funcionalidad del software. Estos módulos pueden ser **funciones, procedimientos o archivos independientes**, permitiendo la organización del código de manera más clara y escalable. 
+
+La programación orientada a objetos puede considerarse una evolución de este paradigma, ya que las clases y objetos funcionan como módulos que encapsulan datos y comportamiento.
 (ya nos encontraremos con Maven o Gradle, no os preocupéis JAJAJA)
 
 ## Clase 
@@ -54,7 +58,15 @@ class Coche {
 ```
 Aquí, la clase `Coche` define que todos los coches tendrán una **marca** y una **velocidad**, además de un método para **acelerar** y otro **frenar**.  
 
-### **Método**  
+El punto de entrada en un programa en Java es el método **`main`**, cuya firma obligatoria es:  
+```java
+public static void main(String[] args) {
+    // Código del programa
+}
+```
+La **JVM (Java Virtual Machine)** busca este método para iniciar la ejecución del programa. Debe ser **`public`** para que sea accesible desde fuera de la clase, **`static`** para que pueda ejecutarse sin necesidad de instanciar la clase y **`void`** porque no devuelve un valor. 
+
+### Método
 Un **método** es una función definida dentro de una clase que representa el comportamiento de un objeto. Permite que los objetos realicen acciones y manipulen sus atributos.  
 
 Por ejemplo, en Java:  
@@ -69,7 +81,37 @@ class Coche {
 ```
 Aquí, `acelerar()` es un método que incrementa la velocidad del coche.
 
-### **Sobrecarga de métodos**  
+### Métodos estáticos
+
+Un **método estático** es un método que pertenece a la **clase**, no a sus instancias. Se declara con la palabra clave `static` y puede ser llamado sin necesidad de crear un objeto de la clase.  
+
+#### Características de los métodos estáticos:
+- Se pueden llamar usando el nombre de la clase: `Clase.metodoEstatico()`.  
+- No pueden acceder a atributos o métodos **no estáticos** (de instancia) directamente.  
+- Son útiles para funciones auxiliares o de utilidad, como cálculos matemáticos o conversión de datos.  
+
+#### Ejemplo en Java:
+```java frame="terminal"
+class Utilidad {
+    static void mensaje() {
+        System.out.println("Este es un método estático");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Utilidad.mensaje(); // Llamada sin instanciar un objeto
+    }
+}
+```
+Salida:  
+```
+Este es un método estático
+```
+
+Un ejemplo típico es el método `Math.sqrt()`, que pertenece a la clase `Math` y no requiere instancias.
+
+### Sobrecarga de métodos
 La **sobrecarga de métodos** (*method overloading*) es una técnica que permite definir varios métodos con el mismo nombre dentro de una clase, pero con diferentes parámetros (cantidad o tipo). Esto mejora la legibilidad y flexibilidad del código.  
 
 Ejemplo en Java:  
@@ -127,3 +169,84 @@ No todos los lenguajes manejan la memoria de la misma manera. En lenguajes como 
 En cambio, en lenguajes como **C++**, la gestión de memoria es manual y requiere que el programador libere los recursos explícitamente con `delete` 
 para evitar fugas de memoria (memory leaks).
 
+En Java, **todos los parámetros se pasan por valor**, lo que significa que cuando se pasa un objeto a un método, **se copia la referencia al objeto, pero no el objeto en sí**.  
+
+Por lo tanto:  
+- **Los cambios en los atributos del objeto dentro del método afectan al objeto original**, porque la referencia copiada sigue apuntando al mismo objeto en memoria.  
+- **Si se cambia la referencia dentro del método (asignando un nuevo objeto), el objeto original no se ve afectado**, ya que solo se modifica la copia de la referencia.  
+
+#### Caso 1: Modificación de atributos (afecta al objeto original)  
+```java frame="terminal"
+class Punto {
+    int x;
+    
+    Punto(int x) {
+        this.x = x;
+    }
+}
+
+public class Main {
+    static void modificarPunto(Punto p) {
+        p.x = 100; // Se modifica el atributo del mismo objeto
+    }
+
+    public static void main(String[] args) {
+        Punto punto = new Punto(5);
+        modificarPunto(punto);
+        System.out.println(punto.x); // Imprime 100
+    }
+}
+```
+Aquí, `p` es una copia de la referencia, pero sigue apuntando al mismo objeto en memoria, por lo que `punto.x` cambia.  
+
+#### Caso 2: Reasignación de la referencia (no afecta al objeto original) 
+```java
+static void cambiarReferencia(Punto p) {
+    p = new Punto(200); // Se cambia la referencia, pero solo en la copia local
+}
+
+public static void main(String[] args) {
+    Punto punto = new Punto(5);
+    cambiarReferencia(punto);
+    System.out.println(punto.x); // Imprime 5
+}
+```
+Aquí, dentro de `cambiarReferencia()`, la variable `p` apunta a un nuevo objeto, pero eso **no afecta a `punto` en `main()`**, ya que solo se modificó la copia de la referencia.  
+
+En conclusión:
+- **Java no pasa objetos por referencia**, sino que **pasa una copia de la referencia por valor**.  
+- **Modificar los atributos del objeto dentro del método afecta al original**, porque la referencia copiada sigue apuntando al mismo objeto.  
+- **Asignar un nuevo objeto dentro del método no afecta al original**, porque solo se cambia la copia de la referencia, no la original.
+
+## Modificadores de acceso e instanciación
+
+### ¿Qué es `static` y para qué sirve?
+La palabra clave **`static`** indica que un atributo o método **pertenece a la clase y no a sus instancias**. Esto significa que se puede acceder a él sin necesidad de crear un objeto.  
+
+Por ejemplo:  
+```java frame="terminal"
+class Util {
+    static void mensaje() {
+        System.out.println("Método estático");
+    }
+}
+
+Util.mensaje(); // Se llama sin instanciar un objeto, es decir, no se usa `new`
+```
+
+### ¿Sólo se usa en `main`?
+No, `static` se puede aplicar a:  
+- **Métodos estáticos**, como los de utilidad en `Math`: `Math.sqrt(4)`.  
+- **Atributos estáticos**, que son compartidos por todas las instancias de una clase.  
+- **Bloques `static`**, ejecutados una sola vez cuando la clase se carga en memoria.  
+
+### **`static` combinado con `final`**  
+Cuando se combina `static final`, se crea una **constante de clase**, cuyo valor no puede cambiar y es compartido por todas las instancias.  
+
+Ejemplo:  
+```java
+class Config {
+    static final double PI = 3.1416;
+}
+```
+Aquí, `PI` es una constante accesible sin instanciar `Config` y su valor es inmutable.

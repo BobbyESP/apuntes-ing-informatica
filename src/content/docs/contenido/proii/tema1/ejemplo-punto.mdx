@@ -2,3 +2,50 @@
 title: Ejemplo de clase Punto
 description: Ejemplo de una clase Punto en Java que calcula la distancia entre varios.
 ---
+
+En este ejemplo, se muestra una clase `Punto` en Java que representa un punto en un plano cartesiano. La clase tiene dos atributos `x` e `y` que representan las coordenadas del punto, y métodos para calcular la distancia entre dos puntos o desde el origen.
+
+```java frame="terminal"
+public class Main {
+    public static void main(String[] args) {
+        Punto p1 = new Punto(5, 8);
+        Punto p2 = new Punto(4, 5);
+        System.out.println(p1.distancia(p2));
+        System.out.println(p1.distanciaAOrigen());
+    }
+}
+
+class Punto {
+    private final int x;
+    private final int y;
+
+    // Constructor
+    public Punto(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public float distanciaAOrigen() {
+        return distancia(new Punto(0, 0));
+    }
+
+    // Método para calcular la distancia entre dos puntos
+    public float distancia(Punto p) {
+        return (float) Math.sqrt(
+            Math.abs(
+                Math.pow(p.x - this.x, 2) + Math.pow(p.y - this.y, 2)
+                )
+        );
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+}
+```
+
+En este ejemplo, la clase `Punto` define un punto en un plano cartesiano con coordenadas `x` e `y`. El método `distancia` calcula la distancia entre dos puntos utilizando la fórmula de la distancia. El método `main` crea dos puntos `p1` y `p2` y calcula la distancia entre ellos, siendo uno de ellos el origen de coordenadas.
