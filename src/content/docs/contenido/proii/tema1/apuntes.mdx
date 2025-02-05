@@ -134,6 +134,14 @@ Aquí, el método `acelerar()` tiene dos versiones: una sin parámetros y otra q
   href="/contenido/proii/tema1/ejemplo-punto"
 />
 
+### El método `toString()`  
+
+El método `toString()` es un método especial que se utiliza para **representar un objeto como una cadena de texto**. Por defecto, devuelve una representación basada en la dirección de memoria del objeto, pero puede ser sobrescrito para proporcionar una representación más significativa.  
+
+En Java, `toString()` se usa comúnmente para **imprimir objetos** de manera legible en lugar de mostrar sus direcciones de memoria. Otros lenguajes orientados a objetos, como Kotlin, ya incluyen una implementación predeterminada de este método en ciertas clases especiales, como las *data classes*.  
+
+En versiones más recientes de Java, existen los `record`, que son clases inmutables con implementaciones automáticas de los métodos `toString()`, `equals()` y `hashCode()`. Sin embargo, si se necesitan setters, estos deben definirse manualmente.  
+
 ## Objeto  
 Un **objeto** es una instancia de una clase, es decir, una entidad concreta creada a partir de la plantilla que define la clase.  
 

@@ -45,7 +45,13 @@ class Punto {
     public int getY() {
         return y;
     }
+
+    public String toString() {
+        return "Punto(x=" + x + ", y=" + y + ")";
+    }
 }
 ```
 
 En este ejemplo, la clase `Punto` define un punto en un plano cartesiano con coordenadas `x` e `y`. El método `distancia` calcula la distancia entre dos puntos utilizando la fórmula de la distancia. El método `main` crea dos puntos `p1` y `p2` y calcula la distancia entre ellos, siendo uno de ellos el origen de coordenadas.
+
+El método `distanciaAOrigen` calcula la distancia entre el punto actual y el origen de coordenadas (0, 0). El método `toString` devuelve una representación en cadena del punto.
