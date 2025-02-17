@@ -183,6 +183,15 @@ export default defineConfig({
                           slug: "contenido/proii/tema1/ejemplo-punto",
                         }
                       ],
+                    },
+                    {
+                      label: "Tema 2: Encapsulación",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/proii/tema2/apuntes",
+                        },
+                      ],
                     }
                   ],
                 }

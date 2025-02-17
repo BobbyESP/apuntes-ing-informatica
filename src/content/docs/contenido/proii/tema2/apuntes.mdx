@@ -1,0 +1,254 @@
+---
+title: Tema 2 - Encapsulación
+description: Ocultación de detalles de implementación de un objeto y exposición de métodos y propiedades necesarios para la interacción con él.
+---
+
+import { Aside, LinkCard } from "@astrojs/starlight/components";
+
+## Encapsulación y Ocultación de Información
+
+En **Programación Orientada a Objetos (POO)**, la **encapsulación** busca agrupar los datos y los métodos que operan sobre esos datos dentro de una misma unidad o clase. Esto permite controlar el acceso a los datos, limitando su manipulación a través de interfaces bien definidas.
+
+Por otro lado, la **ocultación de información** se refiere a restringir el acceso directo a los detalles internos de una clase, permitiendo solo interactuar con ella a través de métodos públicos. Este concepto está estrechamente relacionado con la encapsulación, ya que es la técnica para lograrla.
+
+### Ventajas de la Ocultación de Información
+
+1. **Seguridad**: Protege los datos internos de una clase, evitando modificaciones no deseadas o erróneas.
+2. **Mantenimiento**: Facilita la modificación de la implementación interna sin afectar a otras partes del sistema, ya que solo se expone lo necesario.
+3. **Modularidad**: Permite que las clases se mantengan independientes, facilitando la reutilización y reduciendo las dependencias.
+
+De esta forma, se logra un diseño más robusto y flexible.
+
+### Interfaz Pública de un Objeto o Clase en POO
+
+La **interfaz pública** de un objeto o clase se refiere al conjunto de métodos y propiedades **accesibles** desde fuera de la clase. A través de esta interfaz, los usuarios (aka programadores) pueden interactuar con los objetos, pero solo pueden acceder a las funcionalidades que la clase decide exponer.
+
+#### Relación con la Ocultación de Información
+
+La **interfaz pública** está directamente relacionada con la **ocultación de información**, ya que permite acceder solo a los aspectos necesarios y seguros del objeto, sin exponer los detalles internos o su implementación. Esto asegura que la información interna de la clase (como variables privadas o lógicas complejas) se mantenga oculta, previniendo modificaciones no deseadas y reduciendo el riesgo de errores.
+
+En resumen, la interfaz pública es el "puente" entre la clase y el exterior, y su propósito es ofrecer un control sobre qué información y operaciones son accesibles, facilitando así la protección de los datos internos.
+
+#### Diseño Cuidadoso de la Interfaz Pública
+
+Es crucial **diseñar con cuidado** la interfaz pública de una clase porque define cómo otras clases y usuarios interactúan con ella. Un diseño inapropiado puede llevar a **malos usos de la clase**, dificultad en el mantenimiento o extensión del sistema, y aumento de la **fragilidad del código**. Además, una interfaz pública bien pensada facilita la **modularidad** y **reutilización** del código.
+
+#### Cambios en la Interfaz Pública
+
+Cambiar la interfaz pública **no es fácil**, ya que cualquier modificación puede afectar a otras partes del sistema que dependen de esa interfaz. Esto puede requerir **ajustes en múltiples componentes** o **romper la compatibilidad** hacia atrás (_backwards compatibility_), lo que genera posibles errores o la necesidad de reescribir otras partes del código. Por lo tanto, **se recomienda planificar y estabilizar la interfaz** lo antes posible en el desarrollo.
+
+## Invariantes de Clase
+
+Las **invariantes de clase** son condiciones o propiedades que **deben mantenerse siempre verdaderas** durante la vida de un objeto. Estas reglas garantizan que el objeto se encuentre en un estado válido y consistente. Por ejemplo, si una clase representa una cuenta bancaria, una invariante podría ser que el saldo nunca puede ser negativo.
+
+## Ejemplo de la clase `Punto` en Java
+
+Véase también:
+
+<LinkCard
+  title="Ejemplo con una clase Punto"
+  description="Ejemplo de una clase Punto en Java que calcula la distancia entre dos de ellos o desde el origen."
+  href="/contenido/proii/tema1/ejemplo-punto"
+/>
+
+---
+
+```java frame="terminal" title="Clase Punto en Java con ocultación de información"
+public class Punto {
+    // Atributos privados (ocultación de información)
+    private double x;
+    private double y;
+
+    // Constructor para inicializar las coordenadas
+    public Punto(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    // Método público para calcular la distancia al origen (0,0)
+    public double calcularDistanciaAOrigen() {
+        return Math.sqrt(x * x + y * y);
+    }
+
+    // Métodos getter para obtener las coordenadas, si es necesario
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+}
+```
+
+### Interfaz Pública de la Clase `Punto`
+
+La **interfaz pública** de la clase `Punto` está formada por:
+
+1. **El constructor** `Punto(double x, double y)` que permite crear objetos de tipo `Punto`.
+2. **El método** `calcularDistanciaAOrigen()`, que devuelve la distancia entre el punto y el origen (0,0).
+3. **Los métodos getters** `getX()` y `getY()`, que permiten acceder a las coordenadas privadas del punto, si fuera necesario.
+
+### Significado de `public` y `private`
+
+- **`public`**: Un miembro declarado como `public` es accesible desde **cualquier otra clase**. Esto significa que cualquier parte del código puede utilizar este miembro sin restricciones.
+- **`private`**: Un miembro declarado como `private` es accesible solo dentro de la propia **clase**. Es decir, otros objetos o clases no pueden acceder directamente a estos miembros, lo que ayuda a **ocultar** detalles internos y a proteger la integridad de los datos.
+
+En este ejemplo, las coordenadas `x` y `y` son `private` para evitar que otras clases las modifiquen directamente, mientras que el método `calcularDistanciaAOrigen()` es `public` para que cualquier usuario de la clase pueda calcular la distancia sin manipular las coordenadas directamente.
+
+En Java, los modificadores de acceso (`public`, `private`, `protected`) se pueden aplicar a clases, atributos y métodos para controlar su visibilidad y acceso desde otras partes del código. En otros lenguajes de programación orientados a objetos, como C++, C#, Python, etc., también existen conceptos similares para lograr la encapsulación y la ocultación de información, pero en esencia es lo mismo.
+
+#### Acceso a variables privadas desde métodos mediante un objeto de la misma clase
+
+Los miembros privados de instancia de un objeto **no se pueden acceder desde otras clases, pero sí se pueden acceder desde otros objetos de la misma clase**. Esto se debe a que, aunque los miembros sean privados, los métodos dentro de la misma clase pueden acceder a ellos sin restricciones.
+
+```java frame="terminal" title="Acceso a miembros privados desde métodos de la misma clase"
+public class Punto {
+    private double x;
+    private double y;
+
+    // Constructor para inicializar las coordenadas
+    public Punto(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    // Método para calcular la distancia al origen
+    public double calcularDistanciaAOrigen() {
+        return Math.sqrt(x * x + y * y);
+    }
+
+    // Método para calcular la distancia a otro punto
+    public double calcularDistanciaAPunto(Punto otro) {
+        // El acceso a los miembros privados 'x' y 'y' de 'this' y 'otro' es válido
+        double dx = this.x - otro.x;
+        double dy = this.y - otro.y;
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+}
+```
+
+##### Explicación:
+
+- **Acceso desde la misma clase**: Dentro de la clase `Punto`, los métodos como `calcularDistanciaAPunto` pueden acceder a los miembros privados `x` y `y` de **todos los objetos de tipo `Punto`**, como el objeto actual (`this`) y el objeto pasado como parámetro (`otro`), ya que ambos son instancias de la misma clase.
+  
+- **Restricciones fuera de la clase**: Si intentáramos acceder a `x` o `y` desde una clase externa, como una clase `Main`, esto no sería posible directamente, ya que los miembros son privados.
+
+##### Conclusión:
+
+El acceso a los miembros privados está restringido **fuera de la clase**. Sin embargo, dentro de la misma clase, **otros objetos** de la misma clase pueden acceder a esos miembros privados, ya que los métodos de la misma clase tienen acceso completo a ellos.
+
+## Métodos Getter y Setter
+
+En los lenguajes orientados a objetos, los **métodos getter** y **setter** son **métodos especiales** que permiten acceder y modificar los valores de los atributos privados de una clase. Estos métodos son fundamentales para la **encapsulación**, ya que permiten controlar cómo se accede y se modifican los datos de un objeto.
+
+- **Getter**: Es un método que se utiliza para **obtener** el valor de un atributo privado de una clase. Su propósito es proporcionar una forma segura de acceder a los valores de las propiedades privadas sin permitir su modificación directa.
+
+- **Setter**: Es un método que se utiliza para **establecer** o **modificar** el valor de un atributo privado de una clase. Los setters permiten controlar cómo se asignan los valores a los atributos, y se pueden incluir validaciones antes de cambiar el valor.
+
+### Ejemplo en Java
+
+```java frame="terminal" title="Clase Persona con getters y setters en Java"
+public class Persona {
+    private String nombre; // Atributo privado
+
+    // Getter para obtener el valor de 'nombre'
+    public String getNombre() {
+        return nombre;
+    }
+
+    // Setter para establecer el valor de 'nombre'
+    public void setNombre(String nombre) {
+        // Validación antes de asignar el valor
+        if (nombre != null && !nombre.isEmpty()) {
+            this.nombre = nombre;
+        }
+    }
+}
+```
+
+### Explicación
+
+- **Método Getter (`getNombre`)**: Permite acceder al valor del atributo `nombre` sin modificarlo directamente desde fuera de la clase.
+  
+- **Método Setter (`setNombre`)**: Permite modificar el valor de `nombre` de manera controlada. En este caso, también se incluye una validación para asegurarse de que el valor no sea nulo o vacío.
+
+### Beneficios de los Getters y Setters
+1. **Encapsulación**: Permiten ocultar los detalles internos de una clase, controlando el acceso a los datos privados.
+2. **Validación**: A través de los setters, se puede validar o modificar los valores antes de asignarlos a los atributos.
+3. **Mantenimiento**: Facilitan el mantenimiento del código, ya que los cambios en el comportamiento de los atributos (como validaciones o transformaciones) se pueden hacer en un solo lugar sin afectar otras clases que usan esos atributos.
+
+En resumen, los **getters** y **setters** son herramientas esenciales para gestionar el acceso a los datos privados de un objeto de manera controlada y segura en la programación orientada a objetos.
+
+## ¿Qué significa "seguridad" en programación?
+
+En POO, la "seguridad" a la que nos referimos está más relacionada con la **integridad de los datos** y la **consistencia del programa**. La **ocultación de información** (mediante la encapsulación) asegura que los detalles internos de un objeto, como sus atributos y métodos, solo puedan ser modificados a través de **interacciones controladas**; no nos estamos refiriendo directamente a la seguridad en el sentido de **protección contra hackeos** o **ataques externos**.
+
+### Beneficios relacionados con la seguridad:
+
+1. **Protección de datos**: Al hacer que los atributos sean privados y acceder a ellos solo a través de métodos públicos (getters y setters), evitamos que otros objetos o clases modifiquen los datos directamente de manera incorrecta o no deseada. Esto ayuda a mantener el estado válido y consistente del objeto.
+   
+2. **Prevención de errores**: Al controlar el acceso a los atributos, podemos prevenir modificaciones indeseadas que podrían alterar el comportamiento del programa. Por ejemplo, en un setter podemos añadir validaciones para garantizar que los valores que se asignan a los atributos son correctos.
+
+3. **Facilita el mantenimiento**: Si los detalles de implementación están ocultos, podemos modificar la lógica interna de la clase sin afectar otras partes del sistema. Esto mejora la estabilidad y reduce la posibilidad de introducir errores en el sistema debido a cambios imprevistos.
+
+### Seguridad en el contexto de protección contra hackeos
+
+La seguridad contra hackeos, como ataques externos o vulnerabilidades de un sistema, implica medidas adicionales como **cifrado**, **control de acceso** y **defensa contra inyecciones de código**. La ocultación de información en POO no está directamente relacionada con estos aspectos de la seguridad informática, sino que más bien ayuda a **proteger la estructura interna** de los datos dentro del programa, asegurando que el acceso y las modificaciones sean más seguras y predecibles.
+
+La "seguridad" que se menciona en relación con la ocultación de información tiene que ver con la protección de la **integridad de los datos** y la **consistencia del sistema**, pero no es un concepto de seguridad informática en el sentido de evitar hackeos.
+
+## Diferencia entre Miembro de Instancia y Miembro de Clase
+
+- **Miembro de Instancia**: Es un atributo o método que **pertenece a una instancia específica** de la clase. Cada objeto creado a partir de la clase tiene su propia copia de estos miembros. Se accede a ellos a través de una instancia del objeto.
+  
+- **Miembro de Clase**: Es un atributo o método que **pertenece a la propia clase**, no a una instancia en particular. Los miembros de clase son compartidos por todas las instancias de esa clase. Se accede a ellos a través de la clase o mediante una instancia, pero no dependen de ninguna instancia específica.
+
+### ¿Los Miembros de Clase también se pueden Ocultar?
+
+Sí, los **miembros de clase** también se pueden ocultar mediante el uso de **modificadores de acceso** como `private`, `protected`, o `public`. Esto controla la visibilidad y el acceso a estos miembros. Por ejemplo, un miembro de clase declarado como `private` solo será accesible dentro de la propia clase, no desde otras clases.
+
+## Constructores privados
+
+Tiene sentido que los **constructores sean privados** en algunos casos, como en el patrón de diseño **Singleton**.
+
+### ¿Por qué tendría sentido?
+
+1. **Controlar la creación de instancias**: Si un constructor es privado, se puede evitar que se creen instancias de una clase directamente desde fuera de ella. Esto es útil cuando quieres controlar el número de instancias que se crean, como en el caso del **Singleton**, donde solo se permite una única instancia de la clase.
+
+2. **Usar métodos estáticos**: Con un constructor privado, la creación de objetos de esa clase se puede manejar a través de métodos estáticos dentro de la misma clase, lo que da más control sobre cómo y cuándo se crean las instancias.
+
+Un **constructor privado** es una técnica válida que permite restringir la creación de instancias de una clase y forzar la implementación de patrones de diseño que requieren un control estricto sobre las instancias.
+
+Claro, aquí tienes un ejemplo del patrón **Singleton** en Java, donde el constructor es privado para asegurar que solo haya una instancia de la clase:
+
+### Ejemplo de patrón Singleton con constructor privado
+
+```java frame="terminal" title="Implementación del patrón Singleton en Java"
+public class Singleton {
+    // Atributo privado y estático para almacenar la única instancia
+    private static Singleton instancia;
+
+    // Constructor privado para evitar que se creen instancias fuera de la clase
+    private Singleton() {
+        // Inicialización si es necesario
+    }
+
+    // Método público y estático para obtener la instancia única
+    public static Singleton getInstancia() {
+        if (instancia == null) {
+            instancia = new Singleton(); // Se crea la instancia solo si no existe
+        }
+        return instancia;
+    }
+}
+```
+
+### Explicación
+
+1. **Constructor privado**: El constructor de la clase `Singleton` es **privado**, lo que evita que otros objetos o clases puedan crear nuevas instancias de `Singleton` directamente.
+  
+2. **Método estático `getInstancia()`**: La única manera de acceder a la instancia de la clase es a través de este método. Si no se ha creado previamente la instancia, el método la crea; si ya existe, simplemente devuelve la instancia existente. Esto garantiza que siempre haya **una sola instancia** de la clase, cumpliendo con el principio del patrón Singleton.
+
+Este enfoque asegura que solo haya una única instancia de la clase `Singleton` durante la ejecución del programa, lo que es útil cuando se requiere una sola fuente de datos o un controlador centralizado, como para una conexión a base de datos o configuración global.
+
