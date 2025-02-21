@@ -131,20 +131,35 @@ public class Punto {
 ##### Explicación:
 
 - **Acceso desde la misma clase**: Dentro de la clase `Punto`, los métodos como `calcularDistanciaAPunto` pueden acceder a los miembros privados `x` y `y` de **todos los objetos de tipo `Punto`**, como el objeto actual (`this`) y el objeto pasado como parámetro (`otro`), ya que ambos son instancias de la misma clase.
-  
 - **Restricciones fuera de la clase**: Si intentáramos acceder a `x` o `y` desde una clase externa, como una clase `Main`, esto no sería posible directamente, ya que los miembros son privados.
 
 ##### Conclusión:
 
 El acceso a los miembros privados está restringido **fuera de la clase**. Sin embargo, dentro de la misma clase, **otros objetos** de la misma clase pueden acceder a esos miembros privados, ya que los métodos de la misma clase tienen acceso completo a ellos.
 
-## Métodos Getter y Setter
+## Métodos Getter y Setter y Acceso a Atributos
 
-En los lenguajes orientados a objetos, los **métodos getter** y **setter** son **métodos especiales** que permiten acceder y modificar los valores de los atributos privados de una clase. Estos métodos son fundamentales para la **encapsulación**, ya que permiten controlar cómo se accede y se modifican los datos de un objeto.
+En los lenguajes orientados a objetos, los **métodos getter** y **setter** son herramientas esenciales que permiten acceder y modificar los valores de los atributos privados de una clase de manera controlada y segura, reforzando el principio de **encapsulación**.
 
-- **Getter**: Es un método que se utiliza para **obtener** el valor de un atributo privado de una clase. Su propósito es proporcionar una forma segura de acceder a los valores de las propiedades privadas sin permitir su modificación directa.
+- **Getter**: Es un método especial utilizado para **obtener** el valor de un atributo privado sin permitir su modificación directa. Proporciona una forma segura de acceder a la información interna del objeto.
 
-- **Setter**: Es un método que se utiliza para **establecer** o **modificar** el valor de un atributo privado de una clase. Los setters permiten controlar cómo se asignan los valores a los atributos, y se pueden incluir validaciones antes de cambiar el valor.
+- **Setter**: Es el método utilizado para **establecer** o **modificar** el valor de un atributo privado. Permite incorporar validaciones o lógica adicional antes de asignar un nuevo valor, asegurando que se mantengan las **invariantes de clase** (condiciones que deben cumplirse para que el objeto tenga un estado válido).
+
+### Beneficios de Usar Getters y Setters
+
+1. **Encapsulación**: Al ocultar los detalles internos de la clase, se controla el acceso a los datos y se evita que cualquier parte del código modifique los atributos de manera indiscriminada.
+2. **Validación y Seguridad**: Los setters permiten validar o transformar los valores antes de asignarlos, garantizando que se cumplan las condiciones necesarias para el estado correcto del objeto.
+3. **Mantenimiento**: Centralizar el acceso y la modificación de los atributos en métodos específicos facilita futuras modificaciones o mejoras en la lógica interna sin afectar a las demás partes del código.
+
+### Información sobre Atributos
+
+La convención habitual en programación orientada a objetos es declarar los atributos como **privados** (`private`) y exponerlos mediante getters y setters solo cuando sea necesario. Esto se debe a que:
+
+- Declarar un atributo como **público** permitiría que cualquier parte del programa lo modificara libremente, rompiendo la encapsulación y dificultando el mantenimiento del código.
+- Mantener los atributos privados ayuda a garantizar las **invariantes de clase**, es decir, las condiciones que deben cumplirse para que el objeto tenga un estado válido en todo momento.
+- Al centralizar el acceso a través de métodos controlados, se puede añadir lógica, validaciones o transformaciones que aseguren la coherencia y la integridad de los datos.
+
+En resumen, usar getters y setters y declarar los atributos como privados es una práctica recomendada para mantener un código más seguro, modular y fácil de mantener en la programación orientada a objetos.
 
 ### Ejemplo en Java
 
@@ -170,15 +185,7 @@ public class Persona {
 ### Explicación
 
 - **Método Getter (`getNombre`)**: Permite acceder al valor del atributo `nombre` sin modificarlo directamente desde fuera de la clase.
-  
 - **Método Setter (`setNombre`)**: Permite modificar el valor de `nombre` de manera controlada. En este caso, también se incluye una validación para asegurarse de que el valor no sea nulo o vacío.
-
-### Beneficios de los Getters y Setters
-1. **Encapsulación**: Permiten ocultar los detalles internos de una clase, controlando el acceso a los datos privados.
-2. **Validación**: A través de los setters, se puede validar o modificar los valores antes de asignarlos a los atributos.
-3. **Mantenimiento**: Facilitan el mantenimiento del código, ya que los cambios en el comportamiento de los atributos (como validaciones o transformaciones) se pueden hacer en un solo lugar sin afectar otras clases que usan esos atributos.
-
-En resumen, los **getters** y **setters** son herramientas esenciales para gestionar el acceso a los datos privados de un objeto de manera controlada y segura en la programación orientada a objetos.
 
 ## ¿Qué significa "seguridad" en programación?
 
@@ -187,7 +194,6 @@ En POO, la "seguridad" a la que nos referimos está más relacionada con la **in
 ### Beneficios relacionados con la seguridad:
 
 1. **Protección de datos**: Al hacer que los atributos sean privados y acceder a ellos solo a través de métodos públicos (getters y setters), evitamos que otros objetos o clases modifiquen los datos directamente de manera incorrecta o no deseada. Esto ayuda a mantener el estado válido y consistente del objeto.
-   
 2. **Prevención de errores**: Al controlar el acceso a los atributos, podemos prevenir modificaciones indeseadas que podrían alterar el comportamiento del programa. Por ejemplo, en un setter podemos añadir validaciones para garantizar que los valores que se asignan a los atributos son correctos.
 
 3. **Facilita el mantenimiento**: Si los detalles de implementación están ocultos, podemos modificar la lógica interna de la clase sin afectar otras partes del sistema. Esto mejora la estabilidad y reduce la posibilidad de introducir errores en el sistema debido a cambios imprevistos.
@@ -201,7 +207,6 @@ La "seguridad" que se menciona en relación con la ocultación de información t
 ## Diferencia entre Miembro de Instancia y Miembro de Clase
 
 - **Miembro de Instancia**: Es un atributo o método que **pertenece a una instancia específica** de la clase. Cada objeto creado a partir de la clase tiene su propia copia de estos miembros. Se accede a ellos a través de una instancia del objeto.
-  
 - **Miembro de Clase**: Es un atributo o método que **pertenece a la propia clase**, no a una instancia en particular. Los miembros de clase son compartidos por todas las instancias de esa clase. Se accede a ellos a través de la clase o mediante una instancia, pero no dependen de ninguna instancia específica.
 
 ### ¿Los Miembros de Clase también se pueden Ocultar?
@@ -247,8 +252,302 @@ public class Singleton {
 ### Explicación
 
 1. **Constructor privado**: El constructor de la clase `Singleton` es **privado**, lo que evita que otros objetos o clases puedan crear nuevas instancias de `Singleton` directamente.
-  
+
 2. **Método estático `getInstancia()`**: La única manera de acceder a la instancia de la clase es a través de este método. Si no se ha creado previamente la instancia, el método la crea; si ya existe, simplemente devuelve la instancia existente. Esto garantiza que siempre haya **una sola instancia** de la clase, cumpliendo con el principio del patrón Singleton.
 
 Este enfoque asegura que solo haya una única instancia de la clase `Singleton` durante la ejecución del programa, lo que es útil cuando se requiere una sola fuente de datos o un controlador centralizado, como para una conexión a base de datos o configuración global.
 
+## Miembros de clase con ejemplos
+
+Refiriéndonos a la **primera pregunta** ("¿Cómo se indican los miembros de clase en Java?"), recordamos que se utiliza la palabra clave **`static`** para definir atributos y métodos que pertenecen a la clase en lugar de a cada instancia individual. En nuestro ejemplo, podemos agregar dos atributos estáticos para registrar, de forma global, los valores máximos de `x` e `y` establecidos en todos los puntos creados.
+
+Respecto a la **segunda pregunta** ("¿Cómo sería un método factoría dentro de la clase Punto para construir un Punto a partir de dos coordenadas redondeadas al entero más cercano?"), se puede definir un método factoría **estático** que reciba dos coordenadas de tipo `double`, las redondee usando `Math.round()` y devuelva un nuevo `Punto`. El código del método sería:
+
+```java
+public static Punto crearRedondeado(double x, double y) {
+    return new Punto((int) Math.round(x), (int) Math.round(y));
+}
+```
+
+Finalmente, en cuanto a la **tercera pregunta** ("Cambia la implementación de Punto. En vez de dos double, emplea un array interno de dos posiciones, intentando no modificar la interfaz pública de la clase"), se modifica la representación interna para usar un array de dos posiciones en lugar de atributos separados para `x` e `y`. Así se preserva la interfaz pública (los métodos `getX()` y `getY()` seguirán funcionando igual), pero se mejora la gestión interna de los datos.
+
+---
+
+### Implementación Unificada de la Clase `Punto`
+
+```java frame="terminal" title="Clase Punto con miembros de clase y cambios internos"
+class Punto {
+    // Representación interna: array de dos posiciones para almacenar las coordenadas [x, y]
+    private final int[] coordenadas = new int[2];
+
+    // Miembros de clase (atributos estáticos) para almacenar los valores máximos de x e y
+    private static int maxX = Integer.MIN_VALUE;
+    private static int maxY = Integer.MIN_VALUE;
+
+    // Constructor
+    public Punto(int x, int y) {
+        this.coordenadas[0] = x;
+        this.coordenadas[1] = y;
+        actualizarMaximos(x, y);
+    }
+
+    // Método privado para actualizar los valores máximos globales
+    private static void actualizarMaximos(int x, int y) {
+        if (x > maxX) maxX = x;
+        if (y > maxY) maxY = y;
+    }
+
+    // Método factoría que crea un Punto redondeando las coordenadas al entero más cercano
+    public static Punto crearRedondeado(double x, double y) {
+        return new Punto((int) Math.round(x), (int) Math.round(y));
+    }
+
+    // Método para calcular la distancia al origen
+    public float distanciaAOrigen() {
+        return distancia(new Punto(0, 0));
+    }
+
+    // Método para calcular la distancia entre dos puntos
+    public float distancia(Punto p) {
+        return (float) Math.sqrt(
+            Math.pow(p.coordenadas[0] - this.coordenadas[0], 2) +
+            Math.pow(p.coordenadas[1] - this.coordenadas[1], 2)
+        );
+    }
+
+    // Getters para acceder a los atributos, sin modificar la interfaz pública
+    public int getX() {
+        return coordenadas[0];
+    }
+
+    public int getY() {
+        return coordenadas[1];
+    }
+
+    // Métodos estáticos para consultar los valores máximos de x e y
+    public static int getMaxX() {
+        return maxX;
+    }
+
+    public static int getMaxY() {
+        return maxY;
+    }
+
+    // Representación en cadena del objeto
+    public String toString() {
+        return "Punto(x=" + coordenadas[0] + ", y=" + coordenadas[1] + ")";
+    }
+}
+```
+
+---
+
+### Conclusiones
+
+- **Primera pregunta:** Se usan miembros de clase (`static`) para mantener datos comunes (en este caso, `maxX` y `maxY`), que se actualizan en el constructor.
+- **Segunda pregunta:** Se implementa un método factoría `crearRedondeado` (estático) para crear un `Punto` a partir de coordenadas redondeadas al entero más cercano.
+- **Tercera pregunta:** Se modifica la implementación interna de la clase `Punto` para usar un array de dos posiciones en lugar de atributos separados, manteniendo intacta la interfaz pública a través de los métodos `getX()` y `getY()`.
+
+## Inmutabilidad de una Clase
+
+- **Definición:**  
+  Una clase es **inmutable** cuando, una vez creado un objeto, su estado interno no puede modificarse. Esto se consigue generalmente declarando todos sus atributos como `final` y evitando métodos que alteren su contenido. Cualquier "modificación" en una clase inmutable implica la creación de un nuevo objeto.
+
+- **Ventajas:**
+  - **Seguridad y Consistencia:** Garantiza que el estado del objeto permanezca constante a lo largo de su ciclo de vida, evitando cambios inesperados.
+  - **Facilita la Concurrencia:** Los objetos inmutables pueden ser compartidos entre múltiples hilos sin necesidad de sincronización, ya que su estado no varía.
+  - **Simplifica la Depuración:** Al no existir efectos secundarios por modificaciones, es más sencillo rastrear errores y comportamientos inesperados.
+
+## Métodos modificadores
+
+- **Definición:**  
+  Un **método modificador** es aquel que altera el estado interno de un objeto. Esto puede incluir métodos setters, pero también otros métodos que cambian el estado o la estructura interna del objeto.
+
+- **¿Es siempre un setter?**  
+  No necesariamente. Si bien un **setter** es un tipo específico de método modificador (usado para asignar un nuevo valor a un atributo), existen otros métodos modificadores que realizan operaciones más complejas o que modifican varios atributos simultáneamente.
+
+- **Convención sobre Setters:**  
+  No es recomendable incluir métodos setter de manera automática en todas las clases.
+  - Se debe evaluar si es necesario permitir la modificación del estado del objeto.
+  - En muchos casos, es preferible diseñar clases inmutables para proteger las **invariantes de clase** (condiciones que siempre deben cumplirse para que el objeto tenga un estado válido) y evitar efectos secundarios no deseados.
+
+## La clase String en Java
+
+- **Inmutabilidad:**  
+  La clase **String** es inmutable, lo que significa que una vez creado un objeto String, su contenido no puede cambiar.
+
+- **Concatenación de Cadenas:**  
+  Al concatenar dos cadenas, se crea un **nuevo objeto String** con el resultado de la concatenación, mientras que los objetos originales permanecen sin cambios.
+
+  - **Ejemplo**:
+    ```java
+    String s1 = "Hola";
+    String s2 = " Mundo";
+    String resultado = s1 + s2; // Se crea un nuevo objeto "Hola Mundo"
+    ```
+
+- **Operaciones con Múltiples Concatenaciones:**  
+  Si se necesita construir una cadena muy larga mediante concatenaciones repetidas, es recomendable utilizar **StringBuilder** (o **StringBuffer** en entornos de _multithreading_) para mejorar el rendimiento y evitar la creación de múltiples objetos intermedios.
+
+## Comparación de objetos en Java
+
+- **Identidad vs. Contenido:**
+
+  - El operador `==` compara la **identidad** de los objetos (es decir, si ambos hacen referencia al mismo objeto en memoria).
+  - En muchos casos, es necesario comparar el **contenido** de los objetos.
+
+- **El Método `equals`:**
+  - Es un método heredado de la clase `Object` que se utiliza para comparar objetos.
+  - **Por defecto**, `equals` compara la identidad (similar a `==`), pero muchas clases (como String) lo **sobreescriben** para comparar el contenido de los objetos, esto se debe a que los objetos, por defecto comparan su _signature_ o firma que se genera mediante hashing,
+    por lo que no se compara contenido como tal, si no el hash de los objetos.
+  - Para comparar cadenas en Java por su contenido, se debe usar `equals` en lugar de `==`.
+    - Ejemplo:
+      ```java frame="terminal"
+      String s1 = new String("hola");
+      String s2 = new String("hola");
+      boolean iguales = s1.equals(s2); // Devuelve true
+      ```
+
+## Clases wrapper
+
+Las **clases wrapper** son clases diseñadas para encapsular (o "envolver") tipos de datos primitivos en objetos, lo que permite tratarlos de la misma manera que cualquier otro objeto en el paradigma de programación orientado a objetos. Actúan como un puente entre los tipos primitivos y el mundo de los objetos. Por ejemplo, en Java, el tipo primitivo `int` se "envuelve" en la clase `Integer`, lo que posibilita el uso de métodos y su almacenamiento en colecciones que solo admiten objetos, facilitando así la integración y el manejo uniforme de datos.
+
+### ¿Cómo se Hacen?
+
+En muchos lenguajes, la definición de clases wrapper está integrada en la biblioteca estándar. En Java, existen clases wrapper para cada tipo primitivo:
+
+- `int` → `Integer`
+- `double` → `Double`
+- `boolean` → `Boolean`
+- `char` → `Character`
+- _etc._
+
+El uso de estas clases es muy sencillo, ya que se pueden instanciar de forma similar a cualquier otra clase:
+
+```java
+int numeroPrimitivo = 5;
+Integer numeroWrapper = Integer.valueOf(numeroPrimitivo);  // Conversión explícita
+// O simplemente:
+Integer otroNumero = 5;  // Autoboxing (ver siguiente sección)
+```
+
+### ¿Es un Proceso Automático?
+
+Sí, en lenguajes como Java, se implementa un mecanismo conocido como **autoboxing** y **unboxing**:
+
+- **Autoboxing:** La conversión automática de un tipo primitivo a su correspondiente clase wrapper.
+- **Unboxing:** La conversión inversa, es decir, de un objeto wrapper a su tipo primitivo.
+
+Esto facilita la programación, ya que el compilador se encarga de convertir los tipos de forma automática sin necesidad de intervenciones explícitas.
+
+### Ventajas de Utilizar Clases Wrapper
+
+Utilizar clases wrapper ofrece diversas ventajas:
+
+- **Integración con Colecciones:** Las colecciones en Java (como `ArrayList`, `HashSet`, etc.) solo admiten objetos, por lo que es necesario utilizar wrappers para almacenar valores primitivos.
+- **Acceso a Métodos Utilitarios:** Las clases wrapper proporcionan métodos útiles para la conversión, comparación y manipulación de datos. Por ejemplo, `Integer.parseInt(String)` para convertir una cadena en un entero.
+- **Mayor Flexibilidad:** Permiten el uso de genéricos y otros mecanismos del lenguaje que requieren objetos.
+- **Compatibilidad y Uniformidad:** Facilitan un tratamiento homogéneo de los datos, integrando tanto tipos primitivos como objetos en un mismo modelo de programación.
+
+### ¿Todos los lenguajes orientados a objetos necesitan wrappers?
+
+No necesariamente. La necesidad de clases wrapper depende del diseño del lenguaje:
+
+- **Lenguajes como Java:** Distinguen entre tipos primitivos y objetos, por lo que las clases wrapper son esenciales para trabajar de forma uniforme en contextos que requieren objetos.
+- **Lenguajes como Ruby:** En estos lenguajes, prácticamente todo es un objeto. No existe la distinción entre tipos primitivos y objetos, eliminando la necesidad de clases wrapper.
+
+En resumen, las clases wrapper son una herramienta fundamental en lenguajes que separan los tipos primitivos de los objetos. Proporcionan una forma elegante y eficiente de integrar los valores primitivos en el modelo orientado a objetos, facilitando el manejo, la validación y el almacenamiento de datos en estructuras que requieren objetos.
+
+## Tipos de datos enumerados
+
+En la **Programación Orientada a Objetos (POO)**, un **tipo de dato enumerado** es una estructura que define un conjunto finito de valores posibles, representados por nombres simbólicos. Estos valores son constantes y, por lo general, representan un grupo de opciones mutuamente excluyentes, como días de la semana, estados de una máquina, o meses del año.
+
+### Tipos Enumerados en Java  
+
+En **Java**, un **enumerado (`enum`) es una clase especial** que extiende implícitamente de `java.lang.Enum<T>`. Aunque los enumerados parecen listas de constantes, en realidad son **objetos únicos y con comportamiento**, lo que les permite encapsular datos y métodos asociados a cada valor.  
+
+#### Ventajas de los Enumerados en Java 
+
+Los **`enum`** en Java ofrecen varias ventajas en términos de encapsulación y diseño de código:
+
+1. **Seguridad en tiempo de compilación:** Al definir un conjunto fijo de valores, se evitan errores por valores inválidos.  
+2. **Encapsulación y comportamiento:** Un `enum` puede incluir atributos privados, métodos y constructores, encapsulando datos y lógica asociada a cada valor.  
+3. **Legibilidad y mantenimiento:** Mejoran la claridad del código al evitar el uso de constantes numéricas o literales arbitrarios.  
+4. **Comparación eficiente:** Los valores de un `enum` se pueden comparar directamente con `==` en lugar de `equals()`, ya que son instancias únicas.  
+
+### Implementación del Enumerado `Mes` en Java
+
+A continuación, se define un **tipo de dato enumerado `Mes`** que:  
+
+- Contiene las **doce instancias** correspondientes a los meses del año.  
+- Guarda el **número de días** y el **ordinal del mes**.  
+- Proporciona métodos para determinar si el mes pertenece a **cada estación del año** (invierno, primavera, verano u otoño), dependiendo del **hemisferio**.  
+
+```java frame="terminal" title="Definición del Enumerado Mes en Java"
+public enum Mes {
+    ENERO(1, 31), FEBRERO(2, 28), MARZO(3, 31), ABRIL(4, 30),
+    MAYO(5, 31), JUNIO(6, 30), JULIO(7, 31), AGOSTO(8, 31),
+    SEPTIEMBRE(9, 30), OCTUBRE(10, 31), NOVIEMBRE(11, 30), DICIEMBRE(12, 31);
+
+    private final int ordinalMes;
+    private final int dias;
+
+    // Constructor privado del enum
+    Mes(int ordinalMes, int dias) {
+        this.ordinalMes = ordinalMes;
+        this.dias = dias;
+    }
+
+    // Obtener cuántos días tiene el mes
+    public int getDias() {
+        return dias;
+    }
+
+    // Obtener el número del mes (1-12)
+    public int getOrdinalMes() {
+        return ordinalMes;
+    }
+
+    // Método para determinar si es un mes de invierno según el hemisferio
+    public boolean esDeInvierno(boolean enHemisferioNorte) {
+        return enHemisferioNorte 
+            ? (this == DICIEMBRE || this == ENERO || this == FEBRERO) 
+            : (this == JUNIO || this == JULIO || this == AGOSTO);
+    }
+
+    // Método para determinar si es un mes de primavera según el hemisferio
+    public boolean esDePrimavera(boolean enHemisferioNorte) {
+        return enHemisferioNorte 
+            ? (this == MARZO || this == ABRIL || this == MAYO) 
+            : (this == SEPTIEMBRE || this == OCTUBRE || this == NOVIEMBRE);
+    }
+
+    // Método para determinar si es un mes de verano según el hemisferio
+    public boolean esDeVerano(boolean enHemisferioNorte) {
+        return enHemisferioNorte 
+            ? (this == JUNIO || this == JULIO || this == AGOSTO) 
+            : (this == DICIEMBRE || this == ENERO || this == FEBRERO);
+    }
+
+    // Método para determinar si es un mes de otoño según el hemisferio
+    public boolean esDeOtoño(boolean enHemisferioNorte) {
+        return enHemisferioNorte 
+            ? (this == SEPTIEMBRE || this == OCTUBRE || this == NOVIEMBRE) 
+            : (this == MARZO || this == ABRIL || this == MAYO);
+    }
+}
+```
+
+### Explicación de la Implementación  
+
+- **Definición de los valores del `enum`**: Cada mes se representa como una **constante**, con su número de **orden** en el año y el **número de días** que tiene (excepto febrero, que lo dejé en 28 días para simplificación).  
+- **Atributos privados**: `ordinalMes` almacena el número del mes (1-12) y `dias` indica cuántos días tiene.  
+- **Constructor privado**: Solo puede ser usado dentro del `enum` para inicializar los valores.  
+- **Métodos de consulta**: `getDias()` y `getOrdinalMes()` permiten obtener información sobre cada mes.  
+- **Métodos de estaciones**: `esDeInvierno()`, `esDePrimavera()`, `esDeVerano()` y `esDeOtoño()` determinan si el mes pertenece a una estación según el **hemisferio** proporcionado como argumento.  
+
+### Resumen de los enumerados  
+
+Los tipos enumerados en Java son una **herramienta poderosa** que permiten definir conjuntos finitos de valores con comportamiento asociado. En este ejemplo, `Mes` encapsula no solo el **nombre** de los meses, sino también **información adicional** sobre su número, cantidad de días y estación del año dependiendo del hemisferio.  
+
+Esto demuestra cómo los **`enum` en Java no son simples listas de constantes**, sino que pueden contener **atributos, métodos y lógica**, asegurando una mejor **organización**, **encapsulación** y **seguridad del código**.
