@@ -93,7 +93,9 @@ try {
 }
 ```
 
-Además, en Java se diferencia entre excepciones controladas (checked) y no controladas (unchecked). Las primeras deben ser declaradas en la firma del método (por ejemplo, `IOException` o `SQLException`), mientras que las segundas, como `NullPointerException` o `IllegalArgumentException`, no requieren dicha declaración. El uso de la palabra clave `throws` en la firma de un método documenta y propaga las excepciones, delegando su manejo al método llamador, lo que puede incluir incluso excepciones no controladas para advertir sobre posibles fallos. Además, es posible encadenar excepciones, es decir, lanzar una nueva excepción dentro de un bloque `catch` que encapsule la original, lo que ayuda a mantener la información completa del error sin exponer detalles de implementación innecesarios.
+Además, en Java se diferencia entre excepciones controladas (checked) y no controladas (unchecked). Las primeras deben ser declaradas en la firma del método (por ejemplo, `IOException` o `SQLException`), mientras que las segundas, como `NullPointerException` o `IllegalArgumentException`, no requieren dicha declaración.
+
+El uso de la palabra clave `throws` en la firma de un método documenta y propaga las excepciones, delegando su manejo al método llamador, lo que puede incluir incluso excepciones no controladas para advertir sobre posibles fallos. Además, es posible encadenar excepciones, es decir, lanzar una nueva excepción dentro de un bloque `catch` que encapsule la original, lo que ayuda a mantener la información completa del error sin exponer detalles de implementación innecesarios.
 
 ## Resumen
 
