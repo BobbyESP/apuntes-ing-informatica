@@ -1,0 +1,136 @@
+---
+title: Tema 3 - Excepciones
+description: Manejo de errores en Java mediante el uso de excepciones. 
+---
+
+## Control de Errores en C sin Excepciones
+
+En C se utilizan principalmente dos técnicas:
+
+- **Usando códigos de retorno:**  
+  Se pasa un puntero para almacenar un código de error y se devuelve el resultado de la función.  
+  ```c
+  float raiz(float numero, int *error) {
+      if (numero < 0) {
+          *error = 1;  // Código de error: número negativo
+          return 0.0;
+      }
+      *error = 0;  // Sin error
+      return sqrt(numero);
+  }
+  // Uso en main: verificar el valor de error tras la llamada.
+  ```
+
+- **Usando un valor especial de retorno:**  
+  Se establece `errno` y se retorna un valor que indique el error (por ejemplo, -1.0).  
+  ```c
+  float raiz(float numero) {
+      if (numero < 0) {
+          errno = EDOM;  // Establece variable global de error
+          return -1.0;   // Valor especial para indicar error
+      }
+      return sqrt(numero);
+  }
+  // Uso en main: comprobar el valor de errno tras la llamada.
+  ```
+
+---
+
+## Excepción
+
+Una **excepción** es un mecanismo de control de flujo que:
+- Interrumpe la ejecución normal cuando se detecta una situación "fuera de lo normal".
+- Se utiliza para separar la lógica principal del manejo de errores.
+- Permite que funciones indiquen errores que no pueden resolver, facilitando un código más legible y mantenible.
+
+### Ejemplo de Raíz Cuadrada en Java
+
+En Java, el manejo de errores se realiza mediante excepciones. Por ejemplo, en un método que calcula la raíz cuadrada se puede lanzar una excepción si el número es negativo, y capturarla posteriormente con un bloque `try-catch`:
+
+```java title="Calculadora.java" frame="terminal"
+public class Calculadora {
+    public double raiz(double numero) throws IllegalArgumentException {
+        if (numero < 0) {
+            throw new IllegalArgumentException("No se puede calcular la raíz de un número negativo");
+        }
+        return Math.sqrt(numero);
+    }
+    
+    public static void main(String[] args) {
+        Calculadora calc = new Calculadora();
+        try {
+            double resultado = calc.raiz(-5.0);
+            System.out.println("La raíz es: " + resultado);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+### Conceptos Clave de Excepciones en Java
+
+- **Lanzar una excepción:**  
+  Crear un objeto excepción y transferir el control al manejador mediante `throw`.
+
+- **Capturar una excepción:**  
+  Interceptar la excepción con un bloque `try-catch`, permitiendo su manejo sin interrumpir todo el programa.
+
+- **Propagar una excepción:**  
+  Dejar que la excepción suba en la pila de llamadas, lo que termina los métodos intermedios sin ejecutar el resto del código.
+
+En el ejemplo de la raíz cuadrada, si se lanza una excepción, el control se transfiere inmediatamente al bloque `catch` y las instrucciones posteriores en el `try` no se ejecutan.
+
+## Ventajas y Características de la Propagación Natural de Excepciones
+
+- **Código más limpio:**  
+  No es necesario verificar manualmente el resultado de cada función, ya que la excepción busca su manejador automáticamente.
+
+- **Separación de la lógica:**  
+  Se diferencia claramente el código normal del código dedicado al manejo de errores, mejorando la organización y la legibilidad.
+
+- **Encapsulación de información:**  
+  Las excepciones en Java son objetos que pueden contener un mensaje descriptivo, la traza de pila y la causa original del error. Esto facilita la depuración y permite crear jerarquías personalizadas mediante herencia.
+
+
+## Manejo Avanzado de Excepciones en Java
+
+- **Múltiples bloques `catch`:**  
+  Permiten manejar distintos tipos de excepciones. Solo se ejecuta el primer bloque que coincide con la excepción lanzada.
+
+- **Bloque `finally`:**  
+  Garantiza la ejecución de cierto código (como la liberación de recursos) sin importar si ocurre o no una excepción. Se ejecuta incluso si hay un `return` en el bloque `try`.
+
+Ejemplo con `finally`:
+```java title="LecturaArchivo.java" frame="terminal"
+FileInputStream file = null;
+try {
+    file = new FileInputStream("archivo.txt");
+    // Operaciones con el archivo
+} catch (IOException e) {
+    System.out.println("Error al leer el archivo: " + e.getMessage());
+} finally {
+    if (file != null) {
+        try {
+            file.close();
+        } catch (IOException e) {
+            System.out.println("Error al cerrar el archivo");
+        }
+    }
+}
+```
+
+- **Excepciones controladas vs. no controladas:**  
+  - *Controladas (checked):* Deben ser declaradas en la firma del método (ej. `IOException`, `SQLException`).  
+  - *No controladas (unchecked):* No requieren declaración explícita (ej. `NullPointerException`, `IllegalArgumentException`).
+
+- **Uso de `throws`:**  
+  Se utiliza para documentar y propagar excepciones, delegando el manejo al método llamador. Incluso se puede usar con excepciones no controladas para advertir de posibles fallos.
+
+- **Encadenamiento de excepciones:**  
+  Es posible lanzar una nueva excepción dentro de un bloque `catch`, encapsulando la excepción original para mantener información completa sobre el error. Esto es útil para abstraer detalles de implementación sin perder la causa raíz.
+
+
+## Resumen
+
+El manejo de errores mediante excepciones aporta robustez y claridad al código. Mientras C se basa en códigos de error y valores especiales, Java utiliza excepciones como objetos que encapsulan información detallada. Este enfoque permite separar la lógica normal del manejo de errores, facilita la depuración y mejora la mantenibilidad del código.

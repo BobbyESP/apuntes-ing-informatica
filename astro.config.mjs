@@ -192,6 +192,15 @@ export default defineConfig({
                           slug: "contenido/proii/tema2/apuntes",
                         },
                       ],
+                    },
+                    {
+                      label: "Tema 3: Excepciones",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/proii/tema3/apuntes",
+                        },
+                      ],
                     }
                   ],
                 }
