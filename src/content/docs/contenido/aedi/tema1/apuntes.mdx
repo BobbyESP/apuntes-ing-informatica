@@ -1,0 +1,204 @@
+---
+title: Tema 1 - Complejidad Computacional
+description: Análisis de la complejidad computacional de algoritmos mediante la notación O.
+---
+
+import Latex from "@components/Latex.astro";
+
+La eficiencia de un algoritmo es un factor fundamental en informática, ya que afecta directamente al rendimiento de los programas. La complejidad se encarga de medir el crecimiento del tiempo de ejecución y del uso de memoria conforme aumenta el tamaño de los datos de entrada.
+
+## ¿Cómo medir y comparar algoritmos?
+
+No basta con medir el tiempo de ejecución de un algoritmo en un ordenador específico, ya que distintos dispositivos, compiladores y lenguajes pueden afectar dicho tiempo. Para abordar este problema, se usa un análisis teórico que se basa en la notación O.
+
+## Notación O
+
+La **notación O** (o notación Big-O) describe el comportamiento asintótico de un algoritmo, centrándose en el término de mayor crecimiento y despreciando constantes y términos de menor orden. Por ejemplo:
+
+<Latex formula="O(an^2 + bn + c) = O(n^2)" display={true}/>
+
+Esta notación clasifica los algoritmos según su eficiencia:
+
+| Función          | Notación O  |
+|-----------------|-------------|
+| Constante       | O(1)        |
+| Logarítmica     | O(log n)    |
+| Lineal         | O(n)        |
+| Linealítmica    | O(n log n)  |
+| Cuadrática      | O(n²)       |
+| Cúbica         | O(n³)       |
+| Exponencial     | O(2ⁿ)       |
+| Factorial       | O(n!)       |
+
+### Propiedades de la Notación O
+
+Algunas reglas fundamentales en la notación O:
+- **Multiplicación por constantes:** \( O(k f(n)) = O(f(n)) \)
+- **Suma de funciones:** \( O(f(n)) + O(g(n)) = O(\max(f(n), g(n))) \)
+- **Multiplicación de funciones:** \( O(f(n)) \cdot O(g(n)) = O(f(n) \cdot g(n)) \)
+
+## Complejidad en Sentencias de Java
+
+El análisis de complejidad se puede aplicar a fragmentos de código para determinar su eficiencia.
+
+### Ciclos For
+
+El tiempo de ejecución de un bucle for es el tiempo de ejecución de su contenido multiplicado por el número de iteraciones:
+
+```java
+for (int i = 0; i < n; i++) {  // O(n)
+    k++;  // O(1)
+}
+```
+
+Aquí la complejidad es **O(n)**.
+
+### Bucles Anidados
+
+Si un bucle está dentro de otro, la complejidad total es el producto de las complejidades individuales:
+
+```java
+for (int j = 0; j < n; j++) {  // O(n)
+    for (int i = 0; i < n; i++) {  // O(n)
+        k += j * i;  // O(1)
+    }
+}
+```
+
+Aquí la complejidad es **O(n²)**.
+
+### Condicionales
+
+Un `if-else` se evalúa en el peor de los casos como el máximo entre ambas ramas:
+
+```java
+if (condicion) {
+    operacion1; // O(n)
+} else {
+    operacion2; // O(1)
+}
+```
+
+La complejidad es **O(n)**, ya que se toma la de mayor orden.
+
+## Ejemplo de Análisis de Complejidad: Subsecuencia de Suma Máxima
+
+Se busca la subsecuencia contigua de un array cuya suma sea máxima. Existen varias soluciones con distintas complejidades:
+
+### Algoritmo Ingenuo (O(n³))
+
+```java
+for (int i = 0; i < array.length; i++) {
+    for (int j = i; j < array.length; j++) {
+        int sumaActual = 0;
+        for (int k = i; k <= j; k++) {
+            sumaActual += array[k];
+        }
+        if (sumaActual > sumaMax) {
+            sumaMax = sumaActual;
+        }
+    }
+}
+```
+
+#### Paso 1: Primer bucle (`i`)
+
+El primer bucle tiene la siguiente estructura:
+```java
+for (int i = 0; i < array.length; i++) {
+```
+Este bucle se ejecuta `n` veces, donde `n` es el tamaño del arreglo `array`.
+
+#### Paso 2: Segundo bucle (`j`)
+
+Dentro del primer bucle, tenemos el segundo bucle:
+```java
+for (int j = i; j < array.length; j++) {
+```
+El valor de `j` comienza en `i` y termina en `array.length - 1`. Por lo tanto, el número de iteraciones del segundo bucle depende del valor de `i`. Para cada valor de `i`, el número de iteraciones del segundo bucle será `n - i`. 
+
+#### Paso 3: Tercer bucle (`k`)
+
+Dentro del segundo bucle, hay un tercer bucle:
+```java
+for (int k = i; k <= j; k++) {
+```
+Este bucle se ejecuta desde `k = i` hasta `k = j`, lo que significa que el número de iteraciones es `(j - i + 1)`.
+
+#### Análisis de la complejidad
+
+Ahora sumemos las complejidades de todos los bucles.
+
+1. **Bucle exterior (`i`)**: Se ejecuta `n` veces.
+2. **Bucle intermedio (`j`)**: Para cada valor de `i`, se ejecuta aproximadamente `n - i` veces.
+3. **Bucle interior (`k`)**: Para cada valor de `i` y `j`, se ejecuta aproximadamente `j - i + 1` veces.
+
+Por lo tanto, la complejidad total se obtiene sumando la cantidad total de iteraciones del bucle más interno:
+
+- El número de iteraciones para cada valor de `i` es la suma de las iteraciones del bucle interno para todos los valores de `j`:
+    <Latex formula="\sum_{i=0}^{n-1} \sum_{j=i}^{n-1} (j - i + 1)" display={true}/>
+
+Al calcular esta suma, obtenemos una complejidad en el orden de \( O(n^3) \). Esto se debe a que el número total de iteraciones crece cúbicamente con el tamaño del arreglo debido a los tres bucles anidados.
+
+#### Conclusión:
+
+La complejidad temporal de este código es **O(n³)**.
+
+### Optimización a O(n²)
+
+Se evita recalcular sumas internas:
+
+```java
+for (int i = 0; i < array.length; i++) {
+    int sumaActual = 0;
+    for (int j = i; j < array.length; j++) {
+        sumaActual += array[j];
+        if (sumaActual > sumaMax) {
+            sumaMax = sumaActual;
+        }
+    }
+}
+```
+
+### Algoritmo Óptimo (Kadane, O(n))
+
+Se basa en mantener un acumulador que se reinicia cuando la suma es negativa:
+
+```java
+int sumaActual = 0;
+for (int j = 0; j < array.length; j++) {
+    sumaActual = Math.max(0, sumaActual + array[j]);
+    sumaMax = Math.max(sumaMax, sumaActual);
+}
+```
+
+## Complejidad Logarítmica
+
+La complejidad **O(log n)** ocurre cuando el tamaño de los datos de entrada se reduce en cada iteración. Ejemplos típicos:
+
+1. **Búsqueda binaria:** Cada iteración divide el problema a la mitad.
+2. **Exponenciación rápida:** La exponenciación modular reduce la potencia en cada paso.
+3. **Árboles balanceados:** Operaciones como inserción y búsqueda se ejecutan en tiempo logarítmico.
+
+### Ejemplo: Búsqueda Binaria (O(log n))
+
+```java
+int busquedaBinaria(int[] array, int elem) {
+    int inicio = 0, fin = array.length - 1;
+    while (inicio <= fin) {
+        int medio = inicio + (fin - inicio) / 2;
+        if (array[medio] == elem) return medio;
+        else if (array[medio] < elem) inicio = medio + 1;
+        else fin = medio - 1;
+    }
+    return -1;
+}
+```
+
+## Consideraciones Finales sobre Eficiencia
+
+- **Para problemas pequeños**, la complejidad no es crítica.
+- **Para problemas grandes**, elegir el algoritmo adecuado **marca la diferencia**.
+- **El acceso a memoria secundaria** es una de las operaciones más costosas, por lo que debe minimizarse.
+
+La elección de la estructura de datos y el algoritmo correcto es clave para optimizar la eficiencia de un programa.

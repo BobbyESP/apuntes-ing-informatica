@@ -39,6 +39,26 @@ export default defineConfig({
           label: "Asignaturas",
           items: [
             {
+              label: "Algoritmos y Estructuras de Datos",
+              collapsed: true,
+              items: [
+                {
+                  label: "Temas",
+                  items: [
+                    {
+                      label: "Tema 1: Complejidad computacional",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/aedi/tema1/apuntes",
+                        },
+                      ],
+                    }
+                  ]
+                }
+              ]
+            },
+            {
               label: "Programación I",
               collapsed: true,
               items: [
