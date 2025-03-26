@@ -59,6 +59,26 @@ export default defineConfig({
               ]
             },
             {
+              label: "Arquitectura de Computadores I",
+              collapsed: true,
+              items: [
+                {
+                  label: "Temas",
+                  items: [
+                    {
+                      label: "Tema 1: Introducción a la arquitectura de computadores",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/aci/tema1/apuntes",
+                        },
+                      ],
+                    }
+                  ],
+                },
+              ],
+            },
+            {
               label: "Programación I",
               collapsed: true,
               items: [
