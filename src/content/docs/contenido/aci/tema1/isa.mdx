@@ -1,0 +1,37 @@
+---
+title: ISA - Instruction Set Architecture
+description: Concepto de ISA y su importancia en la arquitectura de computadoras.
+keywords: ISA, Instruction Set Architecture, arquitectura de computadoras, conjunto de instrucciones, microprocesadores, diseño de computadoras
+---
+La **ISA (Instruction Set Architecture)** o **Arquitectura del Conjunto de Instrucciones** es el conjunto de reglas y especificaciones que define cómo el software se comunica con el hardware de un procesador. Es decir, establece qué instrucciones entiende el procesador y cómo debe ejecutarlas.  
+
+## **Elementos clave**  
+Una ISA define:  
+1. **Conjunto de instrucciones**: Las operaciones básicas que el procesador puede ejecutar, como suma, resta, carga de datos en memoria, saltos condicionales, etc.  
+2. **Modos de direccionamiento**: Cómo se accede a los datos en memoria (directo, indirecto, inmediato, etc.).  
+3. **Registros**: Cantidad, tipo y propósito de los registros disponibles en el procesador.  
+4. **Tipos de datos soportados**: Números enteros, de punto flotante, caracteres, etc.  
+5. **Formato de instrucciones**: Longitud y estructura de las instrucciones (por ejemplo, cuántos bits ocupa el opcode y los operandos).  
+6. **Modo de operación del procesador**: Cómo maneja interrupciones, cambios de contexto y modos de ejecución (usuario, kernel, etc.).  
+
+### **Ejemplo en acción**  
+Supongamos que tenemos una CPU con la siguiente instrucción en su ISA:  
+```asm
+ADD R1, R2, R3   ; Suma el valor en R2 con el valor en R3 y almacena el resultado en R1
+```
+La ISA define que esta operación:
+- Se traduce en una secuencia de bits específica que el procesador puede interpretar.  
+- Usa registros en lugar de memoria para mejorar la velocidad de ejecución.  
+
+### **Cuales son las más populares**  
+- **x86** (Intel, AMD) → Arquitectura usada en la mayoría de PC y servidores.  
+- **ARM** (Apple, Qualcomm) → Predomina en dispositivos móviles y embebidos.  
+- **RISC-V** → Arquitectura abierta y modular en crecimiento.  
+- **MIPS, PowerPC** → Utilizadas en sistemas embebidos y consolas antiguas.  
+
+## **¿Por qué es importante?**  
+- **Define la compatibilidad**: Un software compilado para una ISA específica no funcionará en otra sin recompilación o emulación.  
+- **Influye en el rendimiento y consumo energético**: ISA como ARM están diseñadas para bajo consumo, mientras que x86 está optimizada para alto rendimiento.  
+- **Es la base del diseño de procesadores**: Determina cómo se optimiza el hardware para ejecutar instrucciones eficientemente.  
+
+En resumen, la ISA es la interfaz fundamental entre el hardware y el software. Sin ella, un procesador no sabría interpretar los programas, y los desarrolladores no tendrían una base sobre la cual escribir código.

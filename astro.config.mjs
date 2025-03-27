@@ -72,6 +72,10 @@ export default defineConfig({
                           label: "Apuntes",
                           slug: "contenido/aci/tema1/apuntes",
                         },
+                        {
+                          label: "ISA",
+                          slug: "contenido/aci/tema1/isa",
+                        }
                       ],
                     }
                   ],
