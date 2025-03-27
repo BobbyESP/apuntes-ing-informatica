@@ -75,6 +75,10 @@ export default defineConfig({
                         {
                           label: "ISA",
                           slug: "contenido/aci/tema1/isa",
+                        },
+                        {
+                          label: "Núcleos e hilos",
+                          slug: "contenido/aci/tema1/nucleoshilos",
                         }
                       ],
                     },
