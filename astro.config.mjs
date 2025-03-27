@@ -77,6 +77,15 @@ export default defineConfig({
                           slug: "contenido/aci/tema1/isa",
                         }
                       ],
+                    },
+                    {
+                      label: "Tema 2: Memorias",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/aci/tema2/apuntes",
+                        },
+                      ],
                     }
                   ],
                 },
