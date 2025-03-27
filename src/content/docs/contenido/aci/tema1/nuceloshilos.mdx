@@ -1,0 +1,36 @@
+---
+title: Núcelos e hilos
+description: Como funcionan los núcleos y hilos en un procesador. Manejo de hilos en un programa.
+keywords: núcleos, hilos, procesador, CPU, programación
+---
+Pongamos el ejemplo de un procesador de 8 núcleos y 16 hilos. Esto significa que el procesador puede ejecutar **hasta 16 hilos de ejecución** al mismo tiempo, pero no necesariamente puede ejecutar **200 procesos simultáneamente**. La razón es que un hilo es una unidad de ejecución dentro de un proceso, y aunque un procesador tenga múltiples núcleos y hilos, la cantidad de procesos que puede manejar simultáneamente depende de varios factores.
+
+Aunque un procesador tenga solo 16 hilos, **puede manejar más de 16 procesos simultáneamente** gracias a la **gestión del sistema operativo** y las **técnicas de multitarea**. A continuación te explico cómo esto funciona:
+
+## **Multitarea del Sistema Operativo**
+   El **sistema operativo** juega un papel clave en la gestión de múltiples procesos. Aunque un procesador pueda ejecutar solo un número limitado de hilos simultáneamente, el sistema operativo puede **alternar rápidamente entre los procesos**. Este proceso se llama **multitarea**.
+
+   - Cuando el sistema operativo tiene más procesos que hilos, lo que hace es **dividir el tiempo de ejecución entre esos procesos**. Esto se conoce como **"time slicing"** (segmentación del tiempo).
+   - Cada proceso recibe un pequeño "tiempo de CPU", y luego el sistema operativo cambia a otro proceso, dando la apariencia de que todos los procesos se están ejecutando simultáneamente.
+
+## **Planificación de Procesos**
+   El sistema operativo utiliza un **planificador de procesos** para decidir cuál proceso debe ejecutarse en qué momento. Este planificador se encarga de gestionar la **concurrencia** (ejecución simultánea de procesos) de manera eficiente, a pesar de que el procesador tenga menos hilos que procesos activos.
+
+## **Estrategias de Multitarea**
+   - **Cooperativa**: Los procesos "cooperen" cediendo el control al sistema operativo después de un tiempo de ejecución, lo que permite que otros procesos tengan oportunidad de ejecutarse.
+   - **Preemptiva**: El sistema operativo puede forzar la interrupción de un proceso y cambiar a otro, incluso si el primer proceso no ha terminado. Esto ayuda a que todos los procesos reciban tiempo de CPU.
+
+## **Hilos y Procesos**
+   - Un **proceso** es una unidad de ejecución completa que incluye **uno o más hilos**. Un solo proceso puede tener varios hilos internos, y cada hilo es capaz de realizar una tarea de manera independiente.
+   - **Multihilo (Multithreading)**: Aunque tu procesador tenga solo 16 hilos, si un proceso tiene múltiples hilos (por ejemplo, un proceso con 10 hilos), puede repartir esas tareas entre los 16 hilos disponibles de la CPU.
+   - **Multiproceso (Multiprocessing)**: Si tienes 200 procesos, el sistema operativo puede asignar a cada proceso un tiempo de ejecución (con un máximo de 16 hilos en ejecución al mismo tiempo) y cambiar rápidamente entre los procesos para dar la impresión de que se están ejecutando simultáneamente.
+
+## **Ejemplo Práctico**
+   Imagina que tienes 200 procesos y 16 hilos:
+   - El sistema operativo selecciona un grupo de 16 procesos (uno para cada hilo).
+   - Luego, el sistema operativo le asigna a cada proceso un "quantum" de tiempo, es decir, una cantidad específica de tiempo para usar el procesador.
+   - Cuando un proceso termina su quantum de tiempo, el sistema operativo cambia a otro proceso de la cola de procesos pendientes.
+   - Esto sigue sucediendo de manera rápida, y como la conmutación entre procesos es muy rápida (milisegundos), el sistema operativo da la sensación de que los 200 procesos se ejecutan al mismo tiempo, aunque solo haya 16 hilos disponibles.
+
+## Resumen
+Aunque tu procesador tiene solo 16 hilos, el sistema operativo utiliza la multitarea y la **planificación de procesos** para ejecutar más de 16 procesos. Al cambiar rápidamente entre procesos y asignarles tiempo de CPU, el sistema operativo permite que un procesador maneje muchos más procesos de los hilos disponibles, dando la apariencia de que todo se ejecuta de forma simultánea.
