@@ -90,7 +90,25 @@ export default defineConfig({
                           slug: "contenido/aci/tema2/apuntes",
                         },
                       ],
-                    }
+                    },
+                    {
+                      label: "Tema 3: CPU",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/aci/tema3/apuntes",
+                        },
+                      ],
+                    },
+                    {
+                      label: "Tema 4: Entrada/salida",
+                      items: [
+                        {
+                          label: "Apuntes",
+                          slug: "contenido/aci/tema4/apuntes",
+                        },
+                      ],
+                    },
                   ],
                 },
               ],

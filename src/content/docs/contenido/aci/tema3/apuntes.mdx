@@ -1,0 +1,327 @@
+---
+title: Tema 3 - CPU
+description: Unidad Central de Procesamiento (CPU) y su funcionamiento
+keywords: CPU, Unidad Central de Procesamiento, Ciclo de Instrucción, Registros, ALU, Controlador, Pipeline, Arquitectura RISC y CISC
+---
+
+### 1. Arquitectura Von Neumann
+
+La arquitectura Von Neumann es un modelo fundamental para el diseño de computadoras, caracterizado por utilizar un único espacio de almacenamiento tanto para las instrucciones como para los datos.
+
+**Diagrama General (Basado en Slide 2):**
+La arquitectura se compone de:
+*   **CPU (Unidad Central de Proceso):** Encargada de ejecutar instrucciones. Contiene:
+    *   **Unidad de Control (UC):** Dirige las operaciones de la CPU.
+    *   **ALU (Unidad Aritmético-Lógica):** Realiza cálculos y operaciones lógicas.
+    *   **Registros:** Pequeñas unidades de memoria de alta velocidad dentro de la CPU.
+*   **Memoria Principal:** Almacena las instrucciones de los programas y los datos con los que operan.
+*   **Módulos de Entrada y Salida (E/S):** Permiten la comunicación con los **Periféricos** (teclado, pantalla, disco duro, etc.).
+*   **Buses del Sistema:** Canales de comunicación que interconectan los componentes:
+    *   **Bus de Direcciones:** Unidireccional (CPU -> Memoria/E-S). Especifica la ubicación (dirección) de memoria o del dispositivo de E/S al que se quiere acceder.
+    *   **Bus de Datos:** Bidireccional. Transfiere datos entre la CPU, la memoria y los módulos de E/S.
+    *   **Bus de Control (implícito en el diagrama):** Transporta señales de control y temporización para coordinar las actividades del sistema.
+
+**Características Principales (Basado en Slide 3):**
+*   **Tres componentes principales:**
+    1.  **CPU:** Unidad de Control, ALU, Registros.
+    2.  **Memoria Principal:** Almacena programas y datos.
+    3.  **Sistema de Entrada/Salida.**
+*   **Procesamiento secuencial de instrucciones:** Las instrucciones se ejecutan una tras otra, aunque técnicas modernas como el pipelining pueden solapar fases de distintas instrucciones.
+*   **Datos binarios en memoria:** Toda la información (instrucciones y datos) se almacena y procesa en formato binario.
+*   **Un sistema de interconexión (buses):** Conecta la memoria y la CPU, así como los módulos de E/S.
+
+**Puntos Clave - Von Neumann:**
+*   Unidad de memoria compartida para instrucciones y datos.
+*   Componentes: CPU, Memoria, E/S, interconectados por buses.
+*   Ejecución secuencial de instrucciones (en su modelo básico).
+
+---
+
+### 2. Estructura de la CPU
+
+La CPU es el componente central que ejecuta las instrucciones de los programas.
+
+**Visión General (Basado en Slide 4):**
+Un computador se compone de E/S, Memoria, CPU y un Bus de Sistema. La CPU internamente se organiza en:
+*   **Registros:** Almacenamiento temporal de alta velocidad.
+*   **Unidad Aritmética y Lógica (ALU):** Realiza operaciones.
+*   **Unidad de Control (UC):** Dirige las operaciones.
+*   **Interconexión Interna de la CPU:** Buses internos para comunicar estos componentes.
+
+**Estructura Interna Detallada (Basado en Slides 5 y 6):**
+*   **Arithmetic and Logic Unit (ALU):**
+    *   **Lógica Aritmética y Booleana:** Circuitos para realizar operaciones como suma, resta, AND, OR, XOR, etc.
+    *   **Status Flags (Registros de Estado):** Indicadores del resultado de la última operación de la ALU (ej. acarreo, desbordamiento, cero, signo).
+    *   **Shifter:** Para operaciones de desplazamiento de bits.
+    *   **Complementer:** Para calcular complementos (útil en restas, por ejemplo).
+    *   Recibe **operandos** (generalmente de registros) y una señal de la UC indicando la **operación a realizar**, y produce un **resultado**.
+*   **Registros:**
+    *   **De propósito general (R1, ..., Rn):** Pueden ser utilizados por los programadores para almacenar datos temporalmente.
+    *   **De propósito específico:** Tienen funciones predefinidas (ver sección siguiente).
+*   **Unidad de Control (UC):** Genera las señales de control necesarias para secuenciar las operaciones dentro de la CPU y coordinar la actividad con otros componentes (memoria, E/S). Incluye lógica para la decodificación de instrucciones.
+*   **Bus Interno de Comunicaciones (Internal CPU Bus):** Permite la transferencia de datos entre la ALU, los registros y la UC.
+*   **Control Paths / Arbitraje de Buses:** Señales de control y lógica para gestionar el acceso a los buses externos (direcciones y datos) cuando la CPU necesita comunicarse con la memoria o E/S.
+
+**Registros (Generalidades - Basado en Slide 7):**
+*   Almacenan datos binarios con acceso muy rápido.
+*   Son de tamaño fijo (ej. 32 bits, 64 bits).
+*   Propósito general (uso flexible por programas) o específico (funciones dedicadas).
+
+**DataPath (Basado en Slide 7):**
+*   Es el conjunto de elementos funcionales de la CPU que realizan el procesamiento de datos. Incluye la ALU, los registros y los buses internos que los conectan.
+*   Su operación está sincronizada por una señal de reloj y dirigida por la Unidad de Control.
+*   Su diseño es específico para cada CPU y fundamental para el rendimiento de su ISA (Instruction Set Architecture).
+*   Forma parte de la **microarquitectura** de la CPU.
+
+**Registros Específicos de la CPU (Basado en Slide 8):**
+Son cruciales para el funcionamiento de la CPU:
+*   **Memory Address Register (MAR):** Contiene la dirección de la memoria a la que se va a acceder (para leer o escribir). Conectado al bus de direcciones.
+*   **Memory Buffer Register (MBR) o Memory Data Register (MDR):** Contiene el dato que se va a escribir en memoria o el dato que se ha leído de memoria. Conectado al bus de datos.
+*   **Program Counter (PC) o Contador de Programa (CP):** Contiene la dirección de memoria de la próxima instrucción a ser ejecutada.
+*   **Instruction Register (IR) o Registro de Instrucción (RI):** Almacena la instrucción que se está ejecutando actualmente después de ser leída de memoria.
+*   **Palabra de Estado (PSW - Program Status Word) o Registro de Estado (RE):** Contiene los flags (indicadores de condición) que reflejan el resultado de la última operación de la ALU (ej. Zero, Carry, Overflow, Sign).
+*   **Acumulador (A):** Registro utilizado para almacenar operandos y resultados de operaciones de la ALU. No todas las arquitecturas tienen un acumulador dedicado.
+*   **Puntero de Pila (SP - Stack Pointer):** Contiene la dirección del tope de la pila en memoria. La pila se usa para almacenar datos temporales, direcciones de retorno de subrutinas y parámetros de funciones.
+
+*Diagrama (Slide 8):* Ilustra cómo PC, MAR, MBR y la Unidad de Control dentro de la CPU se conectan a los buses de Direcciones, Datos y Control para interactuar con la Memoria.
+
+**Unidad de Control (UC) - Funciones (Basado en Slide 9):**
+*   Controla todos los componentes de la CPU y su interacción con el resto del sistema.
+*   **Interpreta instrucciones:**
+    *   **Decodifica** la instrucción (presente en el IR) para determinar qué operación se debe realizar.
+    *   **Ejecuta** la instrucción generando una secuencia de señales de control que activan los componentes necesarios (ALU, registros, buses).
+*   Puede ser implementada de dos formas:
+    *   **Cableada (Hardwired):** Lógica combinacional y secuencial fija. Rápida pero inflexible.
+    *   **Microprogramada:** Las instrucciones se traducen en secuencias de microinstrucciones almacenadas en una memoria de control. Más flexible pero potencialmente más lenta.
+
+**Unidad Aritmético Lógica (ALU) - Funciones (Basado en Slides 9, 10):**
+*   Realiza operaciones matemáticas (suma, resta, multiplicación) y lógicas (AND, OR, XOR, NOT).
+*   Puede realizar operaciones con números enteros y, en ALUs más complejas, con números en punto flotante.
+*   También realiza operaciones de desplazamiento de bits (shift).
+*   Es un **circuito combinacional**: su salida depende únicamente de sus entradas actuales (operandos y la señal de control que indica la operación).
+*Diagrama (Slide 10):* Muestra una UAL (Unidad Aritmético-Lógica) genérica con dos entradas (operando 1, operando 2), una salida para el resultado, y señales de control que seleccionan la operación a realizar (Suma, AND, OR, XOR, etc.).
+
+**Puntos Clave - CPU:**
+*   Componentes principales: ALU, Unidad de Control, Registros.
+*   Registros: Propósito general y específico (PC, IR, MAR, MBR, PSW, SP).
+*   DataPath: Elementos y conexiones para el procesamiento de datos.
+*   UC dirige, ALU ejecuta cálculos, Registros almacenan temporalmente.
+
+---
+
+### 3. Instrucciones
+
+Las instrucciones son los comandos que la CPU puede entender y ejecutar.
+
+**Tipos de Instrucciones (Basado en Slide 11):**
+1.  **Procesador-Memoria:** Transferencia de datos entre la CPU y la memoria principal (ej. `LOAD` para leer de memoria a un registro, `STORE` para escribir de un registro a memoria).
+2.  **Procesador-E/S:** Transferencia de datos entre la CPU y un módulo de E/S (ej. `IN` para leer de un puerto de E/S, `OUT` para escribir a un puerto de E/S).
+3.  **Procesamiento de Datos:** Realización de operaciones aritméticas o lógicas sobre los datos (ej. `ADD`, `SUBTRACT`, `AND`, `OR`, `SHIFT`). Los operandos suelen estar en registros o ser valores inmediatos.
+4.  **Control:** Alteran la secuencia normal de ejecución de instrucciones (ej. `JUMP` (salto incondicional), `BRANCH` (salto condicional), `CALL` (llamada a subrutina), `RETURN` (retorno de subrutina)).
+
+**Formato de una Instrucción (Basado en Slides 12, 13):**
+*   Dentro del ordenador, cada instrucción se representa como una secuencia de bits.
+*   Esta secuencia se divide en campos, cada uno con un significado específico.
+*   **Formato Sencillo (Slide 13):**
+    *   **Opcode (Código de Operación):** Especifica la operación a realizar (ej. 4 bits).
+    *   **Operand Reference(s):** Uno o más campos que especifican la ubicación de los operandos (registros, direcciones de memoria, valores inmediatos) (ej. 6 bits cada uno).
+    *   *Ejemplo total: 4 (opcode) + 6 (operando1) + 6 (operando2) = 16 bits.*
+*   **Formato "Xenérico da MS" (Slide 12):**
+    *   **CÓDIGO DE OPERACIÓN** (2 bits): Indica la operación (ej. 00=ADD, 01=CMP, 10=MOV, 11=BEQ - Branch if Equal).
+    *   **OPERANDO FONTE** (Fuente - 7 bits): Especifica el origen del primer operando.
+    *   **OPERANDO DESTINO** (7 bits): Especifica el destino del resultado y/o el segundo operando.
+
+**Representación de Instrucciones (Basado en Slide 14):**
+*   **Opcodes:** Para facilitar la programación humana, los opcodes binarios se representan con **neumónicos** (abreviaturas simbólicas).
+    *   Ejemplos: `ADD` (sumar), `SUB` (restar), `MUL` (multiplicar), `DIV` (dividir), `LOAD` (cargar dato de memoria), `STOR` (almacenar dato en memoria).
+*   **Operandos:** También se representan simbólicamente (nombres de variables, etiquetas de memoria, nombres de registros).
+*   Cada opcode simbólico (neumónico) tiene una **representación binaria fija** que la CPU entiende.
+*   El programador especifica la ubicación de cada operando simbólico. El ensamblador o compilador traduce estos símbolos a direcciones de memoria reales, números de registro o valores inmediatos.
+
+**Elementos de una Instrucción de Máquina (Basado en Slide 15):**
+Una instrucción de máquina típicamente define:
+1.  **Código de operación (opcode):** ¿Qué operación se debe realizar?
+2.  **Referencia a operando(s) Fuente:** ¿De dónde se obtienen los datos para la operación? (Puede ser uno o más).
+3.  **Referencia a operando Resultado:** ¿Dónde se debe almacenar el resultado de la operación?
+4.  **Referencia a la Próxima instrucción:** ¿Cuál es la siguiente instrucción a ejecutar? (A menudo es implícito, el PC se incrementa. Las instrucciones de control modifican explícitamente el PC).
+
+**Puntos Clave - Instrucciones:**
+*   Comandos para la CPU: transferencia de datos, procesamiento, control de flujo.
+*   Formato binario con campos: opcode y operandos.
+*   Representación simbólica (neumónicos) para humanos.
+
+---
+
+### 4. Ciclo de Instrucción
+
+Es la secuencia básica de operaciones que la CPU realiza para procesar cada instrucción de un programa.
+
+**Fases Principales (Basado en Slides 16, 20 y visualización en 21-24):**
+El ciclo se repite continuamente y consta de las siguientes fases:
+1.  **Fetch (Búsqueda/Captación):**
+    *   La Unidad de Control (UC) obtiene la próxima instrucción de la memoria. La dirección de esta instrucción está en el Program Counter (PC).
+    *   La instrucción leída se carga en el Instruction Register (IR).
+    *   El PC se incrementa para apuntar a la siguiente instrucción en secuencia. (Slide 21: PC -> Memoria, Instrucción -> CPU)
+2.  **Decode (Decodificación):**
+    *   La UC analiza (decodifica) la instrucción que está en el IR.
+    *   Determina qué operación se debe realizar y qué operandos se necesitan.
+    *   La instrucción se traduce a un lenguaje que la ALU y otros componentes entienden. (Slide 22: Instrucción en CPU, analizada por UC/ALU).
+3.  **Execute (Ejecución):**
+    *   Se realiza la operación especificada. Esto puede implicar:
+        *   **Búsqueda de Operandos:** Si los operandos están en memoria, se leen. Si están en registros, se accede a ellos. (Slide 23: Operandos de Memoria/Registros -> CPU).
+        *   **Operación en la ALU:** La ALU realiza el cálculo o la operación lógica.
+        *   **Almacenamiento de Resultado:** El resultado se almacena en un registro o en memoria. (Slide 24: ALU opera, resultado -> Registros/Memoria).
+        *   Cambio de estado de los flags en el PSW.
+4.  **(Repetir)** El ciclo vuelve a la fase de Fetch para la siguiente instrucción.
+
+**Modelo de Ejecución de Von Neumann (Flujograma - Basado en Slide 17):**
+Detalla los pasos del ciclo:
+1.  **Busca de Instrucción:** Obtiene la instrucción de la memoria de programa (usando PC).
+2.  **Decodificación de Instrucción:** Determina las acciones requeridas y el tamaño/formato.
+3.  **Busca de Operandos:** Localiza y obtiene los datos de los operandos (de memoria o registros).
+4.  **Ejecución:** Calcula el valor de los resultados o actualiza el estado (flags).
+5.  **Almacena Resultados:** Deposita los resultados en memoria o registros.
+6.  **Próxima Instrucción:** Determina la dirección de la siguiente instrucción (actualiza PC).
+
+**Pasos Detallados (Texto - Basado en Slide 18):**
+Similar al flujograma, enfatizando cómo la UC coordina y cómo la ejecución puede alterar el PC (saltos) o tomar decisiones.
+
+**Diagrama de Estados del Ciclo de Instrucción (Basado en Slide 19):**
+Presenta una visión más granular del ciclo, dividiéndolo en múltiples estados:
+*   **Cálculo de la dirección de instrucción:** Determinar dónde está la siguiente instrucción (usar PC).
+*   **Captación de instrucción:** Leer la instrucción de memoria.
+*   **Decodificación de la operación de la instrucción:** Interpretar el opcode.
+*   **Cálculo de la dirección de operando:** Si un operando está en memoria, calcular su dirección.
+*   **Captación de operando:** Leer el operando de memoria (puede repetirse si hay múltiples operandos).
+*   **Operación con datos:** Ejecutar la operación en la ALU.
+*   **Cálculo de la dirección de operando (para resultado):** Si el resultado va a memoria, calcular su dirección.
+*   **Almacenamiento de operando (resultado):** Escribir el resultado en memoria.
+*   (Luego, o se capta la siguiente instrucción o se gestionan interrupciones).
+*Notas del diagrama:*
+*   Los estados en la parte superior implican intercambio entre procesador y memoria/E-S.
+*   Los estados en la parte inferior involucran solo operaciones internas del procesador.
+*   Algunas instrucciones permiten múltiples operandos y múltiples resultados (ej. instrucciones SIMD).
+
+**Microoperaciones:**
+Cada fase del ciclo de instrucción (fetch, execute, etc.) se descompone en una secuencia de operaciones elementales llamadas **microoperaciones**. Cada microoperación es una transferencia simple de datos o una operación lógica/aritmética básica, generalmente completada en un ciclo de reloj.
+
+**Ciclo de Fetch - Microoperaciones (Basado en Slide 25):**
+*   Objetivo: Obtener la instrucción de memoria y cargarla en el IR.
+*   Ejemplo de secuencia de microoperaciones:
+    *   `t1: MAR ←- PC` (El contenido del PC se transfiere al MAR).
+    *   `t2: MBR ←- memoria[MAR]; PC ←- PC+1` (Se lee de la dirección de memoria indicada por MAR al MBR; simultáneamente, el PC se incrementa para apuntar a la siguiente instrucción).
+    *   `t3: IR ←- MBR` (La instrucción (ahora en MBR) se transfiere al IR).
+*Diagrama (Slide 25):* Muestra estas transferencias entre PC, MAR, Memoria, MBR, e IR, coordinadas por la Unidad de Control y usando los buses internos y externos.
+
+**Ciclo de Ejecución - Microoperaciones (Basado en Slide 26):**
+*   Muy variable, depende de la instrucción específica.
+*   Puede incluir: Lectura/escritura de memoria, E/S, transferencia entre registros, operaciones de la ALU.
+*   **Ejemplo 1: `add R1, X`** (Sumar el contenido de la ubicación de memoria X al registro R1, resultado en R1)
+    *   `t1: MAR ←- IR(direccion_X)` (La parte de la instrucción en IR que contiene la dirección de X se carga en MAR).
+    *   `t2: MBR ←- memoria[MAR]` (Se lee el operando de la memoria (X) y se carga en MBR).
+    *   `t3: R1 ←- R1 + MBR` (La ALU suma el contenido de R1 y MBR, y el resultado se almacena en R1).
+*   **Ejemplo 2: `ISZ X`** (Incrementar y Saltar si es Cero el contenido de la ubicación de memoria X)
+    *   `t1: MAR ←- IR(direccion_X)`
+    *   `t2: MBR ←- memoria[MAR]`
+    *   `t3: MBR ←- MBR + 1` (Se incrementa el valor leído de memoria, que está en MBR).
+    *   `t4: memoria[MAR] ←- MBR` (Se escribe el valor incrementado de MBR de vuelta a la memoria en la dirección X). *(Nota: La slide 26 no muestra este paso de escritura, sino directamente el salto condicional. Sin embargo, una instrucción ISZ típicamente escribe el valor incrementado de vuelta. Para el examen, sigue la slide: `t4: Si MBR = 0 entonces PC ←- PC + 1`)*.
+    *   Siguiendo la slide 26: `t4: Si MBR = 0 entonces PC ←- PC + 1` (Si el valor incrementado en MBR es cero, se incrementa el PC una vez más, lo que causa un salto sobre la siguiente instrucción).
+
+**Ciclo Indirecto (Addressing) (Basado en Slides 30, 31):**
+*   Se requiere cuando una instrucción utiliza **direccionamiento indirecto**. En este modo, la dirección especificada en la instrucción no es la del operando, sino la dirección de memoria que *contiene* la dirección del operando (un puntero).
+*   Requiere un acceso adicional a memoria para obtener la dirección efectiva del operando.
+*   Se puede considerar un subciclo adicional dentro del ciclo de instrucción.
+*   **Instrucción Ejemplo: `LDI X`** (Cargar Indirecto desde X, asumiendo X es la dirección del puntero)
+    *   `t1: MAR ←- IR(direccion_X)` (La dirección del puntero (X) va al MAR).
+    *   `t2: MBR ←- memoria[MAR]` (Se lee de memoria la dirección efectiva del operando, que estaba en X).
+    *   `t3: MAR ←- MBR` (La dirección efectiva (ahora en MBR) se coloca en MAR).
+    *   `t4: MBR ←- memoria[MAR]` (Ahora sí, se lee el operando real de la memoria usando la dirección efectiva).
+    *   (El contenido de MBR sería luego transferido a un registro destino, ej. Acumulador).
+*Diagrama (Slide 31):* Muestra la CPU (MAR, MBR, Control Unit) interactuando con la memoria y los buses para realizar estas operaciones.
+*Diagrama de Estados (Slide 30):* Es una extensión del diagrama de ciclo de instrucción (slide 19). Introduce bucles de "Indirection" para "Operand fetch" y "Operand store". Si se detecta direccionamiento indirecto, se realizan accesos adicionales a memoria para resolver la dirección efectiva antes de obtener/almacenar el operando. También muestra un estado de "Interrupt check" antes de iniciar un nuevo ciclo de fetch.
+
+**Puntos Clave - Ciclo de Instrucción:**
+*   Secuencia fundamental: Fetch -> Decode -> Execute.
+*   PC guía la búsqueda, IR almacena la instrucción actual, UC decodifica y dirige.
+*   Las fases se componen de microoperaciones.
+*   El direccionamiento indirecto añade pasos para resolver la dirección efectiva.
+
+---
+
+### 5. Formatos de Instrucción Adicionales y Ejemplos
+
+**Formato de Instrucción de Longitud Fija (Ejemplo MIPS - Basado en Slide 27):**
+Las arquitecturas RISC (Reduced Instruction Set Computer) como MIPS suelen utilizar formatos de instrucción de longitud fija para simplificar la decodificación.
+*   **J-type (Jump):**
+    *   `Opcode` (ej. 6 bits)
+    *   `Branch Address ADR` (ej. 26 bits) - Dirección de salto.
+*   **I-type (Immediate):** Para operaciones con un valor inmediato o cargas/almacenamientos.
+    *   `Opcode` (ej. 6 bits)
+    *   `Rs` (ej. 5 bits) - Registro fuente.
+    *   `Rt` (ej. 5 bits) - Registro destino o segundo fuente.
+    *   `Immediate Operand IMM` (ej. 16 bits) - Valor constante.
+*   **R-type (Register):** Para operaciones entre registros.
+    *   `Opcode` (ej. 6 bits) - Usualmente 0 para operaciones R-type.
+    *   `Rs` (ej. 5 bits) - Primer registro operando fuente.
+    *   `Rt` (ej. 5 bits) - Segundo registro operando fuente.
+    *   `Rd` (ej. 5 bits) - Registro destino.
+    *   `Shift amount (shamt)` (ej. 5 bits) - Cantidad de desplazamiento (para instrucciones de shift).
+    *   `Function (funct)` (ej. 6 bits) - Especifica la variante exacta de la operación R-type (ej. ADD, SUB, AND).
+
+**Ejemplo de Ejecución de un Programa (Basado en Slides 28, 29):**
+Ilustra cómo la CPU procesa una secuencia simple de instrucciones utilizando una máquina hipotética.
+
+*   **Características de la Máquina Hipotética (Slide 28):**
+    *   **Formato de Instrucción (16 bits):** Opcode (4 bits) | Address (12 bits).
+    *   **Formato de Entero (16 bits):** Signo (1 bit) | Magnitud (15 bits).
+    *   **Registros CPU:** PC, IR, AC (Acumulador).
+    *   **Opcodes:** `0001` (1) = Load AC from Memory, `0010` (2) = Store AC to Memory, `0101` (5) = Add to AC from Memory.
+
+*   **Programa: `Y ← X + Y` (Slide 29):**
+    Asumimos: `X` en dirección `940` (valor `3`), `Y` en `941` (valor `2`).
+    Instrucciones en memoria:
+    `300: 1940` (LDA 940)
+    `301: 5941` (ADD 941)
+    `302: 2941` (STA 941)
+
+*   **Secuencia de Ejecución (resumida):**
+    1.  **Fetch LDA 940:** PC=300. IR ← Mem[300] (`1940`). PC ← 301.
+    2.  **Execute LDA 940:** AC ← Mem[940] (`0003`).
+    3.  **Fetch ADD 941:** PC=301. IR ← Mem[301] (`5941`). PC ← 302.
+    4.  **Execute ADD 941:** AC ← AC + Mem[941] (`0003` + `0002` = `0005`).
+    5.  **Fetch STA 941:** PC=302. IR ← Mem[302] (`2941`). PC ← 303.
+    6.  **Execute STA 941:** Mem[941] ← AC (`0005`).
+    *El diagrama de la slide 29 muestra el estado de la Memoria, PC, AC, e IR en cada uno de estos 6 pasos, visualizando el flujo de datos e instrucciones.*
+
+---
+
+### 6. Arquitecturas Específicas (Ejemplo ARM)
+
+Las diapositivas muestran diagramas de bloques de arquitecturas como "MS" (Slide 32) y el microprocesador 8085 (Slide 33), que son ejemplos históricos o específicos. Se profundiza en ARM.
+
+**Organización Simplificada ARM (Diagrama - Basado en Slide 34):**
+El diagrama de una CPU ARM típica muestra:
+*   Interacción con **memoria externa** (caché, memoria principal) a través del **Memory Address Register (MAR)** y **Memory Buffer Register (MBR)**.
+*   **User Register File (R0 - R15):** Un banco de registros de propósito general. R15 es el PC.
+*   **Incrementer:** Para actualizar el PC.
+*   **Sign extend unit:** Para expandir el signo de operandos inmediatos.
+*   **Barrel shifter:** Una unidad potente que puede realizar desplazamientos y rotaciones complejas en un solo ciclo de reloj, a menudo antes de una operación ALU.
+*   **ALU:** Para operaciones aritméticas y lógicas.
+*   **Multiply/accumulate unit:** Para operaciones de multiplicación y multiplicación-acumulación eficientes.
+*   **Instruction Register (IR), Instruction Decoder, Control Unit (con CPSR - Current Program Status Register):** Para el ciclo de instrucción.
+*   Se observan los flujos de datos (operandos `Rn`, `Rm`, resultado `Rd`, acumulador `Acc`) entre estos componentes.
+
+**El Procesador ARM (Atributos RISC - Basado en Slide 35):**
+ARM (Advanced RISC Machine) es una arquitectura predominantemente RISC. Sus atributos clave incluyen:
+*   **Conjunto moderado de registros uniformes:** Un buen número de registros de propósito general.
+*   **Modelo de carga/almacenamiento (load/store):** Las operaciones de procesamiento de datos (aritméticas, lógicas) solo operan sobre datos en registros. Para operar con datos en memoria, primero deben cargarse en registros (`LOAD`), y los resultados se guardan en memoria con instrucciones `STORE`.
+*   **Instrucción uniforme de longitud fija:** Típicamente 32 bits para el conjunto de instrucciones estándar ARM, y 16 bits para el conjunto Thumb (para mayor densidad de código). Esto simplifica la decodificación y el pipelining.
+*   **Unidad aritmética lógica (ALU) y unidades de desplazamiento (shift) separadas y potentes:** El barrel shifter es un ejemplo.
+*   **Número pequeño de modos de direccionamiento:** Las direcciones para operaciones de carga/almacenamiento se calculan a partir de valores en registros y campos de la instrucción.
+*   **Modos de direccionamiento de incremento y decremento automático:** Útiles para recorrer arrays o estructuras de datos en bucles.
+*   **Ejecución condicional de la mayoría de las instrucciones:** Muchas instrucciones pueden ejecutarse o no dependiendo del estado de los flags (CPSR). Esto reduce la necesidad de muchas instrucciones de bifurcación condicional, mejorando el rendimiento del pipeline al evitar saltos.
+
+**Puntos Clave - ARM:**
+*   Arquitectura RISC de tipo load/store.
+*   Instrucciones de longitud fija, ejecución condicional.
+*   Barrel shifter potente, múltiples registros de propósito general.
